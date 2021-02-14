@@ -4,3 +4,6 @@
 # Ignore build output
 /cjs/
 /es/
+
+# Ignore documentation
+/docs/
