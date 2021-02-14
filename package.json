@@ -12,7 +12,7 @@
     "test": "echo \"Error: no test specified\"",
     "docs": "./node_modules/.bin/esdoc",
     "prepare": "npm run build",
-    "publish": "np"
+    "release": "np"
   },
   "keywords": [],
   "publishConfig": {
