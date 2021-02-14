@@ -6,7 +6,10 @@
     {
       "name": "esdoc-importpath-plugin",
       "option": {
-        "replaces": [{ "from": "^src/.*", "to": "" }]
+        "replaces": [
+          { "from": "^src/(?!parse).*", "to": "" },
+          { "from": "^src/parse/.*", "to": "parse" }
+        ]
       }
     },
     {

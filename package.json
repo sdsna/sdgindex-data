@@ -4,10 +4,11 @@
   "description": "",
   "main": "cjs/index.js",
   "module": "es/index.js",
+  "sideEffects": false,
   "scripts": {
+    "build": "npm run build:cjs && npm run build:es",
     "build:cjs": "cross-env NODE_ENV=cjs babel src --out-dir cjs",
     "build:es": "cross-env NODE_ENV=es babel src --out-dir es",
-    "prepare": "npm run build:cjs && npm run build:es",
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs": "./node_modules/.bin/esdoc"
   },

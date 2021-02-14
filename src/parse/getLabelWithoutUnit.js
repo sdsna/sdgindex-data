@@ -1,4 +1,4 @@
-import getIndicatorUnit from "./getIndicatorUnit";
+import { getIndicatorUnit } from "./getIndicatorUnit";
 
 /**
  * Remove the unit from the indicator label. Assumes that the unit is wrapped in

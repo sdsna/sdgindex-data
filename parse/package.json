@@ -1,0 +1,6 @@
+{
+  "internal": true,
+  "main": "../cjs/parse/index.js",
+  "module": "../es/parse/index.js",
+  "sideEffects": false
+}
