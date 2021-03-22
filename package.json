@@ -9,7 +9,7 @@
     "build": "npm run build:cjs && npm run build:es",
     "build:cjs": "trash cjs/* && cross-env NODE_ENV=cjs babel src --out-dir cjs",
     "build:es": "trash es/* && cross-env NODE_ENV=es babel src --out-dir es",
-    "test": "echo \"Error: no test specified\"",
+    "test": "jest",
     "docs": "./node_modules/.bin/esdoc",
     "prepare": "npm run build",
     "release": "np"
@@ -26,6 +26,11 @@
     "cjs",
     "es"
   ],
+  "jest": {
+    "moduleNameMapper": {
+      "@root(.*)$": "<rootDir>/$1"
+    }
+  },
   "devDependencies": {
     "@babel/cli": "^7.12.16",
     "@babel/core": "^7.12.16",
@@ -40,6 +45,7 @@
   },
   "dependencies": {
     "fs-extra": "^9.1.0",
+    "jest": "^26.6.3",
     "xlsx": "^0.16.9"
   }
 }
