@@ -23,6 +23,7 @@
   "license": "ISC",
   "files": [
     "parse",
+    "data",
     "cjs",
     "es"
   ],

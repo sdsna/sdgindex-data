@@ -1,0 +1,6 @@
+{
+  "internal": true,
+  "main": "../cjs/sdgs/index.js",
+  "module": "../es/sdgs/index.js",
+  "sideEffects": false
+}
