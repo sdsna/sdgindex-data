@@ -5,7 +5,6 @@
  * @param {store} dataStore - The store where the data are loaded
  * @param {Object} region - The region object {id:..., name:..., ...}
  * @param {Object} assessment - The assessment object {id:..., name:..., ...}
- * @return {} return nothing
  */
 const ensureDataIds = ({ dataStore, region, assessment }) => {
   if (region && !region.hasOwnProperty("dataId"))

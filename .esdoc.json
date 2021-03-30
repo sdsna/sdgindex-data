@@ -8,7 +8,9 @@
       "option": {
         "replaces": [
           { "from": "^src/(?!parse).*", "to": "" },
-          { "from": "^src/parse/.*", "to": "parse" }
+          { "from": "^src/(?!data).*", "to": "" },
+          { "from": "^src/parse/.*", "to": "parse" },
+          { "from": "^src/data/.*", "to": "data" }
         ]
       }
     },
