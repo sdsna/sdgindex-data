@@ -6,7 +6,7 @@
  * @param {Object} region - The region object {id:..., name:..., ...}
  * @param {Object} assessment - The assessment object {id:..., name:..., ...}
  */
-const ensureDataIds = ({ dataStore, region, assessment }) => {
+export const ensureDataIds = ({ dataStore, region, assessment }) => {
   if (region && !region.hasOwnProperty("dataId"))
     region.dataId = dataStore.regions.find((r) => r.id === region.id).dataId;
   if (assessment && !assessment.hasOwnProperty("dataId"))
