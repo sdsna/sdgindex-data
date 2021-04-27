@@ -5,4 +5,5 @@
  * @return {String} return a String with the state of the Region null if no state
  */
 export const findStateByRegionId = (dataStore, id) =>
-  dataStore.regions.find((region) => region.id === id)?.state;
+  dataStore.regions.find((region) => region.id === id);
+  //dataStore.regions.find((region) => region.id === id)?.state;
