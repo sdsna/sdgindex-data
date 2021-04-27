@@ -12,7 +12,7 @@ test("If a region is returned with assessment by ID, in case itsn't included", (
         name: "Colorado",
         type: "state"
     };
-    //in order to check
+    
     let assessment = {
         id: "sdg1v2_povline",
         dataId: 1,
@@ -27,5 +27,5 @@ test("If a region is returned with assessment by ID, in case itsn't included", (
         reference: "ACS",
     };
 
-    expect(findRegionWithAssessmentById(dataStore, assessment, region.idd)).toEqual(region);
+    expect(findRegionWithAssessmentById(dataStore, assessment, region.id)).toEqual(region);
 });
