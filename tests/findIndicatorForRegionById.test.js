@@ -28,10 +28,5 @@ test("If an indicator is returned for region by ID, in case it isn't included", 
         reference: "ACS",
     };
 
-    const findIndicatorById = (dataStore, id) =>
-        getIndicators(dataStore).find((indicator) => indicator.id === id);
-
     expect(findIndicatorForRegionById(dataStore, region, indicator.id)).toEqual(indicator);
-    /* findIndicatorById(dataStore, indicator.id).id */ 
-    /* if it doesn't work, make an object (data) that contains the observation / assessment */
 }); 

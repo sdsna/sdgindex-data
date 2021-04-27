@@ -28,5 +28,4 @@ test("If an indicator is returned for region by SLUG, in case it isn't included"
     };
 
     expect(findIndicatorForRegionBySlug(dataStore, region, indicator.slug)).toEqual(indicator);
-    /* if it doesn't work, make an object (data) that contains the observation / assessment */
 });

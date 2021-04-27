@@ -13,5 +13,19 @@ test("If a region is returned with assessment by ID, in case itsn't included", (
         type: "state"
     };
 
-    expect(findRegionWithAssessmentById(dataStore, assessment, region.id)).toEqual(region);
+    let assessment = {
+        id: "sdg1v2_povline",
+        dataId: 1,
+        goalNumber: 1,
+        slug: "sdg1v2_povline",
+        label: "Living Below Poverty Line",
+        unit: "%",
+        description: "Percent of people living below the national poverty line",
+        type: "indicator",
+        year: "2018",
+        longTermObjective: 3.65,
+        reference: "ACS",
+    };
+
+    expect(findRegionWithAssessmentById(dataStore, assessment, region.idd)).toEqual(region);
 });
