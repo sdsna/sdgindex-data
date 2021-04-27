@@ -9,6 +9,6 @@ test("If a state is returned by region ID, in case itsn't included", () => {
         name: "Colorado",
         type: "state"
     };
-
-    expect(findStateByRegionId(dataStore, region.id)).toEqual(region.type);
+    
+    expect(findStateByRegionId(dataStore, "CO")).toEqual(region.name);
 });
