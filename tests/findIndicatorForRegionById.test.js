@@ -12,6 +12,9 @@ test("If an indicator is returned for region by ID, in case it isn't included", 
     };
 
     let indicator = {
+        id: "10-1",
+        v: 20.3,
+        c: "red",
         id: "sdg1v2_povline",
         dataId: 1,
         goalNumber: 1,
@@ -25,12 +28,10 @@ test("If an indicator is returned for region by ID, in case it isn't included", 
         reference: "ACS",
     };
 
-    let observation = { id: "10-1", v: 20.3, c: "red" };
-
     const findIndicatorById = (dataStore, id) =>
         getIndicators(dataStore).find((indicator) => indicator.id === id);
 
-    expect(findIndicatorForRegionById(dataStore, region, indicator.id)).toEqual(observation);
+    expect(findIndicatorForRegionById(dataStore, region, indicator.id)).toEqual(indicator);
     /* findIndicatorById(dataStore, indicator.id).id */ 
     /* if it doesn't work, make an object (data) that contains the observation / assessment */
 }); 

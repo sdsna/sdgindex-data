@@ -11,6 +11,9 @@ test("If an indicator is returned for region by SLUG, in case it isn't included"
     };
 
     let indicator = {
+        d: "10-1",
+        v: 20.3,
+        c: "red",
         id: "sdg1v2_povline",
         dataId: 1,
         goalNumber: 1,
@@ -24,8 +27,6 @@ test("If an indicator is returned for region by SLUG, in case it isn't included"
         reference: "ACS",
     };
 
-    let observation = { id: "10-1", v: 20.3, c: "red" };
-
-    expect(findIndicatorForRegionBySlug(dataStore, region, indicator.slug)).toEqual(observation);
+    expect(findIndicatorForRegionBySlug(dataStore, region, indicator.slug)).toEqual(indicator);
     /* if it doesn't work, make an object (data) that contains the observation / assessment */
 });
