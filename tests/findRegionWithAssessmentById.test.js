@@ -2,13 +2,10 @@ import { dataStore } from './dataStore'
 import { findRegionWithAssessmentById } from '@root'
 
 test("If a region is returned with assessment by ID, in case itsn't included", () => {
-    let assessment = {
+    let region = {
         id: "10-1",
         v: 20.3,
-        c: "red"
-    };
-    
-    let region = {
+        c: "red",
         id: "CO",
         dataId: 10,
         slug: "colorado",
@@ -16,5 +13,5 @@ test("If a region is returned with assessment by ID, in case itsn't included", (
         type: "state"
     };
 
-    expect(findRegionWithAssessmentById(dataStore, assessment, region.id)).toEqual(data);
+    expect(findRegionWithAssessmentById(dataStore, assessment, region.id)).toEqual(region);
 });
