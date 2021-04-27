@@ -1,4 +1,4 @@
-import { dataStore } from '/dataStore'
+import { dataStore } from './dataStore'
 import { findRegionById } from '@root'
 
 test("If a region is returned by ID, in case itsn't included", () => {
