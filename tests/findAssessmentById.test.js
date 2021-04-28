@@ -1,7 +1,7 @@
 import { dataStore } from "./dataStore";
 import { findAssessmentById } from "@root";
 
-it("check if add well dataId if it's not there", () => {
+it("check if find well assessment By Id", () => {
   let assessment = {
     id: "sdg13v3_GHGemissions",
     goalNumber: 13,

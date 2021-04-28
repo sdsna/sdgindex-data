@@ -2,7 +2,7 @@ import { dataStore } from "./dataStore";
 import { findAssessmentForRegionById } from "@root";
 import { findGoalForRegionById } from "../src/findGoalForRegionById";
 
-it("check if add well dataId if it's not there", () => {
+it("check if find well assessment By Id For Region", () => {
   let assessment = {
     id: "sdg13v3_GHGemissions",
     v: 22.36,

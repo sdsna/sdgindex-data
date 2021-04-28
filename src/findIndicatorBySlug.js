@@ -1,3 +1,4 @@
+import { getIndicators } from "./getIndicators";
 /**
  * find an Indicator by slug
  * @param {store} dataStore - The store where the data are loaded

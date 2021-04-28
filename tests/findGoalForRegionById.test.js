@@ -1,7 +1,7 @@
 import { dataStore } from "./dataStore";
 import { findGoalForRegionById } from "@root";
 
-it("check if add well dataId if it's not there", () => {
+it("check if find goal for Region", () => {
   let goal = {
     c: "red",
     dataId: "SDG1",
