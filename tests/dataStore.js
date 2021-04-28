@@ -11,7 +11,7 @@ export const dataStore = {
       name: "California",
       type: "state",
     },
-    { id: "CO", dataId: 10, slug: "colorado", name: "Colorado", type: "state" },
+    { id: "CO", dataId: 10, state: "Denver", slug: "colorado", name: "Colorado", type: "state" },
     {
       id: "CT",
       dataId: 17,
