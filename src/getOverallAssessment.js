@@ -1,3 +1,4 @@
+import { isOverallAssessment } from "./assessments/isOverallAssessment";
 /**
  * get Overall assessment
  * @param {store} dataStore - The store where the data are loaded
