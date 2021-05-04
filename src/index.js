@@ -22,6 +22,5 @@ export * from "./getOverallAssessmentForRegion";
 export * from "./getOverallScoreForRegion";
 export * from "./getRegions";
 export * from "./getRegionsWithAssessment";
-export * from "./getStates";
 export * from "./loadData";
 export * from "./loadDataset";
