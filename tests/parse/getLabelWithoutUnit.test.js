@@ -1,19 +1,13 @@
 import { getLabelWithoutUnit } from "@root/parse";
 
-it("classic tests", () => {
+it("returns label without '(%)'", () => {
   expect(getLabelWithoutUnit("this is label (%)")).toEqual("this is label");
 });
 
-it("classic tests", () => {
-  expect(getLabelWithoutUnit("this is label (this is unit)")).toEqual(
-    "this is label"
-  );
+it("returns label without '(unit)'", () => {
+  expect(getLabelWithoutUnit("this is label (unit)")).toEqual("this is label");
 });
 
-it("classic tests without unit", () => {
+it("returns entire string when label has no unit", () => {
   expect(getLabelWithoutUnit("this is label")).toEqual("this is label");
-});
-
-it("test for empty", () => {
-  expect(getLabelWithoutUnit("")).toEqual("");
 });
