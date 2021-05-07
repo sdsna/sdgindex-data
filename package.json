@@ -30,7 +30,8 @@
   "jest": {
     "moduleNameMapper": {
       "@root(.*)$": "<rootDir>/$1"
-    }
+    },
+    "resetMocks": true
   },
   "devDependencies": {
     "@babel/cli": "^7.12.16",

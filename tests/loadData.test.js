@@ -1,18 +1,14 @@
-import { loadData } from "@root";
-
-jest.mock("@root", () => {
-  return { ...jest.requireActual("@root"), loadDataset: jest.fn() };
-});
-import { loadDataset } from "@root";
-
-beforeEach(() => {
-  loadDataset.mockImplementation(() => {
-    console.log("Mocked");
-  });
-});
+import { loadData, loadDataset } from "@root";
+jest.mock("@root/cjs/loadDataset");
 
 it("Load all data from dataStore in dataset object", () => {
-  const dataStore = { state: { isLoaded: false } };
+  loadDataset.mockImplementation((dataStore, dataset) => {
+    dataStore[dataset] = { test: true };
+
+    return Promise.resolve(undefined);
+  });
+  const dataStore = { state: { isLoaded: false, markAsLoaded: () => {} } };
+
   loadData(dataStore);
 
   expect(dataStore).toHaveProperty("regions");
