@@ -7,10 +7,11 @@
       "name": "esdoc-importpath-plugin",
       "option": {
         "replaces": [
-          { "from": "^src/(?!parse).*", "to": "" },
-          { "from": "^src/(?!data).*", "to": "" },
+          { "from": "^src/[^\\/]*$", "to": "" },
           { "from": "^src/parse/.*", "to": "parse" },
-          { "from": "^src/data/.*", "to": "data" }
+          { "from": "^src/observations/.*", "to": "observations" },
+          { "from": "^src/assessments/.*", "to": "assessments" },
+          { "from": "^src/sdgs/.*", "to": "sdgs" }
         ]
       }
     },
