@@ -1,7 +1,7 @@
 import { loadDataset } from "./loadDataset";
 /**
  * If data not loaded, load dataset in dataStore
- * @param {store} dataStore - The store where we load the data
+ * @param {Object} dataStore - The store where we load the data
  * @param {Array} datasets - The dataset to store default: ["assessments", "regions", "observations"]
  * Can Add timeseries or special cases
  * @return {bool} true if dataStore is loaded

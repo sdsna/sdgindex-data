@@ -1,7 +1,7 @@
 import { isIndicator } from "./assessments/isIndicator";
 /**
  * get all indicators
- * @param {store} dataStore - The store where the data are loaded
+ * @param {Object} dataStore - The store where the data are loaded
  * @return {Array} return an array of all indicators [{id:..., name:..., ...}, {}, ...]
  */
 export const getIndicators = (dataStore) =>

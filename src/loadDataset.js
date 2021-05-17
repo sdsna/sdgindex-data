@@ -1,6 +1,6 @@
 /**
  * If data not loaded, load dataset in dataStore
- * @param {store} dataStore - The store where we load the data
+ * @param {Object} dataStore - The store where we load the data
  * @param {Object} dataset - The dataset to store
  * @return {bool} true if dataStore is loaded
  */

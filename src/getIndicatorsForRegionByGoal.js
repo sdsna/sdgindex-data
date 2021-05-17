@@ -2,7 +2,7 @@ import { getIndicatorsByGoal } from "./getIndicatorsByGoal";
 import { findObservationByRegionAndAssessment } from "./findObservationByRegionAndAssessment";
 /**
  * get all indicators for a specific region and a specific goal
- * @param {store} dataStore - The store where the data are loaded
+ * @param {Object} dataStore - The store where the data are loaded
  * @param {Object} region - The specific region
  * @param {Object} goal - The specific goal
  * @return {Array} return an array of all indicators for the region and goal given [{id:..., name:..., s:..., ...}, {}, ...]

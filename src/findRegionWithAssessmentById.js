@@ -2,7 +2,7 @@ import { findRegionById } from "./findRegionById";
 import { findObservationByRegionAndAssessment } from "./findObservationByRegionAndAssessment";
 /**
  * get specific region by Id with a specific assessment
- * @param {store} dataStore - The store where the data are loaded
+ * @param {Object} dataStore - The store where the data are loaded
  * @param {string} regionId - The specific region ID
  * @return {Object} return an object with the Region Object and the assessment Object {{id:..., name:..., s:..., ...}, {id:..., ...}}
  */
