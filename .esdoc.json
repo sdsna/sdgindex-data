@@ -15,11 +15,6 @@
         ]
       }
     },
-    {
-      "name": "esdoc-publish-html-plugin",
-      "option": {
-        "template": "./node_modules/esdoc-custom-theme/template"
-      }
-    }
+    { "name": "esdoc-publish-html-plugin" },
   ]
 }
