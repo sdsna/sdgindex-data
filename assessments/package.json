@@ -1,0 +1,6 @@
+{
+  "internal": true,
+  "main": "../cjs/assessments/index.js",
+  "module": "../es/assessments/index.js",
+  "sideEffects": false
+}

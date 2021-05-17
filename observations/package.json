@@ -1,0 +1,6 @@
+{
+  "internal": true,
+  "main": "../cjs/observations/index.js",
+  "module": "../es/observations/index.js",
+  "sideEffects": false
+}
