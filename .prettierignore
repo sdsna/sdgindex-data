@@ -10,3 +10,11 @@
 
 # Ignore store files
 /**/.DS_Store
+
+# Ignore Husky pre-commit setup
+.husky/
+
+# Ignore other config files
+.lintstagedrc
+.prettierignore
+.gitignore
