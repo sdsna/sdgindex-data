@@ -22,8 +22,10 @@
   "author": "",
   "license": "ISC",
   "files": [
+    "assessments",
+    "observations",
     "parse",
-    "data",
+    "sdgs",
     "cjs",
     "es"
   ],
