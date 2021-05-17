@@ -10,7 +10,7 @@
     "build:cjs": "trash cjs/* && cross-env NODE_ENV=cjs babel src --out-dir cjs",
     "build:es": "trash es/* && cross-env NODE_ENV=es babel src --out-dir es",
     "test": "jest",
-    "docs": "./node_modules/.bin/esdoc",
+    "docs": "npx esdoc",
     "prepare": "npm run build",
     "release": "np"
   },
