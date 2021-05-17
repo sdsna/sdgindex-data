@@ -10,7 +10,6 @@ export * from "./findObservationByRegionAndAssessment";
 export * from "./findRegionBySlug";
 export * from "./findRegionById";
 export * from "./findRegionWithAssessmentById";
-export * from "./findStateByRegionId";
 export * from "./getGoals";
 export * from "./getGoalsForRegion";
 export * from "./getIndicators";
