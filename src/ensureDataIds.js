@@ -8,9 +8,9 @@
  * @param {Object} param.assessment - The assessment object {id:..., name:..., ...}
  */
 export const ensureDataIds = ({ dataStore, region, assessment }) => {
-  if (region && !region.hasOwnProperty("dataId"))
+  if (region && !Object.prototype.hasOwnProperty.call(region, "dataId"))
     region.dataId = dataStore.regions.find((r) => r.id === region.id).dataId;
-  if (assessment && !assessment.hasOwnProperty("dataId"))
+  if (assessment && !Object.prototype.hasOwnProperty.call(assessment, "dataId"))
     assessment.dataId = dataStore.assessments.find(
       (a) => a.id === assessment.id
     ).dataId;
