@@ -7,7 +7,7 @@ export const dataStore = {
     {
       id: "CA",
       dataId: 15,
-      state: "California", 
+      state: "California",
       slug: "california",
       name: "California",
       type: "state",

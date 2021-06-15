@@ -7,18 +7,15 @@
       "name": "esdoc-importpath-plugin",
       "option": {
         "replaces": [
-          { "from": "^src/(?!parse).*", "to": "" },
-          { "from": "^src/(?!data).*", "to": "" },
+          { "from": "^src/[^\\/]*$", "to": "" },
           { "from": "^src/parse/.*", "to": "parse" },
-          { "from": "^src/data/.*", "to": "data" }
+          { "from": "^src/observations/.*", "to": "observations" },
+          { "from": "^src/assessments/.*", "to": "assessments" },
+          { "from": "^src/sdgs/.*", "to": "sdgs" }
         ]
       }
     },
-    {
-      "name": "esdoc-publish-html-plugin",
-      "option": {
-        "template": "./node_modules/esdoc-custom-theme/template"
-      }
-    }
+    { "name": "esdoc-publish-html-plugin" },
+    { "name": "esdoc-ecmascript-proposal-plugin", "option": { "all": true } }
   ]
 }
