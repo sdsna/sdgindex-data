@@ -1,11 +1,14 @@
 import { getIndicatorsByGoal } from "./getIndicatorsByGoal";
 import { findObservationByRegionAndAssessment } from "./findObservationByRegionAndAssessment";
+
 /**
- * get all indicators for a specific region and a specific goal
+ * Get all indicators for the given goal from the dataStore, each including the
+ * respective observation for the given region.
  * @param {Object} dataStore - The store where the data are loaded
- * @param {Object} region - The specific region
- * @param {Object} goal - The specific goal
- * @return {Array} return an array of all indicators for the region and goal given [{id:..., name:..., s:..., ...}, {}, ...]
+ * @param {Object} region - The region for which to load the observations
+ * @param {Object} goal - The goal for which to load the indicators
+ * @return {Array} return an array of indicators, each including the respective
+ *                 observation for the given region
  */
 export const getIndicatorsForRegionByGoal = (dataStore, region, goal) =>
   getIndicatorsByGoal(dataStore, goal).map((indicator) => ({

@@ -1,9 +1,13 @@
 import { findAssessmentForRegionById } from "./findAssessmentForRegionById";
+
 /**
- * find a specific goal for a specific region by assessmentId
+ * Find a specific goal by assessment ID and include the observation for the
+ * given region.
  * @param {Object} dataStore - The store where the data are loaded
- * @param {Object} region - The specific region
- * @param {string} assessmentId - The specific goal Id
- * @return {Object} return an object of the goal for the region {id:..., name:..., s:..., ...}
+ * @param {Object} region - The region for which to load the observation
+ * @param {string} goalId - The ID for which to find the goal
+ * @return {Object} return the goal, including the observation for the
+ *                  given region
  */
-export const findGoalForRegionById = findAssessmentForRegionById;
+export const findGoalForRegionById = (dataStore, region, goalId) =>
+  findAssessmentForRegionById(dataStore, region, goalId);

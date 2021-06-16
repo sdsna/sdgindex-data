@@ -1,10 +1,11 @@
 import { ensureDataIds } from "./ensureDataIds";
+
 /**
- * find an Observation by region and assessment
+ * Find the observation for the given region and assessment.
  * @param {Object} dataStore - The store where the data are loaded
- * @param {Object} region - The region object
- * @param {Object} assessment - The assessment object
- * @return {Object} return an object of the observation {id:..., name:..., ...}
+ * @param {Object} region
+ * @param {Object} assessment
+ * @return {Object} return the observation
  */
 export const findObservationByRegionAndAssessment = (
   dataStore,

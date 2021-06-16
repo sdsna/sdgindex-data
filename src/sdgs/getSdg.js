@@ -1,4 +1,4 @@
-export const SDGS = [
+const SDGS = [
   { label: "No poverty", color: "#E5243B" },
   { label: "Zero hunger", color: "#DDa63a" },
   { label: "Good health and well-being", color: "#4c9f38" },
@@ -19,9 +19,9 @@ export const SDGS = [
 ];
 
 /**
- * get SDGs object with the label and the color of SDG
- * @param {number} sdgNumber - The number of the sdg should be between 1 - 17
- * @return {Object} Return SDGs object {label: "", color: ""}
+ * Get the label and the color for an SDG with the given number.
+ * @param {number} sdgNumber - The number of the SDG (1 - 17)
+ * @return {Object} Return SDG label and color
  */
 export const getSdg = (sdgNumber) => {
   return SDGS[sdgNumber - 1];

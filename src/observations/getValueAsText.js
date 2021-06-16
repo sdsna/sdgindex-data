@@ -1,18 +1,21 @@
 import { getValue } from "./getValue";
+
 /**
- * return the Value (param: v) of the observation Object
- * @param {Object} observation - The observation object  {"id": "43-TOT", "v": 28.62, "r": 43, "c": "red"}
- * @param {number} decimals - decimals is the number of decimals returned (default == 2)
- * @param {string} fallback - fallback is the string returned if score is not defined (default == "Value unavailable")
- * @return {String} Return value of the region as string
+ * Get the text raw value for a given observation, with the given level of
+ * decimal precision. If the raw value is null, the fallback text is returned.
+ * @param {Object} observation
+ * @param {number} [precision=2] - number of desired decimal digits
+ * @param {string} [fallback=Value unavailable] - the string to return if the
+ *                                                raw value is undefined or null
+ * @return {String}
  */
 export const getValueAsText = (
   observation,
-  decimals = 2,
+  precision = 2,
   fallback = "Value unavailable"
 ) => {
   const value = getValue(observation);
-  if (value != null) return value.toFixed(decimals);
+  if (value != null) return value.toFixed(precision);
 
   return fallback;
 };

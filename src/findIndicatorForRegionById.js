@@ -1,9 +1,13 @@
 import { findAssessmentForRegionById } from "./findAssessmentForRegionById";
+
 /**
- * find a specific indicator for a specific region by assessmentId
+ * Find a specific indicator by ID and include the observation for the given
+ * region.
  * @param {Object} dataStore - The store where the data are loaded
- * @param {Object} region - The specific region
- * @param {string} assessmentId - The specific indicator Id
- * @return {Object} return an object of the indicator for the region {id:..., name:..., s:..., ...}
+ * @param {Object} region - The region for which to load the observation
+ * @param {string} indicatorId - The ID for which to find the indicator
+ * @return {Object} return the indicator, including the observation for the
+ *                  given region
  */
-export const findIndicatorForRegionById = findAssessmentForRegionById;
+export const findIndicatorForRegionById = (dataStore, region, indicatorId) =>
+  findAssessmentForRegionById(dataStore, region, indicatorId);

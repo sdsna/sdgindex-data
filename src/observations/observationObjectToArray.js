@@ -1,9 +1,12 @@
 const OBSERVATION_ARRAY_ORDER = ["v", "y", "c", "s", "r"];
+
 /**
- * Used by data/getObservations to convert the observation from object type into
- * array, which has a lower file size footprint
- * @param {Object} observation - The observation object  {"id": "43-TOT", "v": 28.62, "r": 43, "c": "red"}
- * @return {array} Return an array of the observation object
+ * Convert the given observation from object type into array, which requires
+ * less space and is faster to load. The observation properties (score, raw
+ * value, rating, year, etc...) are converted into an array.
+ * @private
+ * @param {Object} observation
+ * @return {array}
  */
 export const observationObjectToArray = (observation) => {
   const array = [];

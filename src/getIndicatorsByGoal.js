@@ -1,9 +1,10 @@
 import { getIndicators } from "./getIndicators";
+
 /**
- * get all indicators for a specific goal
+ * Get all indicators for the given goal from the dataStore.
  * @param {Object} dataStore - The store where the data are loaded
- * @param {Object} goal - The goal to get specific indicators
- * @return {Array} return an array of all indicators for the goal given [{id:..., name:..., ...}, {}, ...]
+ * @param {Object} goal - The goal for which to load the indicators
+ * @return {Array} return an array of indicators
  */
 export const getIndicatorsByGoal = (dataStore, goal) =>
   getIndicators(dataStore).filter(

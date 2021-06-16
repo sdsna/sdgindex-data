@@ -1,9 +1,10 @@
 import { getIndicators } from "./getIndicators";
+
 /**
- * find an Indicator by slug
- * @param {Object} dataStore - The store where the data are loaded
- * @param {String} slug - The UNIQUE slug associate to the assessment
- * @return {Object} return an object of the indicator {id:..., name:..., ...}
+ * Find an indicator by its slug.
+ * @param {Object} dataStore
+ * @param {String} slug
+ * @return {Object} return the indicator
  */
 export const findIndicatorBySlug = (dataStore, slug) =>
   getIndicators(dataStore).find((indicator) => indicator.slug === slug);

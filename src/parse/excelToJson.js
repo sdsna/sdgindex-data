@@ -1,7 +1,7 @@
 import XLSX from "xlsx";
 
 /**
- * Convert a sheet in an Excel file into JSON format
+ * Convert a sheet in an Excel file into JSON format.
  * See: https://www.npmjs.com/package/xlsx
  * @param {Object} param
  * @param {string} param.file - the path to the Excel file to convert

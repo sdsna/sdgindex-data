@@ -1,8 +1,12 @@
+// TODO: Deprecate via getOverallAssessmentForRegion
+
 /**
- * get Overall score for a given region
+ * Get the overall SDG Index assessment, including the observation for the given
+ * region.
  * @param {Object} dataStore - The store where the data are loaded
- * @param {Object} region - Object of the region {id:..., name:...,  ...}
- * @return {Object} return an object of the overall score for the region {id:..., s:..., ...}
+ * @param {Object} region - The region for which to load the observations
+ * @return {Object} return the overall assessment, including the observation for
+ *                  the given region
  */
 export const getOverallScoreForRegion = (dataStore, region) =>
   dataStore.observations.find(

@@ -1,18 +1,21 @@
 import { getScore } from "./getScore";
+
 /**
- * return the Score (param: s) of the observation Object
- * @param {Object} observation - The observation object  {"id": "43-TOT", "s": 28.62, "r": 43, "c": "red"}
- * @param {number} decimals - decimals is the number of decimals returned (default == 2)
- * @param {string} fallback - fallback is the string returned if score is not defined (default == "Not scored")
- * @return {String} Return score of the region as string
+ * Get the text score for a given observation, with the given level of decimal
+ * precision. If the score is null, the fallback text is returned.
+ * @param {Object} observation
+ * @param {number} [precision=2] - number of desired decimal digits
+ * @param {string} [fallback=Not scored] - the string to return if score is
+ *                                         undefined or null
+ * @return {String}
  */
 export const getScoreAsText = (
   observation,
-  decimals = 2,
+  precision = 2,
   fallback = "Not scored"
 ) => {
   const score = getScore(observation);
-  if (score != null) return score.toFixed(decimals);
+  if (score != null) return score.toFixed(precision);
 
   return fallback;
 };

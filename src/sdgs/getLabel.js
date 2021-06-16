@@ -1,8 +1,9 @@
 import { getSdg } from "./getSdg";
+
 /**
- * get SDGs label with the SDGs number
- * @param {number} sdgNumber - The number of the sdg should be between 1 - 17
- * @return {String} Return string with the SDGs label
+ * Get the label/title for an SDG with the given number.
+ * @param {number} sdgNumber - The number of the SDG (1 - 17)
+ * @return {String} Return goal label/title
  */
 export const getLabel = (sdgNumber) => {
   return getSdg(sdgNumber).label;

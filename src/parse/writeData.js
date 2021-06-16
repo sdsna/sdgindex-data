@@ -2,7 +2,8 @@ import path from "path";
 import { writeJsonSync } from "fs-extra";
 
 /**
- * Write the JSON data as a human-readable (-raw.json) and minified version (.json).
+ * Write the JSON data as a human-readable (-raw.json) and minified #
+ * version (.json).
  * @param {string} dir - the directory to write the data to
  * @param {string} name - the name of the file to write
  * @param {Object} data - the data to write
