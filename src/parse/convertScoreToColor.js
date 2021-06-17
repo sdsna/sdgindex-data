@@ -16,19 +16,21 @@ const RATINGS = [
     score: 0,
   },
 ];
+
 /**
- * Convert score to color.
- * - colorValue below 1 => red
- * - colorValue below 2 => orange
- * - colorValue below 3 => yellow
- * - colorValue over or equal 3 => green
- * - colorValue null | undefined => gray
- * @param {number} colorValue - The number corresponding to the color
+ * Convert score to rating color. Color scores are sometimes used in the US SDG
+ * Index.
+ * - colorScore below 1 => red
+ * - colorScore below 2 => orange
+ * - colorScore below 3 => yellow
+ * - colorScore over or equal 3 => green
+ * - colorScore null | undefined => gray
+ * @param {number} colorScore - The numeric color score
  * @return {string} Return the color as string
  */
-export const convertScoreToColor = (colorValue) => {
-  if (colorValue == null) {
+export const convertScoreToColor = (colorScore) => {
+  if (colorScore == null) {
     return "gray";
   }
-  return RATINGS.find((rating) => rating.score <= colorValue).name;
+  return RATINGS.find((rating) => rating.score <= colorScore).name;
 };

@@ -1,10 +1,13 @@
 import { getIndicators } from "./getIndicators";
 import { findObservationByRegionAndAssessment } from "./findObservationByRegionAndAssessment";
+
 /**
- * get all indicators for a specific region
+ * Get all indicators from the dataStore, each including the respective
+ * observation for the given region.
  * @param {Object} dataStore - The store where the data are loaded
- * @param {Object} region - The specific region
- * @return {Array} return an array of all indicators for the region given [{id:..., name:..., s:..., ...}, {}, ...]
+ * @param {Object} region - The region for which to load the observations
+ * @return {Array} return an array of indicators, each including the respective
+ *                 observation for the given region
  */
 export const getIndicatorsForRegion = (dataStore, region) =>
   getIndicators(dataStore).map((indicator) => ({

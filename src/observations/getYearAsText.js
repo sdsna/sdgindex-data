@@ -1,14 +1,20 @@
 import { getYear } from "./getYear";
 import { getValue } from "./getValue";
+
 /**
- * return the Year (param: y) of the observation Object as Text
- * @param {Object} observation - The observation object  {"id": "43-TOT", "v": 28.62, "r": 43, "c": "red", y: 2019}
- * @param {string} fallback - fallback is the string returned if score is not defined (default == "Year unavailable")
- * @return {String} Return year of the region as string
+ * Get the text year for a given observation. If year is null, the fallback text
+ * is returned.
+ * @param {Object} observation
+ * @param {string} [fallback=Year unavailable] - the string to return if year is
+ *                                               undefined or null
+ * @return {String}
  */
 export const getYearAsText = (observation, fallback = "Year unavailable") => {
   const year = getYear(observation);
   const value = getValue(observation);
+
+  // TODO: Do we really want to check if value != null rather than year != null
+  // We should double check this!
   if (value != null) return year.toFixed(0);
 
   return fallback;

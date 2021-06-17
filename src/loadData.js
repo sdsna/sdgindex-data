@@ -1,10 +1,13 @@
 import { loadDataset } from "./loadDataset";
+
 /**
- * If data not loaded, load dataset in dataStore
+ * Load the given datasets into the dataStore. If already loaded, no action is
+ * taken.
  * @param {Object} dataStore - The store where we load the data
- * @param {Array} datasets - The dataset to store default: ["assessments", "regions", "observations"]
- * Can Add timeseries or special cases
- * @return {bool} true if dataStore is loaded
+ * @param {Array} [datasets=[assessments, regions, observations]] -
+ *    The datasets to load
+ * @return {Promise} a promise that resolves when the requested datasets have
+ *                   been loaded
  */
 export const loadData = (
   dataStore,

@@ -2,10 +2,12 @@ import { getRegions } from "./getRegions";
 import { findObservationByRegionAndAssessment } from "./findObservationByRegionAndAssessment";
 
 /**
- * get all regions with assessment for a specific assessment
+ * Get all regions from the dataStore, each including the respective observation
+ * for the given assessment.
  * @param {Object} dataStore - The store where the data are loaded
- * @param {Object} assessment - The specific assessment
- * @return {Array} return an array of all regions for the assessment given [{id:..., name:..., s:..., ...}, {}, ...]
+ * @param {Object} assessment - the assessment for which to load the observation
+ * @return {Array} return an array of regions, each including the observation
+ *                 for the given assessment
  */
 export const getRegionsWithAssessment = (dataStore, assessment) =>
   getRegions(dataStore).map((region) => ({

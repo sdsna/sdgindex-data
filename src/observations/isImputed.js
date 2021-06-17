@@ -1,7 +1,7 @@
 /**
- * Check if the value is imputed or not.
- * @param {Object} observation - The observation object  {"id": "43-TOT", "v": 28.62, "r": 43, "c": "red"}
- * @return {bool} Return true if value is imputed and false if not
+ * Check if the given observation is imputed.
+ * @param {Object} observation
+ * @return {bool} Return true if observation is imputed
  */
 export const isImputed = (observation) =>
   Object.prototype.hasOwnProperty.call(observation, "i");

@@ -1,10 +1,13 @@
 import { getGoals } from "./getGoals";
 import { findObservationByRegionAndAssessment } from "./findObservationByRegionAndAssessment";
+
 /**
- * get all goals for a specific region
+ * Get all goal assessments from the dataStore, each including the respective
+ * observation for the given region.
  * @param {Object} dataStore - The store where the data are loaded
- * @param {Object} region - The specific region
- * @return {Array} return an array of all goals for the region given [{id:..., name:..., s:..., ...}, {}, ...]
+ * @param {Object} region - The region for which to load the observations
+ * @return {Array} return an array of goals, each including the respective
+ *                 observation for the given region
  */
 export const getGoalsForRegion = (dataStore, region) =>
   getGoals(dataStore).map((goal) => ({
