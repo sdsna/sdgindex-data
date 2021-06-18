@@ -1,5 +1,5 @@
 import { isGlobalOnly } from "./isGlobalOnly";
-import { isOecd } from "./isOecd}";
+import { isOecd } from "./isOecd";
 import { isOecdOnly } from "./isOecdOnly";
 
 /**

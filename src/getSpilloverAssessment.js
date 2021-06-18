@@ -1,9 +1,9 @@
-import { isSpilloverAssessment } from "../assessments/isSpilloverAssessment";
+import { isSpilloverAssessment } from "./assessments/isSpilloverAssessment";
 
 /**
- * Get all spillover indicators from the dataStore.
+ * Get spillover assessment from the dataStore.
  * @param {Object} dataStore - The store where the data are loaded
- * @return {Array} Returns an array of spillover indicators
+ * @return {Object} Returns an object of the spillover assessment
  */
 
 export const getSpilloverAssessment = (dataStore) =>

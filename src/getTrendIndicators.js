@@ -1,5 +1,5 @@
 import { getIndicators } from "./getIndicators";
-import { isTrendIndicator } from "../assessments/isTrendIndicator";
+import { isTrendIndicator } from "./assessments/isTrendIndicator";
 
 /**
  * Get all the trend indicators from the dataStore.

@@ -1,0 +1,6 @@
+{
+  "internal": true,
+  "main": "../cjs/timeseries/index.js",
+  "module": "../es/timeseries/index.js",
+  "sideEffects": false
+}
