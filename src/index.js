@@ -19,6 +19,7 @@ export * from "./getIndicatorsForRegionByGoal";
 export * from "./getOverallAssessment";
 export * from "./getOverallAssessmentForRegion";
 export * from "./getRegions";
+export * from "./getRegionsByType";
 export * from "./getRegionsWithAssessment";
 export * from "./loadData";
 export * from "./loadDataset";
