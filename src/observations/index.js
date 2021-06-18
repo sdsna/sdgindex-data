@@ -3,6 +3,7 @@ export * from "./getRankAsText";
 export * from "./getRating";
 export * from "./getScore";
 export * from "./getScoreAsText";
+export * from "./getTrend";
 export * from "./getValue";
 export * from "./getValueAsText";
 export * from "./getYear";
