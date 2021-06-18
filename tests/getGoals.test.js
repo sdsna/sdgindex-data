@@ -1,8 +1,15 @@
-import { dataStore } from "./dataStore";
 import { getGoals } from "@root";
+import {
+  buildIndicators,
+  buildGoals,
+  buildOverallAssessment,
+} from "testHelpers/builders";
 
-it("check if get goals return only types goals", () => {
-  expect(getGoals(dataStore).filter((goal) => goal.type !== "goal")).toEqual(
-    []
-  );
+const goals = buildGoals();
+const dataStore = {
+  assessments: [buildOverallAssessment(), ...goals, ...buildIndicators()],
+};
+
+it("returns all goals", () => {
+  expect(getGoals(dataStore)).toEqual(goals);
 });

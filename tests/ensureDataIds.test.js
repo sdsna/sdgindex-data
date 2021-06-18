@@ -1,27 +1,36 @@
-import { dataStore } from "./dataStore";
+import { omit } from "lodash";
 import { ensureDataIds } from "@root";
+import {
+  buildIndicator,
+  buildIndicators,
+  buildRegion,
+  buildRegions,
+} from "testHelpers/builders";
 
-it("check if add well dataId if it's not there", () => {
-  let region = {
-    id: "CA",
-    slug: "california",
-    name: "California",
-    type: "state",
+it("adds dataId property to region and assessment", () => {
+  const regionWithDataId = buildRegion();
+  const assessmentWithDataId = buildIndicator();
+  const dataStore = {
+    regions: [regionWithDataId, ...buildRegions()],
+    assessments: [assessmentWithDataId, buildIndicators()],
   };
-  let assessment = {
-    id: "sdg13v3_GHGemissions",
-    goalNumber: 13,
-    slug: "sdg13v3_GHGemissions",
-    label: "Greenhouse Gas Emissions",
-    unit: "metric tons of CO2 per capita",
-    description:
-      "Metric tons of energy-related carbon dioxide (CO2) emissions per capita",
-    type: "indicator",
-    year: "2017",
-    longTermObjective: 1.5,
-    reference: "EIA",
-  };
+
+  const region = omit(regionWithDataId, "dataId");
+  const assessment = omit(assessmentWithDataId, "dataId");
+
+  expect(region).not.toHaveProperty("dataId");
+  expect(assessment).not.toHaveProperty("dataId");
+
   ensureDataIds({ dataStore, region, assessment });
+
   expect(region).toHaveProperty("dataId");
   expect(assessment).toHaveProperty("dataId");
+});
+
+it("does not modify object when dataId is already present", () => {
+  const region = buildRegion({ dataId: "abc" });
+
+  ensureDataIds({ dataStore: {}, region });
+
+  expect(region).toHaveProperty("dataId", "abc");
 });

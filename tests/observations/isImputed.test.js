@@ -1,9 +1,10 @@
 import { isImputed } from "@root/observations";
+import { buildObservation } from "testHelpers/builders";
 
-it("check if return true if value is imputed", () => {
-  expect(isImputed({ i: true })).toEqual(true);
+it("returns true if imputed", () => {
+  expect(isImputed(buildObservation({ imputed: true }))).toEqual(true);
 });
 
-it("check if return false if value is not imputed", () => {
-  expect(isImputed({})).toEqual(false);
+it("returns false if not imputed", () => {
+  expect(isImputed(buildObservation())).toEqual(false);
 });

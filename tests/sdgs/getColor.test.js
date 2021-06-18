@@ -1,9 +1,9 @@
 import { getColor } from "@root/sdgs";
 
-it("check if returned color of 1 == No poverty", () => {
+it("returns #E5243B for SDG 1", () => {
   expect(getColor(1)).toEqual("#E5243B");
 });
 
-it("check if returned color of 5 == Gender equality", () => {
+it("returns #ff3a21 for SDG 5", () => {
   expect(getColor(5)).toEqual("#ff3a21");
 });

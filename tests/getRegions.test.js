@@ -1,6 +1,9 @@
-import { dataStore } from "./dataStore";
-import { getRegionsByType } from "../src/getRegionsByType";
+import { getRegions } from "@root";
+import { buildRegions } from "testHelpers/builders";
 
-it("check if it returns all regions for a specific type", () => {
-  expect(getRegionsByType(dataStore, "state").length).toEqual(50);
+const regions = buildRegions();
+const dataStore = { regions };
+
+it("returns all regions", () => {
+  expect(getRegions(dataStore)).toEqual(regions);
 });

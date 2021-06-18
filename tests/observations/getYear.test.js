@@ -1,9 +1,6 @@
 import { getYear } from "@root/observations";
+import { buildObservation } from "testHelpers/builders";
 
-it("check if the Year of the object is well returned for 2019", () => {
-  expect(getYear({ y: 2019 })).toEqual(2019);
-});
-
-it("check if the Year of the object is well returned for 2010", () => {
-  expect(getYear({ y: 2010 })).toEqual(2010);
+it("returns the numeric year", () => {
+  expect(getYear(buildObservation({ year: 2016 }))).toEqual(2016);
 });

@@ -1,19 +1,32 @@
-import { dataStore } from "./dataStore";
-import { getOverallScoreForRegion } from "../src/getOverallScoreForRegion";
+import { omit } from "lodash";
+import { getOverallScoreForRegion } from "@root";
+import {
+  buildIndicators,
+  buildGoals,
+  buildObservation,
+  buildObservations,
+  buildOverallAssessment,
+  buildRegion,
+  buildRegions,
+} from "testHelpers/builders";
 
-it("check if overall score well returnedfor a specific region", () => {
-  const region = {
-    id: "AL",
-    dataId: 43,
-    slug: "alabama",
-    name: "Alabama",
-    type: "state",
-  };
+const overallAssessment = buildOverallAssessment();
+const region = buildRegion();
+const observation = buildObservation({ assessment: overallAssessment, region });
+const dataStore = {
+  regions: [region, ...buildRegions()],
+  assessments: [overallAssessment, ...buildIndicators()],
+  observations: [observation, ...buildObservations()],
+};
 
-  expect(getOverallScoreForRegion(dataStore, region)).toEqual({
-    c: "red",
-    id: "43-TOT",
-    r: 43,
-    s: 28.62,
-  });
+it("returns the overall assessment", () => {
+  expect(getOverallScoreForRegion(dataStore, region)).toMatchObject(
+    overallAssessment
+  );
+});
+
+it("includes observation for region", () => {
+  expect(getOverallScoreForRegion(dataStore, region)).toMatchObject(
+    omit(observation, "id")
+  );
 });

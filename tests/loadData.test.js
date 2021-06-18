@@ -1,7 +1,7 @@
 import { loadData, loadDataset } from "@root";
 jest.mock("@root/cjs/loadDataset");
 
-it("Load all data from dataStore in dataset object", () => {
+it("loads region, assessments, and observations into dataStore", () => {
   loadDataset.mockImplementation((dataStore, dataset) => {
     dataStore[dataset] = { test: true };
 

@@ -1,9 +1,6 @@
 import { getValue } from "@root/observations";
+import { buildObservation } from "testHelpers/builders";
 
-it("check if the Value of the object is well returned for 238", () => {
-  expect(getValue({ v: 238 })).toEqual(238);
-});
-
-it("check if the Value of the object is well returned for 0", () => {
-  expect(getValue({ v: 0 })).toEqual(0);
+it("returns the numeric value", () => {
+  expect(getValue(buildObservation({ value: 128.73 }))).toEqual(128.73);
 });

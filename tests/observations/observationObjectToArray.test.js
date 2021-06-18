@@ -1,17 +1,48 @@
 import { observationObjectToArray } from "@root/observations";
+import { buildObservation } from "testHelpers/builders";
 
-it("check if convert well an object to an array", () => {
+it("converts observation to array", () => {
   expect(
-    observationObjectToArray({ v: 238, y: 2019, c: "red", s: 33, r: 239 })
+    observationObjectToArray(
+      buildObservation({
+        value: 238,
+        year: 2019,
+        rating: "red",
+        score: 33,
+        rank: 239,
+      })
+    )
   ).toEqual([238, 2019, "red", 33, 239]);
 });
 
-it("check if convert well an object to an array with missing params", () => {
-  expect(observationObjectToArray({ v: 238, y: 2019, s: 33, r: 239 })).toEqual([
-    238,
-    2019,
-    undefined,
-    33,
-    239,
-  ]);
+describe("when score and rank are undefined", () => {
+  it("does not add trailing null values", () => {
+    expect(
+      observationObjectToArray(
+        buildObservation({
+          value: 238,
+          year: 2019,
+          rating: "red",
+          score: undefined,
+          rank: null,
+        })
+      )
+    ).toEqual([238, 2019, "red"]);
+  });
+});
+
+describe("when year is undefined", () => {
+  it("adds intermediate null value", () => {
+    expect(
+      observationObjectToArray(
+        buildObservation({
+          value: 238,
+          year: null,
+          rating: "red",
+          score: null,
+          rank: null,
+        })
+      )
+    ).toEqual([238, null, "red"]);
+  });
 });

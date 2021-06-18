@@ -1,23 +1,13 @@
-import { dataStore } from "./dataStore";
 import { findAssessmentBySlug } from "@root";
+import { buildIndicator, buildIndicators } from "testHelpers/builders";
 
-it("check if find well assessment by Slug", () => {
-  let assessment = {
-    id: "sdg13v3_GHGemissions",
-    goalNumber: 13,
-    slug: "sdg13v3_GHGemissions",
-    label: "Greenhouse Gas Emissions",
-    unit: "metric tons of CO2 per capita",
-    dataId: 67,
-    description:
-      "Metric tons of energy-related carbon dioxide (CO2) emissions per capita",
-    type: "indicator",
-    year: "2017",
-    longTermObjective: 1.5,
-    reference: "EIA",
+it("finds assessment by slug SDG1_my_indicator", () => {
+  const indicator = buildIndicator({ slug: "SDG1_my_indicator" });
+  const dataStore = {
+    assessments: [indicator, ...buildIndicators()],
   };
-  findAssessmentBySlug(dataStore, "sdg13v3_GHGemissions");
-  expect(findAssessmentBySlug(dataStore, "sdg13v3_GHGemissions")).toEqual(
-    assessment
+
+  expect(findAssessmentBySlug(dataStore, "SDG1_my_indicator")).toEqual(
+    indicator
   );
 });

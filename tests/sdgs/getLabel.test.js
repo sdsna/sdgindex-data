@@ -1,9 +1,9 @@
 import { getLabel } from "@root/sdgs";
 
-it("check if returned label of 1 == No poverty", () => {
-  expect(getLabel(1)).toEqual("No poverty");
+it("returns 'Good health and well-being' for SDG 3", () => {
+  expect(getLabel(3)).toEqual("Good health and well-being");
 });
 
-it("check if returned label of 5 == Gender equality", () => {
-  expect(getLabel(5)).toEqual("Gender equality");
+it("returns 'Responsibe consumption and production' for SDG 12", () => {
+  expect(getLabel(12)).toEqual("Responsible consumption and production");
 });
