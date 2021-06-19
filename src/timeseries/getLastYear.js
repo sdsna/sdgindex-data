@@ -3,9 +3,9 @@ import { getTimeseriesValue } from "./getTimeseriesValue";
 import { START_YEAR, END_YEAR } from "./TimeseriesLength";
 
 /**
- * Get the last year where the time series has value for the given assessment.
+ * Get the last year where the timeseries has value for the given assessment.
  * @param {Object} timeseries
- * @returns {Number} Returns the last year where the time series has value for the given assessment
+ * @returns {Number} Returns the last year where the timeseries has value for the given assessment
  */
 
 export const getLastYear = (timeseries) =>

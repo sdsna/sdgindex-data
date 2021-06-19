@@ -1,7 +1,7 @@
 import { hasTimeseries } from "@root/timeseries";
 import { buildObservation } from "testHelpers/builders";
 
-it("Returns true if the assessment has time series", () => {
+test("Returns true if the assessment has timeseries", () => {
   expect(
     hasTimeseries(
       buildObservation({

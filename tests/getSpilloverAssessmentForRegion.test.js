@@ -1,32 +1,34 @@
 import { omit } from "lodash";
-import { getOverallAssessmentForRegion } from "@root";
+import { getSpilloverAssessmentForRegion } from "@root";
 import {
+  buildAssessment,
   buildIndicators,
-  buildGoals,
   buildObservation,
   buildObservations,
-  buildOverallAssessment,
   buildRegion,
   buildRegions,
 } from "testHelpers/builders";
 
-const overallAssessment = buildOverallAssessment();
+const spilloverAssessment = buildAssessment({ id: "SPI" });
 const region = buildRegion();
-const observation = buildObservation({ assessment: overallAssessment, region });
+const observation = buildObservation({
+  assessment: spilloverAssessment,
+  region,
+});
 const dataStore = {
   regions: [region, ...buildRegions()],
-  assessments: [overallAssessment, ...buildIndicators()],
+  assessments: [spilloverAssessment, ...buildIndicators()],
   observations: [observation, ...buildObservations()],
 };
 
-it("returns the overall assessment", () => {
-  expect(getOverallAssessmentForRegion(dataStore, region)).toMatchObject(
-    overallAssessment
+test("Returns the spillover assessments for the given region", () => {
+  expect(getSpilloverAssessmentForRegion(dataStore, region)).toMatchObject(
+    spilloverAssessment
   );
 });
 
-it("includes observation for region", () => {
-  expect(getOverallAssessmentForRegion(dataStore, region)).toMatchObject(
+test("Includes observation for region", () => {
+  expect(getSpilloverAssessmentForRegion(dataStore, region)).toMatchObject(
     omit(observation, "id")
   );
 });

@@ -1,8 +1,7 @@
 /**
- * Get the trend for a given observation (On track or maintaining SDG achievement,
- * Moderately improving, etc ...)
+ * Get the trend for a given observation.
  * @param {Object} observation
- * @return {String} Returns arrows as a string (e.g. "↑", "➚", etc ...)
+ * @return {String} Returns trend as a string (e.g. "↑", "➚", etc ...)
  */
 
 export const getTrend = (observation) => observation.a;

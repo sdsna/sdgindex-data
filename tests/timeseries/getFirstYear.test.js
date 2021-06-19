@@ -1,7 +1,7 @@
 import { getFirstYear } from "@root/timeseries";
 import { buildObservation } from "testHelpers/builders";
 
-it("Returns the first year where the time series has value for the given assessment", () => {
+test("Returns the first year where the timeseries has value for the given assessment", () => {
   expect(
     getFirstYear(
       buildObservation({

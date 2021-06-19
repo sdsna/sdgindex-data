@@ -1,7 +1,7 @@
 import { getTimeseriesValue } from "@root/timeseries";
 import { buildObservation } from "testHelpers/builders";
 
-it("Returns the time series value for a specific assessment and year", () => {
+test("Returns the value of timeseries for a specific assessment and year", () => {
   expect(
     getTimeseriesValue(
       buildObservation({

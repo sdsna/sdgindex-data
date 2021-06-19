@@ -3,7 +3,7 @@
  * @param {Object} dataStore - The store where the data are loaded
  * @param {Object} region
  * @param {Object} assessment
- * @return {Array} Returns an array of the timeseries for the specific region and assessment
+ * @return {Object} Returns an object of the timeseries for the specific region and assessment
  */
 
 export const findTimeseriesByRegionAndAssessment = (

@@ -1,7 +1,7 @@
 /**
- * Check if the given assessment has a time series.
+ * Check if the given assessment has timeseries.
  * @param {Object} timeseries
- * @returns {bool} Returns true if the assessment has time series
+ * @returns {bool} Returns true if the assessment has timeseries
  */
 
 export const hasTimeseries = (timeseries) =>

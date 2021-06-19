@@ -1,10 +1,22 @@
-import { getSpilloverAssessment } from "../src/getSpilloverAssessment";
-import { buildIndicator, buildIndicators } from "testHelpers/builders";
+import { omit } from "lodash";
+import { getSpilloverAssessment } from "@root";
+import {
+  buildAssessment,
+  buildIndicators,
+  buildGoals,
+} from "testHelpers/builders";
 
-test("Get spillover assessment from the dataStore", () => {
-  const indicator = buildIndicator({ id: "SPI" });
-  const dataStore = {
-    assessments: [indicator, ...buildIndicators()],
-  };
-  expect(getSpilloverAssessment(dataStore)).toEqual(indicator);
+const spilloverAssessment = buildAssessment({ id: "SPI" });
+const dataStore = {
+  assessments: [spilloverAssessment, ...buildGoals(), ...buildIndicators()],
+};
+
+test("Returns spillover assessment from the dataStore", () => {
+  expect(getSpilloverAssessment(dataStore)).toEqual(spilloverAssessment);
+});
+
+test("Includes observation for indicator", () => {
+  expect(getSpilloverAssessment(dataStore)).toMatchObject(
+    omit(spilloverAssessment, "id")
+  );
 });

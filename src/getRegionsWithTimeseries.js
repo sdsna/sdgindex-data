@@ -1,4 +1,4 @@
-import { findTimeseriesByRegionAndIndicator } from "./findTimeseriesByRegionAndAssessment";
+import { findTimeseriesByRegionAndAssessment } from "./findTimeseriesByRegionAndAssessment";
 
 /**
  * Get all regions that have timeseries for the given assessment from the dataStore.
@@ -10,6 +10,6 @@ import { findTimeseriesByRegionAndIndicator } from "./findTimeseriesByRegionAndA
 
 export const getRegionsWithTimeseries = (dataStore, assessment) =>
   dataStore.regions.map((region) => ({
-    ...findTimeseriesByRegionAndIndicator(dataStore, region, assessment),
+    ...findTimeseriesByRegionAndAssessment(dataStore, region, assessment),
     ...region,
   }));

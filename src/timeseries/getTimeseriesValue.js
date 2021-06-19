@@ -1,10 +1,10 @@
 import { START_YEAR } from "./TimeseriesLength";
 
 /**
- * Get the time series value for a specific assessment and year.
+ * Get value of the timeseries for a specific assessment and year.
  * @param {Object} timeseries
  * @param {Number} year
- * @returns {Number} Returns the time series value for a specific assessment and year
+ * @returns {Number} Returns the value of timeseries for a specific assessment and year
  */
 
 export const getTimeseriesValue = (timeseries, year) =>
