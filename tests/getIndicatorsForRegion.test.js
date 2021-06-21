@@ -1,19 +1,33 @@
-import { dataStore } from "./dataStore";
-import { getIndicatorsForRegion } from "../src/getIndicatorsForRegion";
-import { findIndicatorForRegionBySlug } from "../src/findIndicatorForRegionBySlug";
+import { omit } from "lodash";
+import { getIndicatorsForRegion } from "@root";
+import {
+  buildGoals,
+  buildIndicator,
+  buildIndicators,
+  buildObservation,
+  buildObservations,
+  buildOverallAssessment,
+  buildRegion,
+  buildRegions,
+} from "testHelpers/builders";
 
-it("check if get getIndicatorsForRegion return all indicators for a specific region", () => {
-  const region = {
-    id: "AL",
-    dataId: 43,
-    slug: "alabama",
-    name: "Alabama",
-    type: "state",
-  };
-  expect(getIndicatorsForRegion(dataStore, region).length).toEqual(79);
-  getIndicatorsForRegion(dataStore, region).map((indicator) =>
-    expect(indicator).toEqual(
-      findIndicatorForRegionBySlug(dataStore, region, indicator.slug)
-    )
+const indicators = buildIndicators();
+const region = buildRegion();
+const indicatorObservations = indicators.map((indicator) =>
+  buildObservation({ assessment: indicator, region })
+);
+const dataStore = {
+  assessments: [buildOverallAssessment(), ...buildGoals(), ...indicators],
+  regions: [region, ...buildRegions()],
+  observations: [...indicatorObservations, buildObservations()],
+};
+
+it("returns all indicators", () => {
+  expect(getIndicatorsForRegion(dataStore, region)).toMatchObject(indicators);
+});
+
+it("returns observations for each indicator", () => {
+  expect(getIndicatorsForRegion(dataStore, region)).toMatchObject(
+    indicatorObservations.map((observation) => omit(observation, "id"))
   );
 });

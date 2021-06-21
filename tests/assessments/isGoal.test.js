@@ -1,12 +1,10 @@
 import { isGoal } from "@root/assessments";
+import { buildGoal, buildIndicator } from "testHelpers/builders";
 
-const goalAssessment = { type: "goal" };
-const nonGoalAssessment = { type: "lnob" };
-
-it("check if return true if assessment is goal", () => {
-  expect(isGoal(goalAssessment)).toEqual(true);
+it("returns true if assessment is a goal", () => {
+  expect(isGoal(buildGoal())).toBe(true);
 });
 
-it("check if return true if assessment is not a goal", () => {
-  expect(isGoal(nonGoalAssessment)).toEqual(false);
+it("returns false if assessment is not a goal", () => {
+  expect(isGoal(buildIndicator())).toBe(false);
 });

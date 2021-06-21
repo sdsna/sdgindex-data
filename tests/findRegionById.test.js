@@ -1,14 +1,11 @@
-import { dataStore } from "./dataStore";
 import { findRegionById } from "@root";
+import { buildRegion, buildRegions } from "testHelpers/builders";
 
-test("If a region is returned by ID, in case itsn't included", () => {
-  let region = {
-    id: "CO",
-    dataId: 10,
-    slug: "colorado",
-    name: "Colorado",
-    type: "state",
+it("finds region with ID 'REGION_1'", () => {
+  const region = buildRegion({ id: "REGION_1" });
+  const dataStore = {
+    regions: [region, ...buildRegions()],
   };
 
-  expect(findRegionById(dataStore, region.id)).toEqual(region);
+  expect(findRegionById(dataStore, "REGION_1")).toEqual(region);
 });

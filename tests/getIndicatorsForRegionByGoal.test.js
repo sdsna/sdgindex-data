@@ -1,27 +1,44 @@
-import { dataStore } from "./dataStore";
-import { getIndicatorsForRegionByGoal } from "../src/getIndicatorsForRegionByGoal";
+import { omit } from "lodash";
+import { getIndicatorsForRegionByGoal } from "@root";
+import {
+  buildGoal,
+  buildGoals,
+  buildIndicator,
+  buildIndicators,
+  buildObservation,
+  buildObservations,
+  buildOverallAssessment,
+  buildRegion,
+  buildRegions,
+} from "testHelpers/builders";
 
-it("check if get getIndicatorsForRegion return all indicators for a specific region and a specific goal", () => {
-  const region = {
-    id: "AL",
-    dataId: 43,
-    slug: "alabama",
-    name: "Alabama",
-    type: "state",
-  };
-  const goal = {
-    id: "SDG12",
-    number: 12,
-    label: "Responsible consumption and production",
-    description: "Ensure sustainable consumption and production patterns.",
-    type: "goal",
-    dataId: "SDG12",
-  };
+const goal = buildGoal();
+const indicators = buildIndicators({ goal });
+const region = buildRegion();
+const indicatorObservations = indicators.map((indicator) =>
+  buildObservation({ assessment: indicator, region })
+);
+const otherIndicators = buildIndicators();
+const dataStore = {
+  assessments: [
+    buildOverallAssessment(),
+    goal,
+    ...buildGoals(),
+    ...indicators,
+    ...otherIndicators,
+  ],
+  regions: [region, ...buildRegions()],
+  observations: [...indicatorObservations, buildObservations()],
+};
 
-  expect(getIndicatorsForRegionByGoal(dataStore, region, goal).length).toEqual(
-    3
+it("returns all indicators for the given goal", () => {
+  expect(getIndicatorsForRegionByGoal(dataStore, region, goal)).toMatchObject(
+    indicators
   );
-  getIndicatorsForRegionByGoal(dataStore, region, goal).map((indicator) =>
-    expect(indicator.goalNumber).toEqual(12)
+});
+
+it("returns observations for each indicator of the given goal", () => {
+  expect(getIndicatorsForRegionByGoal(dataStore, region, goal)).toMatchObject(
+    indicatorObservations.map((observation) => omit(observation, "id"))
   );
 });

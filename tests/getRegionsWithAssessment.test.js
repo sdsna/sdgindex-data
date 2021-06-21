@@ -1,24 +1,30 @@
-import { dataStore } from "./dataStore";
-import { getRegionsWithAssessment } from "../src/getRegionsWithAssessment";
+import { omit } from "lodash";
+import { getRegionsWithAssessment } from "@root";
+import {
+  buildIndicator,
+  buildIndicators,
+  buildObservation,
+  buildObservations,
+  buildRegions,
+} from "testHelpers/builders";
 
-it("check if it returns all regions", () => {
-  const assessement = {
-    id: "sdg4v3_hsgrad",
-    dataId: 21,
-    goalNumber: 4,
-    slug: "sdg4v3_hsgrad",
-    label: "4-year High School Graduation Rate",
-    unit: "% or rate",
-    description:
-      "Public high school 4-year adjusted cohort graduation rate (ACGR). ACGR is the percentage of public high school freshmen who graduate with a regular diploma within 4 years of starting 9th grade.",
-    type: "indicator",
-    year: "2016-17",
-    longTermObjective: 89.92,
-    reference: "National Center for Education Statistics",
-  };
+const regions = buildRegions();
+const indicator = buildIndicator();
+const indicatorObservations = regions.map((region) =>
+  buildObservation({ region, assessment: indicator })
+);
+const dataStore = {
+  assessments: [indicator, ...buildIndicators()],
+  regions,
+  observations: [...indicatorObservations, ...buildObservations()],
+};
 
-  expect(getRegionsWithAssessment(dataStore, assessement).length).toEqual(50);
-  getRegionsWithAssessment(dataStore, assessement).map(
-    (region) => expect(region.s).shouldExist
+it("returns all regions", () => {
+  expect(getRegionsWithAssessment(dataStore, indicator)).toMatchObject(regions);
+});
+
+it("includes observation for each region", () => {
+  expect(getRegionsWithAssessment(dataStore, indicator)).toMatchObject(
+    indicatorObservations.map((observation) => omit(observation, "id"))
   );
 });

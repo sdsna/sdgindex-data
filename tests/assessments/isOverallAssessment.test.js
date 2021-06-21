@@ -1,12 +1,10 @@
 import { isOverallAssessment } from "@root/assessments";
+import { buildGoal, buildOverallAssessment } from "testHelpers/builders";
 
-const overallAssessment = { type: "custom", id: "TOT" };
-const nonOverallAssessment = { type: "lnob" };
-
-it("check if return true if assessment is overall", () => {
-  expect(isOverallAssessment(overallAssessment)).toEqual(true);
+it("returns true if assessment is overall SDG assessment", () => {
+  expect(isOverallAssessment(buildOverallAssessment())).toBe(true);
 });
 
-it("check if return true if assessment is not a overall", () => {
-  expect(isOverallAssessment(nonOverallAssessment)).toEqual(false);
+it("returns false if assessment is not overall SDG assessment", () => {
+  expect(isOverallAssessment(buildGoal())).toBe(false);
 });

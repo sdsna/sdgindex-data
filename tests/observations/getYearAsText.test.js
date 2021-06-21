@@ -1,13 +1,34 @@
 import { getYearAsText } from "@root/observations";
+import { buildObservation } from "testHelpers/builders";
 
-it("check if the Year of the object is well returned for 2019 as String", () => {
-  expect(getYearAsText({ v: 39, y: 2019 })).toEqual("2019");
+it("returns the year as string", () => {
+  expect(getYearAsText(buildObservation({ year: 2015 }))).toEqual("2015");
 });
 
-it("check if the Year of the object does not return a number", () => {
-  expect(getYearAsText({ v: 10, y: 2010 })).not.toEqual(2010);
+describe("when year is undefined", () => {
+  it("returns the fallback string", () => {
+    const observation = buildObservation({ year: null });
+    expect(getYearAsText(observation)).toEqual("Year unavailable");
+  });
+
+  describe("with custom fallback string", () => {
+    it("returns the custom fallback string", () => {
+      const observation = buildObservation({ year: null });
+      expect(getYearAsText(observation, "No year")).toEqual("No year");
+    });
+  });
 });
 
-it("check if the fallback is well returne if null value", () => {
-  expect(getYearAsText({ v: null, y: 2010 })).toEqual("Year unavailable");
+describe("when value is undefined", () => {
+  it("returns the fallback string", () => {
+    const observation = buildObservation({ value: null });
+    expect(getYearAsText(observation)).toEqual("Year unavailable");
+  });
+
+  describe("with custom fallback string", () => {
+    it("returns the custom fallback string", () => {
+      const observation = buildObservation({ value: null });
+      expect(getYearAsText(observation, "No year")).toEqual("No year");
+    });
+  });
 });

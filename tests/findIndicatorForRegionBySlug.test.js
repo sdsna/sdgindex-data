@@ -1,33 +1,31 @@
-import { dataStore } from "./dataStore";
+import { omit } from "lodash";
 import { findIndicatorForRegionBySlug } from "@root";
+import {
+  buildIndicator,
+  buildIndicators,
+  buildRegion,
+  buildRegions,
+  buildObservation,
+  buildObservations,
+} from "testHelpers/builders";
 
-test("If an indicator is returned for region by SLUG, in case it isn't included", () => {
-  let region = {
-    id: "CO",
-    dataId: 10,
-    slug: "colorado",
-    name: "Colorado",
-    type: "state",
-  };
+const indicator = buildIndicator({ slug: "test" });
+const region = buildRegion();
+const observation = buildObservation({ assessment: indicator, region });
+const dataStore = {
+  regions: [region, ...buildRegions()],
+  assessments: [indicator, ...buildIndicators()],
+  observations: [observation, ...buildObservations()],
+};
 
-  let indicator = {
-    id: "10-1",
-    v: 20.3,
-    c: "red",
-    id: "sdg1v2_povline",
-    dataId: 1,
-    goalNumber: 1,
-    slug: "sdg1v2_povline",
-    label: "Living Below Poverty Line",
-    unit: "%",
-    description: "Percent of people living below the national poverty line",
-    type: "indicator",
-    year: "2018",
-    longTermObjective: 3.65,
-    reference: "ACS",
-  };
+it("finds assessment by ID", () => {
+  expect(findIndicatorForRegionBySlug(dataStore, region, "test")).toMatchObject(
+    indicator
+  );
+});
 
-  expect(
-    findIndicatorForRegionBySlug(dataStore, region, indicator.slug)
-  ).toEqual(indicator);
+it("includes observation for region", () => {
+  expect(findIndicatorForRegionBySlug(dataStore, region, "test")).toMatchObject(
+    omit(observation, "id")
+  );
 });

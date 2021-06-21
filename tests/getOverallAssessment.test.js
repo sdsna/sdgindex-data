@@ -1,16 +1,15 @@
-import { dataStore } from "./dataStore";
-import { getOverallAssessment } from "../src/getOverallAssessment";
+import { getOverallAssessment } from "@root";
+import {
+  buildIndicators,
+  buildGoals,
+  buildOverallAssessment,
+} from "testHelpers/builders";
 
-it("check if overall assessment well returned", () => {
-  const assessment = {
-    id: "TOT",
-    label: "Overall score",
-    description:
-      "The overall score measures a state’s total progress towards achieving all 17 SDGs. The score can be interpreted as a the percentage of SDG achievement. A score of 100 indicates that all SDGs have been achieved.",
-    slug: "overall",
-    type: "custom",
-    dataId: "TOT",
-  };
+const overallAssessment = buildOverallAssessment();
+const dataStore = {
+  assessments: [overallAssessment, ...buildGoals(), ...buildIndicators()],
+};
 
-  expect(getOverallAssessment(dataStore)).toEqual(assessment);
+it("returns the overall assessment", () => {
+  expect(getOverallAssessment(dataStore)).toEqual(overallAssessment);
 });

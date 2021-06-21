@@ -1,21 +1,29 @@
 import { getValueAsText } from "@root/observations";
+import { buildObservation } from "testHelpers/builders";
 
-it("check if the Value of the object is well returned for 238 as String", () => {
-  expect(getValueAsText({ v: 238 })).toEqual("238.00");
+it("returns the value as string with two decimals", () => {
+  expect(getValueAsText(buildObservation({ value: 272.183 }))).toEqual(
+    "272.18"
+  );
 });
 
-it("check if the Value of the object does not return a number", () => {
-  expect(getValueAsText({ v: 0 })).not.toEqual(0);
+describe("with custom precision", () => {
+  it("returns value with one decimal", () => {
+    const observation = buildObservation({ value: 4.9999 });
+    expect(getValueAsText(observation, 1)).toEqual("5.0");
+  });
 });
 
-it("check if the Value of the object return 3 decimals if decimals == 3", () => {
-  expect(getValueAsText({ v: 38.99439 }, 3)).toEqual("38.994");
-});
+describe("when value is undefined", () => {
+  it("returns the fallback string", () => {
+    const observation = buildObservation({ value: null });
+    expect(getValueAsText(observation)).toEqual("Value unavailable");
+  });
 
-it("check if it return well fallback param if no param: v", () => {
-  expect(getValueAsText({}, 3)).toEqual("Value unavailable");
-});
-
-it("check if it return well a custom fallback param if no param: v", () => {
-  expect(getValueAsText({}, 3, "custom fallback")).toEqual("custom fallback");
+  describe("with custom fallback string", () => {
+    it("returns the custom fallback string", () => {
+      const observation = buildObservation({ value: null });
+      expect(getValueAsText(observation, 2, "None")).toEqual("None");
+    });
+  });
 });

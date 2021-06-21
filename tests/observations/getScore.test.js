@@ -1,9 +1,6 @@
 import { getScore } from "@root/observations";
+import { buildObservation } from "testHelpers/builders";
 
-it("check if the Score of the object is well returned for 238", () => {
-  expect(getScore({ s: 238 })).toEqual(238);
-});
-
-it("check if the Score of the object is well returned for 0", () => {
-  expect(getScore({ s: 0 })).toEqual(0);
+it("returns the numeric score", () => {
+  expect(getScore(buildObservation({ score: 75.3 }))).toEqual(75.3);
 });
