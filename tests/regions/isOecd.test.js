@@ -1,10 +1,10 @@
-import { isOecd } from "@root/assessments";
+import { isOecd } from "@root/regions";
 import { buildRegion } from "testHelpers/builders";
 
-it("Returns true if the region is a member of the OECD", () => {
+it("returns true if the region is a member of the OECD", () => {
   expect(isOecd(buildRegion({ region: "OECD members" }))).toBe(true);
 });
 
-it("Returns false if the region is a member of the OECD", () => {
+it("returns false if the region is not a member of the OECD", () => {
   expect(isOecd(buildRegion({ region: "MENA" }))).toBe(false);
 });

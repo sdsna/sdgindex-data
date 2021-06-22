@@ -1,6 +1,6 @@
 import { isGlobalOnly } from "./isGlobalOnly";
-import { isOecd } from "./isOecd";
 import { isOecdOnly } from "./isOecdOnly";
+import { isOecd } from "../regions/isOecd";
 
 /**
  * Check whether the given assessment is a relevant indicator for the region.
