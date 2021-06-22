@@ -1,5 +1,5 @@
 import { getTimeseriesValue } from "./getTimeseriesValue";
-import { START_YEAR, END_YEAR } from "./TimeseriesLength";
+import { START_YEAR, END_YEAR } from "./config";
 
 /**
  * Get the first year where the timeseries has value for the given assessment.

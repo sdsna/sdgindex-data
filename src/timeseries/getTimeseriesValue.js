@@ -1,4 +1,4 @@
-import { START_YEAR } from "./TimeseriesLength";
+import { START_YEAR } from "./config";
 
 /**
  * Get value of the timeseries for a specific assessment and year.
