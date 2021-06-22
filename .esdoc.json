@@ -11,6 +11,8 @@
           { "from": "^src/parse/.*", "to": "parse" },
           { "from": "^src/observations/.*", "to": "observations" },
           { "from": "^src/assessments/.*", "to": "assessments" },
+          { "from": "^src/timeseries/.*", "to": "timeseries" },
+          { "from": "^src/regions/.*", "to": "regions" },
           { "from": "^src/sdgs/.*", "to": "sdgs" }
         ]
       }

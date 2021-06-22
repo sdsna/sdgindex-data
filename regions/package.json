@@ -1,0 +1,6 @@
+{
+  "internal": true,
+  "main": "../cjs/regions/index.js",
+  "module": "../es/regions/index.js",
+  "sideEffects": false
+}
