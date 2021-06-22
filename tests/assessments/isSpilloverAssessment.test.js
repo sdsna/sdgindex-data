@@ -1,10 +1,13 @@
 import { isSpilloverAssessment } from "@root/assessments";
-import { buildIndicator } from "testHelpers/builders";
+import {
+  buildOverallAssessment,
+  buildSpilloverAssessment,
+} from "testHelpers/builders";
 
-test("Returns true if the indicator is a spillover indicator", () => {
-  expect(isSpilloverAssessment(buildIndicator({ id: "SPI" }))).toBe(true);
+it("returns true if assessment is overall spillover index assessment", () => {
+  expect(isSpilloverAssessment(buildSpilloverAssessment())).toBe(true);
 });
 
-test("Returns false if the indicator is not a spillover indicator", () => {
-  expect(isSpilloverAssessment(buildIndicator({ id: "Overall" }))).toBe(false);
+it("returns false if assessment is not overall spillover index assessment", () => {
+  expect(isSpilloverAssessment(buildOverallAssessment())).toBe(false);
 });

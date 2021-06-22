@@ -49,6 +49,9 @@ export const buildGoal = (params = {}) => {
 export const buildOverallAssessment = (params = {}) =>
   buildAssessment({ id: "TOT", slug: "overall", type: "custom", ...params });
 
+export const buildSpilloverAssessment = (params = {}) =>
+  buildAssessment({ id: "SPI", slug: "spillovers", type: "custom", ...params });
+
 export const buildRegion = (params = {}) => {
   const dataId = getBuildId();
   const name = params.name || `${faker.address.country()} - ${dataId}`;

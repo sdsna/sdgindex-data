@@ -1,7 +1,7 @@
 /**
- * Check whether the given assessment is a spillover assessment.
+ * Check if the given assessment is the overall spillover index performance.
  * @param {Object} assessment
- * @returns {bool} Returns true if the assessment is a spillover assessment
+ * @returns {bool} return true if the assessment is the overall spillover index
+ *                 performance
  */
-
 export const isSpilloverAssessment = (assessment) => assessment.id === "SPI";
