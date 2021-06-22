@@ -1,4 +1,4 @@
-import { isGlobalOnly } from "@root/assessments";
+import { isGlobalOnly } from "@sdgindex/data/assessments";
 import { buildIndicator } from "testHelpers/builders";
 
 it("returns true if the indicator is global only", () => {

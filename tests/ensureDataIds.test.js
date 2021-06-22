@@ -1,5 +1,5 @@
 import { omit } from "lodash";
-import { ensureDataIds } from "@root";
+import { ensureDataIds } from "@sdgindex/data";
 import {
   buildIndicator,
   buildIndicators,

@@ -1,5 +1,5 @@
 import { omit } from "lodash";
-import { getOverallAssessmentForRegion } from "@root";
+import { getOverallAssessmentForRegion } from "@sdgindex/data";
 import {
   buildIndicators,
   buildGoals,

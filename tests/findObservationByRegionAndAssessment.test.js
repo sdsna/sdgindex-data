@@ -1,4 +1,4 @@
-import { findObservationByRegionAndAssessment } from "@root";
+import { findObservationByRegionAndAssessment } from "@sdgindex/data";
 import {
   buildIndicator,
   buildRegion,

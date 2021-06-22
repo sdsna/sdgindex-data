@@ -1,4 +1,4 @@
-import { getColor } from "@root/sdgs";
+import { getColor } from "@sdgindex/data/sdgs";
 
 it("returns #E5243B for SDG 1", () => {
   expect(getColor(1)).toEqual("#E5243B");

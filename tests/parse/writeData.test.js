@@ -1,7 +1,7 @@
 import tmp from "tmp";
 import fse from "fs-extra";
 import path from "path";
-import { writeData } from "@root/parse";
+import { writeData } from "@sdgindex/data/parse";
 
 it("creates test.json with minified JSON", () => {
   const tmpDir = tmp.dirSync().name;

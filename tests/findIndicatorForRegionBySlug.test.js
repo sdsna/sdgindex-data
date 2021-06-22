@@ -1,5 +1,5 @@
 import { omit } from "lodash";
-import { findIndicatorForRegionBySlug } from "@root";
+import { findIndicatorForRegionBySlug } from "@sdgindex/data";
 import {
   buildIndicator,
   buildIndicators,

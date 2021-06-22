@@ -1,4 +1,4 @@
-import { isIndicator } from "@root/assessments";
+import { isIndicator } from "@sdgindex/data/assessments";
 import { buildGoal, buildIndicator } from "testHelpers/builders";
 
 it("returns true if assessment is an indicator", () => {

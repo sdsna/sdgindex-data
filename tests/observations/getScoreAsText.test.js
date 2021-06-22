@@ -1,4 +1,4 @@
-import { getScoreAsText } from "@root/observations";
+import { getScoreAsText } from "@sdgindex/data/observations";
 import { buildObservation } from "testHelpers/builders";
 
 it("returns the score as string with two decimals", () => {

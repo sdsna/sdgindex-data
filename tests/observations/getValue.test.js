@@ -1,4 +1,4 @@
-import { getValue } from "@root/observations";
+import { getValue } from "@sdgindex/data/observations";
 import { buildObservation } from "testHelpers/builders";
 
 it("returns the numeric value", () => {

@@ -1,4 +1,4 @@
-import { isCountry } from "@root/regions";
+import { isCountry } from "@sdgindex/data/regions";
 import { buildRegion } from "testHelpers/builders";
 
 it("returns true if the region has type 'country'", () => {

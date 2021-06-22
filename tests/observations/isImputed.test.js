@@ -1,4 +1,4 @@
-import { isImputed } from "@root/observations";
+import { isImputed } from "@sdgindex/data/observations";
 import { buildObservation } from "testHelpers/builders";
 
 it("returns true if imputed", () => {

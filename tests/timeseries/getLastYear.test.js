@@ -1,4 +1,4 @@
-import { getLastYear } from "@root/timeseries";
+import { getLastYear } from "@sdgindex/data/timeseries";
 import { buildTimeseries } from "testHelpers/builders";
 
 it("returns last year with non-null value", () => {

@@ -1,4 +1,4 @@
-import { isOecd } from "@root/regions";
+import { isOecd } from "@sdgindex/data/regions";
 import { buildRegion } from "testHelpers/builders";
 
 it("returns true if the region is a member of the OECD", () => {

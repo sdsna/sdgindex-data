@@ -1,4 +1,4 @@
-import { findAssessmentById } from "@root";
+import { findAssessmentById } from "@sdgindex/data";
 import { buildIndicator, buildIndicators } from "testHelpers/builders";
 
 it("finds assessment with ID indicator1", () => {

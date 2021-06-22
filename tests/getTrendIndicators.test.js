@@ -1,5 +1,5 @@
 import { omit } from "lodash";
-import { getTrendIndicators } from "@root";
+import { getTrendIndicators } from "@sdgindex/data";
 import {
   buildIndicators,
   buildGoals,

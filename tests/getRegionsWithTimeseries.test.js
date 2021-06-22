@@ -1,5 +1,5 @@
 import { omit } from "lodash";
-import { getRegionsWithTimeseries } from "@root";
+import { getRegionsWithTimeseries } from "@sdgindex/data";
 import {
   buildIndicator,
   buildIndicators,

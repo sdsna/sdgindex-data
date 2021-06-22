@@ -1,4 +1,4 @@
-import { getYearAsText } from "@root/observations";
+import { getYearAsText } from "@sdgindex/data/observations";
 import { buildObservation } from "testHelpers/builders";
 
 it("returns the year as string", () => {

@@ -1,4 +1,4 @@
-import { getLabelWithoutUnit } from "@root/parse";
+import { getLabelWithoutUnit } from "@sdgindex/data/parse";
 
 it("returns label without '(%)'", () => {
   expect(getLabelWithoutUnit("this is label (%)")).toEqual("this is label");

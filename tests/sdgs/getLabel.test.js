@@ -1,4 +1,4 @@
-import { getLabel } from "@root/sdgs";
+import { getLabel } from "@sdgindex/data/sdgs";
 
 it("returns 'Good health and well-being' for SDG 3", () => {
   expect(getLabel(3)).toEqual("Good health and well-being");

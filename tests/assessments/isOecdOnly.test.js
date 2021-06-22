@@ -1,4 +1,4 @@
-import { isOecdOnly } from "@root/assessments";
+import { isOecdOnly } from "@sdgindex/data/assessments";
 import { buildIndicator } from "testHelpers/builders";
 
 it("returns true if the indicator is OECD only", () => {

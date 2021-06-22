@@ -1,4 +1,4 @@
-import { convertScoreToColor } from "@root/parse";
+import { convertScoreToColor } from "@sdgindex/data/parse";
 
 it("converts 2.5 to yellow", () => {
   expect(convertScoreToColor(2.5)).toEqual("yellow");

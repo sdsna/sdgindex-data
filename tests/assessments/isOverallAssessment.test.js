@@ -1,4 +1,4 @@
-import { isOverallAssessment } from "@root/assessments";
+import { isOverallAssessment } from "@sdgindex/data/assessments";
 import { buildGoal, buildOverallAssessment } from "testHelpers/builders";
 
 it("returns true if assessment is overall SDG assessment", () => {

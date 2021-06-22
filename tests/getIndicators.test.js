@@ -1,4 +1,4 @@
-import { getIndicators } from "@root";
+import { getIndicators } from "@sdgindex/data";
 import {
   buildIndicators,
   buildGoals,

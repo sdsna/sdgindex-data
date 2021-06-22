@@ -1,5 +1,5 @@
-import { loadTimeseries, loadDataset } from "@root";
-jest.mock("@root/cjs/loadDataset");
+import { loadTimeseries, loadDataset } from "@sdgindex/data";
+jest.mock("mock:@sdgindex/data/loadDataset");
 
 it("loads timeseries into dataStore", () => {
   loadDataset.mockImplementation((dataStore, dataset) => {

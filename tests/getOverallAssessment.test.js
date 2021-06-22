@@ -1,4 +1,4 @@
-import { getOverallAssessment } from "@root";
+import { getOverallAssessment } from "@sdgindex/data";
 import {
   buildIndicators,
   buildGoals,
