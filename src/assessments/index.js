@@ -1,4 +1,3 @@
-export * from "./getLongTermObjectiveReason";
 export * from "./isGlobalOnly";
 export * from "./isGoal";
 export * from "./isIndicator";
