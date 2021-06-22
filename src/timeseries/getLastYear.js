@@ -3,11 +3,10 @@ import { getTimeseriesValue } from "./getTimeseriesValue";
 import { START_YEAR, END_YEAR } from "./config";
 
 /**
- * Get the last year where the timeseries has value for the given assessment.
+ * Get the last year where the timeseries has a non-null value.
  * @param {Object} timeseries
- * @returns {Number} Returns the last year where the timeseries has value for the given assessment
+ * @returns {Number}
  */
-
 export const getLastYear = (timeseries) =>
   findLast(
     Array.from({ length: END_YEAR - START_YEAR + 1 }).map(

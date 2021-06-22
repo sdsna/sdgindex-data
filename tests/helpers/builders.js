@@ -1,5 +1,6 @@
 import faker from "faker";
 import { omit, random } from "lodash";
+import { START_YEAR, END_YEAR } from "@root/src/timeseries/config";
 import renameKeys from "./renameKeys";
 
 // Ensures that all IDs, data IDs, and slugs are unique
@@ -89,6 +90,24 @@ export const buildObservation = ({ assessment, region, ...params } = {}) => {
   };
 
   return Object.assign(observation, params);
+};
+
+export const buildTimeseries = ({ assessment, region, ...params } = {}) => {
+  assessment ||= buildIndicator();
+  region ||= buildRegion();
+
+  const timeseries = {
+    id: `${region.dataId}-${assessment.dataId}`,
+    v: Array.from({ length: END_YEAR - START_YEAR + 1 }).map((_v, year) => {
+      // Return user-defined value, if set
+      if (Object.hasOwnProperty.call(params, START_YEAR + year))
+        return params[START_YEAR + year];
+
+      return random(0, 1000);
+    }),
+  };
+
+  return timeseries;
 };
 
 export const buildIndicators = ({ count = 5, ...params } = {}) =>

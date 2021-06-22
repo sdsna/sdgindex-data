@@ -1,17 +1,10 @@
 import { hasTimeseries } from "@root/timeseries";
-import { buildObservation } from "testHelpers/builders";
+import { buildObservation, buildTimeseries } from "testHelpers/builders";
 
-test("Returns true if the assessment has timeseries", () => {
-  expect(
-    hasTimeseries(
-      buildObservation({
-        id: "1-TOT",
-        v: [
-          83.45, 83.37, 83.6, 83.28, 83.39, 84, 83.5, 83.57, 83.89, 85.36, 85.3,
-          85.55, 85.9, 85.91, 86.04, 85.92, 85.79, 85.85, 85.53, 85.79, 85.89,
-          85.89,
-        ],
-      })
-    )
-  ).toBe(true);
+it("returns true if the object has timeseries", () => {
+  expect(hasTimeseries(buildTimeseries())).toBe(true);
+});
+
+it("returns false if the object does not have timeseries", () => {
+  expect(hasTimeseries(buildObservation())).toBe(false);
 });
