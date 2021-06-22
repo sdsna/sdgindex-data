@@ -9,7 +9,8 @@
     "build": "npm run build:cjs && npm run build:es",
     "build:cjs": "trash cjs/* && cross-env NODE_ENV=cjs babel src --out-dir cjs",
     "build:es": "trash es/* && cross-env NODE_ENV=es babel src --out-dir es",
-    "test": "jest",
+    "test": "jest --config=jest.config.js",
+    "test:production": "jest --config=jest.production.config.js",
     "docs": "npx esdoc",
     "prepare": "npm run build && husky install",
     "release": "np"
@@ -31,13 +32,6 @@
     "cjs",
     "es"
   ],
-  "jest": {
-    "moduleNameMapper": {
-      "@root(.*)$": "<rootDir>/$1",
-      "testHelpers(.*)$": "<rootDir>/tests/helpers/$1"
-    },
-    "resetMocks": true
-  },
   "devDependencies": {
     "@babel/cli": "^7.12.16",
     "@babel/core": "^7.14.0",
