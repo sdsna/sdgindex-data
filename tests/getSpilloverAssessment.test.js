@@ -1,22 +1,21 @@
-import { omit } from "lodash";
 import { getSpilloverAssessment } from "@root";
 import {
-  buildAssessment,
   buildIndicators,
   buildGoals,
+  buildOverallAssessment,
+  buildSpilloverAssessment,
 } from "testHelpers/builders";
 
-const spilloverAssessment = buildAssessment({ id: "SPI" });
+const spilloverAssessment = buildSpilloverAssessment();
 const dataStore = {
-  assessments: [spilloverAssessment, ...buildGoals(), ...buildIndicators()],
+  assessments: [
+    buildOverallAssessment(),
+    spilloverAssessment,
+    ...buildGoals(),
+    ...buildIndicators(),
+  ],
 };
 
-test("Returns spillover assessment from the dataStore", () => {
+it("returns the overall assessment", () => {
   expect(getSpilloverAssessment(dataStore)).toEqual(spilloverAssessment);
-});
-
-test("Includes observation for indicator", () => {
-  expect(getSpilloverAssessment(dataStore)).toMatchObject(
-    omit(spilloverAssessment, "id")
-  );
 });

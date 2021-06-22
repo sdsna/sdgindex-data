@@ -1,7 +1,7 @@
 /**
- * Get the trend for a given observation.
+ * Get the trend (e.g., "↑", "➚", etc...) for the given observation.
  * @param {Object} observation
- * @return {String} Returns trend as a string (e.g. "↑", "➚", etc ...)
+ * @return {String}
  */
 
 export const getTrend = (observation) => observation.a;

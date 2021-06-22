@@ -1,27 +1,20 @@
-import { omit } from "lodash";
 import { findTimeseriesByRegionAndAssessment } from "@root";
 import {
-  buildIndicator,
+  buildOverallAssessment,
   buildRegion,
-  buildObservation,
-  buildObservations,
+  buildTimeseries,
+  buildMultipleTimeseries,
 } from "testHelpers/builders";
 
-const assessment = buildIndicator();
+const assessment = buildOverallAssessment();
 const region = buildRegion();
-const observation = buildObservation({ assessment, region });
+const timeseries = buildTimeseries({ assessment, region });
 const dataStore = {
-  timeseries: [observation, ...buildObservations()],
+  timeseries: [timeseries, ...buildMultipleTimeseries()],
 };
 
-test("Returns an object of the timeseries for the specific region and assessment", () => {
+it("returns the relevant timeseries", () => {
   expect(
     findTimeseriesByRegionAndAssessment(dataStore, region, assessment)
-  ).toEqual(observation);
-});
-
-test("Includes observation for indicator", () => {
-  expect(
-    findTimeseriesByRegionAndAssessment(dataStore, region, assessment)
-  ).toMatchObject(omit(observation, "id"));
+  ).toEqual(timeseries);
 });

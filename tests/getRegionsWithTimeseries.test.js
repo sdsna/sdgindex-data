@@ -3,28 +3,28 @@ import { getRegionsWithTimeseries } from "@root";
 import {
   buildIndicator,
   buildIndicators,
-  buildObservation,
-  buildObservations,
+  buildTimeseries,
+  buildMultipleTimeseries,
   buildRegions,
 } from "testHelpers/builders";
 
 const regions = buildRegions();
 const indicator = buildIndicator();
-const indicatorObservations = regions.map((region) =>
-  buildObservation({ region, assessment: indicator })
+const timeseries = regions.map((region) =>
+  buildTimeseries({ region, assessment: indicator })
 );
 const dataStore = {
   assessments: [indicator, ...buildIndicators()],
   regions,
-  timeseries: [...indicatorObservations, ...buildObservations()],
+  timeseries: [...timeseries, ...buildMultipleTimeseries()],
 };
 
-test("Returns an array of regions, each including the observation for the given assessment", () => {
+it("returns all regions", () => {
   expect(getRegionsWithTimeseries(dataStore, indicator)).toMatchObject(regions);
 });
 
-test("Includes observation for each region", () => {
+it("includes timeseries for each region", () => {
   expect(getRegionsWithTimeseries(dataStore, indicator)).toMatchObject(
-    indicatorObservations.map((observation) => omit(observation, "id"))
+    timeseries.map((series) => omit(series, "id"))
   );
 });

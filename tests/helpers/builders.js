@@ -124,3 +124,6 @@ export const buildRegions = ({ count = 5, ...params } = {}) =>
 
 export const buildObservations = ({ count = 5, ...params } = {}) =>
   Array.from({ length: count }).map(() => buildObservation(params));
+
+export const buildMultipleTimeseries = ({ count = 5, ...params } = {}) =>
+  Array.from({ length: count }).map(() => buildTimeseries(params));
