@@ -1,4 +1,4 @@
-import { findLast } from "lodash";
+import findLast from "lodash.findlast";
 import { getTimeseriesValue } from "./getTimeseriesValue";
 import { START_YEAR, END_YEAR } from "./config";
 
