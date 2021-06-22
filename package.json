@@ -24,6 +24,8 @@
   "files": [
     "assessments",
     "observations",
+    "timeseries",
+    "regions",
     "parse",
     "sdgs",
     "cjs",
