@@ -34,5 +34,5 @@ jobs:
       - name: Build package
         run: npm run build
 
-      - name: run tests
-        run: npm test
+      - name: Run production tests
+        run: npm run test:production
