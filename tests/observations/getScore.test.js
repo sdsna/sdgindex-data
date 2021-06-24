@@ -1,4 +1,4 @@
-import { getScore } from "@root/observations";
+import { getScore } from "@sdgindex/data/observations";
 import { buildObservation } from "testHelpers/builders";
 
 it("returns the numeric score", () => {

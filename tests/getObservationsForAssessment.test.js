@@ -1,4 +1,4 @@
-import { getObservationsForAssessment } from "@root";
+import { getObservationsForAssessment } from "@sdgindex/data";
 import {
   buildIndicator,
   buildIndicators,

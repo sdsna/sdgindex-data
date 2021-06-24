@@ -1,4 +1,4 @@
-import { hasTimeseries } from "@root/timeseries";
+import { hasTimeseries } from "@sdgindex/data/timeseries";
 import { buildObservation, buildTimeseries } from "testHelpers/builders";
 
 it("returns true if the object has timeseries", () => {

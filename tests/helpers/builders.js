@@ -1,6 +1,6 @@
 import faker from "faker";
 import { omit, random } from "lodash";
-import { START_YEAR, END_YEAR } from "@root/src/timeseries/config";
+import { START_YEAR, END_YEAR } from "../../src/timeseries/config";
 import renameKeys from "./renameKeys";
 
 // Ensures that all IDs, data IDs, and slugs are unique

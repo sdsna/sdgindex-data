@@ -1,4 +1,4 @@
-import { getIndicatorUnit } from "@root/parse";
+import { getIndicatorUnit } from "@sdgindex/data/parse";
 
 it("extracts '%' from label", () => {
   expect(getIndicatorUnit("this is label (%)")).toEqual("%");

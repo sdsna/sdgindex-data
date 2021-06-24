@@ -1,4 +1,4 @@
-import { getSpilloverAssessment } from "@root";
+import { getSpilloverAssessment } from "@sdgindex/data";
 import {
   buildIndicators,
   buildGoals,

@@ -1,4 +1,4 @@
-import { roundNumber } from "@root/parse";
+import { roundNumber } from "@sdgindex/data/parse";
 
 it("rounds null to null", () => {
   expect(roundNumber(null, 3)).toEqual(null);

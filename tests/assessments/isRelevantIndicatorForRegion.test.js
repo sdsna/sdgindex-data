@@ -1,4 +1,4 @@
-import { isRelevantIndicatorForRegion } from "@root/assessments";
+import { isRelevantIndicatorForRegion } from "@sdgindex/data/assessments";
 import { buildIndicator, buildRegion } from "testHelpers/builders";
 
 describe("when region is an OECD country", () => {

@@ -1,4 +1,4 @@
-import { getRating } from "@root/observations";
+import { getRating } from "@sdgindex/data/observations";
 import { buildObservation } from "testHelpers/builders";
 
 it("returns the rating color", () => {

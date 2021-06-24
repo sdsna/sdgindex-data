@@ -1,4 +1,4 @@
-import { observationObjectToArray } from "@root/observations";
+import { observationObjectToArray } from "@sdgindex/data/observations";
 import { buildObservation } from "testHelpers/builders";
 
 it("converts observation to array", () => {

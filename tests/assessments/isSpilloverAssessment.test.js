@@ -1,4 +1,4 @@
-import { isSpilloverAssessment } from "@root/assessments";
+import { isSpilloverAssessment } from "@sdgindex/data/assessments";
 import {
   buildOverallAssessment,
   buildSpilloverAssessment,

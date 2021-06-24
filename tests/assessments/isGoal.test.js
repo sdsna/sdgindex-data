@@ -1,4 +1,4 @@
-import { isGoal } from "@root/assessments";
+import { isGoal } from "@sdgindex/data/assessments";
 import { buildGoal, buildIndicator } from "testHelpers/builders";
 
 it("returns true if assessment is a goal", () => {

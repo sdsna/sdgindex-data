@@ -1,4 +1,4 @@
-import { findTimeseriesByRegionAndAssessment } from "@root";
+import { findTimeseriesByRegionAndAssessment } from "@sdgindex/data";
 import {
   buildIndicator,
   buildRegion,

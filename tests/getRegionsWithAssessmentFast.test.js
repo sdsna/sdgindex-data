@@ -1,5 +1,5 @@
 import { omit } from "lodash";
-import { getRegionsWithAssessmentFast } from "@root";
+import { getRegionsWithAssessmentFast } from "@sdgindex/data";
 import {
   buildIndicator,
   buildIndicators,

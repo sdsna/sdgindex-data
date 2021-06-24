@@ -1,4 +1,4 @@
-import { findIndicatorById } from "@root";
+import { findIndicatorById } from "@sdgindex/data";
 import { buildIndicator, buildIndicators } from "testHelpers/builders";
 
 it("finds indicator by id for SDG14_physics", () => {

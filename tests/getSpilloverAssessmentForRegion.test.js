@@ -1,5 +1,5 @@
 import { omit } from "lodash";
-import { getSpilloverAssessmentForRegion } from "@root";
+import { getSpilloverAssessmentForRegion } from "@sdgindex/data";
 import {
   buildIndicators,
   buildGoals,

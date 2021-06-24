@@ -1,4 +1,4 @@
-import { isTrendIndicator } from "@root/assessments";
+import { isTrendIndicator } from "@sdgindex/data/assessments";
 import { buildIndicator } from "testHelpers/builders";
 
 it("returns true if the indicator is a trend indicator", () => {

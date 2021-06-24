@@ -1,5 +1,5 @@
-import { loadData, loadDataset } from "@root";
-jest.mock("@root/cjs/loadDataset");
+import { loadData, loadDataset } from "@sdgindex/data";
+jest.mock("mock:@sdgindex/data/loadDataset");
 
 it("loads region, assessments, and observations into dataStore", () => {
   loadDataset.mockImplementation((dataStore, dataset) => {

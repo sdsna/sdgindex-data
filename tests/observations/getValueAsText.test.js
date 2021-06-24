@@ -1,4 +1,4 @@
-import { getValueAsText } from "@root/observations";
+import { getValueAsText } from "@sdgindex/data/observations";
 import { buildObservation } from "testHelpers/builders";
 
 it("returns the value as string with two decimals", () => {

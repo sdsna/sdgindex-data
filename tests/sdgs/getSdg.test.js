@@ -1,4 +1,4 @@
-import { getSdg } from "@root/sdgs";
+import { getSdg } from "@sdgindex/data/sdgs";
 
 it("returns label and color for SDG 2", () => {
   expect(getSdg(2)).toEqual({ label: "Zero hunger", color: "#DDa63a" });

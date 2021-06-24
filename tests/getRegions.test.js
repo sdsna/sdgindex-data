@@ -1,4 +1,4 @@
-import { getRegions } from "@root";
+import { getRegions } from "@sdgindex/data";
 import { buildRegions } from "testHelpers/builders";
 
 const regions = buildRegions();

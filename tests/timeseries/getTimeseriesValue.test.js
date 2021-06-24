@@ -1,4 +1,4 @@
-import { getTimeseriesValue } from "@root/timeseries";
+import { getTimeseriesValue } from "@sdgindex/data/timeseries";
 import { buildTimeseries } from "testHelpers/builders";
 
 const timeseries = buildTimeseries({

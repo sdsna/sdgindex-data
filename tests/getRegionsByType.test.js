@@ -1,4 +1,4 @@
-import { getRegionsByType } from "@root";
+import { getRegionsByType } from "@sdgindex/data";
 import { buildRegions } from "testHelpers/builders";
 
 const cities = buildRegions({ type: "city" });

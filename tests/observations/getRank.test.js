@@ -1,4 +1,4 @@
-import { getRank } from "@root/observations";
+import { getRank } from "@sdgindex/data/observations";
 import { buildObservation } from "testHelpers/builders";
 
 it("returns the numeric rank", () => {

@@ -1,4 +1,4 @@
-import { loadDataset } from "@root";
+import { loadDataset } from "@sdgindex/data";
 
 beforeEach(() => {
   global.fetch = jest.fn().mockImplementation((url) => {

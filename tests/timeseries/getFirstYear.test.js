@@ -1,4 +1,4 @@
-import { getFirstYear } from "@root/timeseries";
+import { getFirstYear } from "@sdgindex/data/timeseries";
 import { buildTimeseries } from "testHelpers/builders";
 
 it("returns first year with non-null value", () => {

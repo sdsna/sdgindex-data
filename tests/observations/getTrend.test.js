@@ -1,4 +1,4 @@
-import { getTrend } from "@root/observations";
+import { getTrend } from "@sdgindex/data/observations";
 import { buildObservation } from "testHelpers/builders";
 
 it("returns the trend as a string", () => {
