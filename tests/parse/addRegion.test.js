@@ -15,6 +15,7 @@ it("add region to the dataStore", () => {
       dataId: 6,
       slug: "austria",
       name: "Austria",
+      type: "country",
     })
   );
 });
