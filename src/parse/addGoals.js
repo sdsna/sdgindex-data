@@ -1,19 +1,18 @@
-import { GOALS } from "./goals";
+import { SDGS } from "../sdgs/getSdg";
 
 /**
  * Add all goals to the dataStore
  * @param {Object} dataStore - The store where the data are saved
  */
-
 export const addGoals = (dataStore) => {
-  GOALS.forEach((row) =>
+  SDGS.forEach((row) =>
     dataStore.assessments.push({
-      id: row.id,
-      dataId: row.dataId,
+      id: "SDG" + row.number,
+      dataId: "SDG" + row.number,
       number: row.number,
       label: row.label,
       description: row.description,
-      type: row.type,
+      type: "goal",
     })
   );
 };
