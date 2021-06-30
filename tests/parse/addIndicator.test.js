@@ -3,28 +3,22 @@ import { buildIndicator } from "testHelpers/builders";
 
 it("add indicator to the dataStore", () => {
   const dataStore = { assessments: [] };
+  const labelWithUnit = "Poverty headcount ratio at $1.90/day (%)";
   addIndicator(dataStore, {
-    id: "sdg14_cleanwat",
-    dataId: 98,
-    goalNumber: 14,
-    label: "Ocean Health Index: Clean Waters score",
-    reference: "Ocean Health Index",
-    link: "http://ohi-science.org/ohi-global/download",
-    description:
-      "The clean waters subgoal of the Ocean Health Index measures to what degree marine waters under national jurisdictions have been contaminated by chemicals, excessive nutrients (eutrophication), human pathogens, and trash.",
+    labelWithUnit,
+    id: "sdg1_wpc",
+    goalNumber: 1,
   });
-
   const indicator = buildIndicator({
-    id: "sdg14_cleanwat",
-    dataId: 98,
-    goalNumber: 14,
-    label: "Ocean Health Index: Clean Waters score",
-    reference: "Ocean Health Index",
-    link: "http://ohi-science.org/ohi-global/download",
-    description:
-      "The clean waters subgoal of the Ocean Health Index measures to what degree marine waters under national jurisdictions have been contaminated by chemicals, excessive nutrients (eutrophication), human pathogens, and trash.",
+    id: "sdg1_wpc",
+    dataId: 1,
+    goalNumber: 1,
+    label: "Poverty headcount ratio at $1.90/day",
+    slug: "poverty-headcount-ratio-at-1-90-day",
+    unit: "%",
+    type: "indicator",
   });
-  delete indicator.slug;
 
+  delete indicator.description;
   expect(dataStore.assessments[0]).toEqual(indicator);
 });
