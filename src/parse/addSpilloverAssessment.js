@@ -1,4 +1,4 @@
-import { spilloverAssessmentId } from "../assessments/config";
+import { SPILLOVER_ASSESSMENT_ID } from "../assessments/config";
 
 /**
  * Add the spillover assessment to the dataStore
@@ -6,8 +6,8 @@ import { spilloverAssessmentId } from "../assessments/config";
  */
 export const addSpilloverAssessment = (dataStore) => {
   dataStore.assessments.push({
-    id: spilloverAssessmentId,
-    dataId: spilloverAssessmentId,
+    id: SPILLOVER_ASSESSMENT_ID,
+    dataId: SPILLOVER_ASSESSMENT_ID,
     label: "Spillover score",
     slug: "spillovers",
     description:

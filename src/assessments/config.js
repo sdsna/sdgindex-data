@@ -1,9 +1,10 @@
 /**
  * @ignore
  */
-export const overallAssessmentId = "TOT";
+
+export const OVERALL_ASSESSMENT_ID = "TOT";
 
 /**
  * @ignore
  */
-export const spilloverAssessmentId = "SPI";
+export const SPILLOVER_ASSESSMENT_ID = "SPI";

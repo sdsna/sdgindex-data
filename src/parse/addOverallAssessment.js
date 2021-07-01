@@ -1,4 +1,4 @@
-import { overallAssessmentId } from "../assessments/config";
+import { OVERALL_ASSESSMENT_ID } from "../assessments/config";
 
 /**
  * Add the overall assessment to the dataStore
@@ -6,8 +6,8 @@ import { overallAssessmentId } from "../assessments/config";
  */
 export const addOverallAssessment = (dataStore) => {
   dataStore.assessments.push({
-    id: overallAssessmentId,
-    dataId: overallAssessmentId,
+    id: OVERALL_ASSESSMENT_ID,
+    dataId: OVERALL_ASSESSMENT_ID,
     label: "Overall score",
     slug: "overall",
     description:

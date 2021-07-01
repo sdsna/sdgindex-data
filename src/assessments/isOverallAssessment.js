@@ -1,4 +1,4 @@
-import { overallAssessmentId } from "./config";
+import { OVERALL_ASSESSMENT_ID } from "./config";
 
 /**
  * Check if the given assessment is the overall SDG Index performance.
@@ -6,4 +6,4 @@ import { overallAssessmentId } from "./config";
  * @return {bool} Return true if assessment is the overall SDG Index performance
  */
 export const isOverallAssessment = (assessment) =>
-  assessment.id === overallAssessmentId;
+  assessment.id === OVERALL_ASSESSMENT_ID;

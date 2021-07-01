@@ -1,4 +1,4 @@
-import { spilloverAssessmentId } from "./config";
+import { SPILLOVER_ASSESSMENT_ID } from "./config";
 
 /**
  * Check if the given assessment is the overall spillover index performance.
@@ -7,4 +7,4 @@ import { spilloverAssessmentId } from "./config";
  *                 performance
  */
 export const isSpilloverAssessment = (assessment) =>
-  assessment.id === spilloverAssessmentId;
+  assessment.id === SPILLOVER_ASSESSMENT_ID;
