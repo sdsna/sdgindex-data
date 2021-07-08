@@ -1,3 +1,4 @@
+export * as config from "./config";
 export * from "./ensureDataIds";
 export * from "./findAssessmentById";
 export * from "./findAssessmentBySlug";
@@ -33,3 +34,4 @@ export * from "./getTrendIndicators";
 export * from "./loadData";
 export * from "./loadDataset";
 export * from "./loadTimeseries";
+export * from "./store";

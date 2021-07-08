@@ -32,6 +32,10 @@
     "cjs",
     "es"
   ],
+  "browser": {
+    "path": false,
+    "fs-extra": false
+  },
   "devDependencies": {
     "@babel/cli": "^7.12.16",
     "@babel/core": "^7.14.0",

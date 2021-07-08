@@ -1,21 +1,14 @@
 import { loadDataset } from "./loadDataset";
 
 /**
- * Load the given datasets into the dataStore. If already loaded, no action is
- * taken.
- * @param {Object} dataStore - The store where we load the data
- * @param {Array} [datasets=[assessments, regions, observations]] -
- *    The datasets to load
- * @return {Promise} a promise that resolves when the requested datasets have
- *                   been loaded
+ * Loads data (assessments, regions, observations, ...) into store.
+ * @param {Object} [param.timeseries=false] - whether to load timeseries data
+ * @return {Promise} a promise that resolves when the datasets have been loaded
  */
-export const loadData = (
-  dataStore,
-  datasets = ["assessments", "regions", "observations"]
-) => {
-  if (dataStore.state.isLoaded) return;
+export const loadData = ({ timeseries = false } = {}) => {
+  const datasets = ["assessments", "regions", "observations"];
 
-  return Promise.all(
-    datasets.map((dataset) => loadDataset(dataStore, dataset))
-  ).then(() => dataStore.state.markAsLoaded());
+  if (timeseries === true) datasets.push("timeseries");
+
+  return Promise.all(datasets.map(loadDataset));
 };
