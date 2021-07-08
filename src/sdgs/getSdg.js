@@ -1,4 +1,4 @@
-export const SDGS = [
+const GOALS = [
   {
     number: 1,
     label: "No poverty",
@@ -121,5 +121,5 @@ export const SDGS = [
  * @return {Object} Return SDG label and color
  */
 export const getSdg = (sdgNumber) => {
-  return SDGS[sdgNumber - 1];
+  return GOALS.find((goal) => goal.number === sdgNumber);
 };
