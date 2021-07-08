@@ -1,15 +1,34 @@
 import { addOverallAssessment } from "@sdgindex/data/parse";
-import { buildOverallAssessment } from "testHelpers/builders";
 
-it("add the overall assessment to the dataStore", () => {
-  const dataStore = { assessments: [] };
+let dataStore = {};
+beforeEach(() => {
+  // Clear dataStore
+  dataStore = {};
+});
+
+it("adds the overall assessment to the dataStore", () => {
   addOverallAssessment(dataStore);
-  expect(dataStore.assessments[0]).toEqual(
-    buildOverallAssessment({
-      dataId: "TOT",
-      label: "Overall score",
-      description:
-        "The overall score measures a country's total progress towards achieving all 17 SDGs. The score can be interpreted as a percentage of SDG achievement. A score of 100 indicates that all SDGs have been achieved.",
-    })
-  );
+
+  expect(dataStore.assessments[0]).toEqual({
+    id: "TOT",
+    dataId: "TOT",
+    slug: "overall",
+    label: "Overall score",
+    description: expect.stringMatching(
+      "The overall score measures a country's total progress towards achieving all 17 SDGs"
+    ),
+    type: "custom",
+  });
+});
+
+describe("when passing custom parameters", () => {
+  it("overwrites default properties", () => {
+    addOverallAssessment(dataStore, { slug: "my-custom-slug" });
+    expect(dataStore.assessments[0]).toHaveProperty("slug", "my-custom-slug");
+  });
+
+  it("adds additional properties", () => {
+    addOverallAssessment(dataStore, { sourceText: "source" });
+    expect(dataStore.assessments[0]).toHaveProperty("sourceText", "source");
+  });
 });
