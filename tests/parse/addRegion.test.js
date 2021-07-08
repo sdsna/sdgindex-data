@@ -1,39 +1,60 @@
 import { addRegion } from "@sdgindex/data/parse";
-import { buildRegion } from "testHelpers/builders";
 
-it("add region to the dataStore", () => {
-  const dataStore = { regions: [] };
-  let name = "Finland";
+let dataStore = {};
+beforeEach(() => {
+  // Clear dataStore
+  dataStore = {};
+});
+
+it("adds the region to the dataStore", () => {
   addRegion(dataStore, {
-    name,
     id: "FIN",
+    name: "Finland",
     type: "country",
   });
 
-  expect(dataStore.regions[0]).toEqual(
-    buildRegion({
-      id: "FIN",
-      dataId: 1,
-      slug: "finland",
-      name: "Finland",
-      type: "country",
-    })
-  );
-
-  name = "Sweden";
-  addRegion(dataStore, {
-    name,
-    id: "SWE",
+  expect(dataStore.regions[0]).toMatchObject({
+    id: "FIN",
+    dataId: 1,
+    slug: "finland",
+    name: "Finland",
     type: "country",
   });
+});
 
-  expect(dataStore.regions[1]).toEqual(
-    buildRegion({
-      id: "SWE",
-      dataId: 2,
-      slug: "sweden",
-      name: "Sweden",
+describe("when passing custom parameters", () => {
+  it("can overwrite the default slug", () => {
+    addRegion(dataStore, {
+      id: "GER",
+      name: "Germany",
       type: "country",
-    })
-  );
+      slug: "my-custom-slug",
+    });
+    expect(dataStore.regions[0]).toHaveProperty("slug", "my-custom-slug");
+  });
+
+  it("adds additional properties", () => {
+    addRegion(dataStore, {
+      id: "CO",
+      name: "Colorado",
+      type: "state",
+      population: 5_759_000,
+    });
+    expect(dataStore.regions[0]).toHaveProperty("population", 5_759_000);
+  });
+});
+
+describe("when adding 10 regions", () => {
+  it("it sets a unique dataId for each one", () => {
+    for (let i = 0; i < 10; i++) {
+      addRegion(dataStore, {
+        id: "FRA",
+        name: "France",
+        type: "country",
+      });
+    }
+
+    const dataIds = dataStore.regions.map((region) => region.dataId);
+    expect(Array.from(new Set(dataIds))).toHaveLength(10);
+  });
 });
