@@ -1,7 +1,6 @@
 /**
  * @ignore
  */
-
 export const OVERALL_ASSESSMENT_ID = "TOT";
 
 /**
