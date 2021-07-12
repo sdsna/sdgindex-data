@@ -1,12 +1,12 @@
-import { writeStoreToJson } from "@sdgindex/data/parse";
-import { writeData } from "@sdgindex/data/parse/writeData";
-jest.mock("mock:@sdgindex/data/parse/writeData");
+import { writeStoreToJson, writeData } from "@sdgindex/data/parse";
 import {
   buildIndicators,
   buildRegions,
   buildObservations,
   buildTimeseries,
 } from "testHelpers/builders";
+
+jest.mock("mock:@sdgindex/data/parse/writeData");
 
 it("calls writeData for assessments, regions, obs, and timeseries", () => {
   const assessments = buildIndicators();
