@@ -57,6 +57,7 @@
   "dependencies": {
     "fs-extra": "^9.1.0",
     "lodash.findlast": "^4.6.0",
+    "url-slug": "^3.0.2",
     "xlsx": "^0.16.9"
   }
 }
