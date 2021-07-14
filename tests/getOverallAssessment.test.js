@@ -1,15 +1,14 @@
 import { getOverallAssessment } from "@sdgindex/data";
 import {
-  buildIndicators,
-  buildGoals,
-  buildOverallAssessment,
+  addMockIndicators,
+  addMockGoals,
+  addMockOverallAssessment,
 } from "testHelpers/builders";
 
-const overallAssessment = buildOverallAssessment();
-const dataStore = {
-  assessments: [overallAssessment, ...buildGoals(), ...buildIndicators()],
-};
-
 it("returns the overall assessment", () => {
-  expect(getOverallAssessment(dataStore)).toEqual(overallAssessment);
+  const overallAssessment = addMockOverallAssessment();
+  addMockGoals();
+  addMockIndicators();
+
+  expect(getOverallAssessment()).toEqual(overallAssessment);
 });

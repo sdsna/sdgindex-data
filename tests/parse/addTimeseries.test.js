@@ -1,16 +1,20 @@
 import { addTimeseries } from "@sdgindex/data/parse";
-import { buildIndicator, buildRegion } from "testHelpers/builders";
+import { addMockIndicator, addMockRegion } from "testHelpers/builders";
+import { store } from "@sdgindex/data";
 
-let dataStore = {};
+// Clear store before each test
 beforeEach(() => {
-  // Clear dataStore
-  dataStore = {};
+  Object.keys(store).map((key) => delete store[key]);
 });
 
-it("add timeseries to the dataStore", () => {
-  addTimeseries(dataStore, {
-    region: buildRegion({ dataId: 1 }),
-    assessment: buildIndicator({ dataId: "TOT" }),
+it("add timeseries to the store", () => {
+  const region = addMockRegion();
+  region.dataId = 1;
+  const indicator = addMockIndicator();
+  indicator.dataId = 35;
+  addTimeseries({
+    region: region,
+    assessment: indicator,
     dataPoints: [
       { year: 2000, value: 1 },
       { year: 2001, value: 2 },
@@ -37,20 +41,20 @@ it("add timeseries to the dataStore", () => {
     ],
   });
 
-  expect(dataStore.timeseries[0]).toEqual({
-    id: "1-TOT",
+  expect(store.timeseries[0]).toEqual({
+    id: "1-35",
     v: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2],
   });
 });
 
 it("rounds values to two decimals", () => {
-  addTimeseries(dataStore, {
-    region: buildRegion({ dataId: 1 }),
-    assessment: buildIndicator({ dataId: "TOT" }),
+  addTimeseries({
+    region: addMockRegion(),
+    assessment: addMockIndicator(),
     dataPoints: [{ year: 2004, value: 115.2365 }],
   });
 
-  expect(dataStore.timeseries[0]).toMatchObject({
+  expect(store.timeseries[0]).toMatchObject({
     v: [
       null,
       null,
@@ -80,9 +84,9 @@ it("rounds values to two decimals", () => {
 
 describe("when adding timeseries without data points", () => {
   it("does not add timeseries", () => {
-    addTimeseries(dataStore, {
-      region: buildRegion(),
-      assessment: buildIndicator(),
+    addTimeseries({
+      region: addMockRegion(),
+      assessment: addMockIndicator(),
       dataPoints: [
         {
           year: 2005,
@@ -91,6 +95,6 @@ describe("when adding timeseries without data points", () => {
       ],
     });
 
-    expect(dataStore).not.toHaveProperty("timeseries");
+    expect(store).not.toHaveProperty("timeseries");
   });
 });

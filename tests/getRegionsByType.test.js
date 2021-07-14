@@ -1,14 +1,17 @@
 import { getRegionsByType } from "@sdgindex/data";
-import { buildRegions } from "testHelpers/builders";
+import { addMockRegions } from "testHelpers/builders";
 
-const cities = buildRegions({ type: "city" });
-const countries = buildRegions({ type: "country" });
-const dataStore = { regions: [...cities, ...countries] };
+let cities, countries;
+
+beforeEach(() => {
+  cities = addMockRegions({ type: "city" });
+  countries = addMockRegions({ type: "country" });
+});
 
 it("returns cities", () => {
-  expect(getRegionsByType(dataStore, "city")).toEqual(cities);
+  expect(getRegionsByType("city")).toEqual(cities);
 });
 
 it("returns countries", () => {
-  expect(getRegionsByType(dataStore, "country")).toEqual(countries);
+  expect(getRegionsByType("country")).toEqual(countries);
 });

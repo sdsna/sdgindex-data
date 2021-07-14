@@ -1,10 +1,10 @@
 import { isOverallAssessment } from "@sdgindex/data/assessments";
-import { buildGoal, buildOverallAssessment } from "testHelpers/builders";
+import { addMockGoal, addMockOverallAssessment } from "testHelpers/builders";
 
 it("returns true if assessment is overall SDG assessment", () => {
-  expect(isOverallAssessment(buildOverallAssessment())).toBe(true);
+  expect(isOverallAssessment(addMockOverallAssessment())).toBe(true);
 });
 
 it("returns false if assessment is not overall SDG assessment", () => {
-  expect(isOverallAssessment(buildGoal())).toBe(false);
+  expect(isOverallAssessment(addMockGoal())).toBe(false);
 });

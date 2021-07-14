@@ -1,30 +1,32 @@
 import { omit } from "lodash";
 import { getRegionsWithTimeseries } from "@sdgindex/data";
 import {
-  buildIndicator,
-  buildIndicators,
-  buildTimeseries,
-  buildMultipleTimeseries,
-  buildRegions,
+  addMockIndicator,
+  addMockIndicators,
+  addMockTimeseries,
+  addMockMultipleTimeseries,
+  addMockRegions,
 } from "testHelpers/builders";
 
-const regions = buildRegions();
-const indicator = buildIndicator();
-const timeseries = regions.map((region) =>
-  buildTimeseries({ region, assessment: indicator })
-);
-const dataStore = {
-  assessments: [indicator, ...buildIndicators()],
-  regions,
-  timeseries: [...timeseries, ...buildMultipleTimeseries()],
-};
+let regions, indicator, timeseries;
+
+beforeEach(() => {
+  regions = addMockRegions();
+  indicator = addMockIndicator();
+  timeseries = regions.map((region) =>
+    addMockTimeseries({ region, assessment: indicator })
+  );
+
+  // Add timeseries for other indicators
+  regions.forEach((region) => addMockTimeseries({ region }));
+});
 
 it("returns all regions", () => {
-  expect(getRegionsWithTimeseries(dataStore, indicator)).toMatchObject(regions);
+  expect(getRegionsWithTimeseries(indicator)).toMatchObject(regions);
 });
 
 it("includes timeseries for each region", () => {
-  expect(getRegionsWithTimeseries(dataStore, indicator)).toMatchObject(
+  expect(getRegionsWithTimeseries(indicator)).toMatchObject(
     timeseries.map((series) => omit(series, "id"))
   );
 });

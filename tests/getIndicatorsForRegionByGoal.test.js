@@ -1,44 +1,45 @@
 import { omit } from "lodash";
 import { getIndicatorsForRegionByGoal } from "@sdgindex/data";
 import {
-  buildGoal,
-  buildGoals,
-  buildIndicator,
-  buildIndicators,
-  buildObservation,
-  buildObservations,
-  buildOverallAssessment,
-  buildRegion,
-  buildRegions,
+  addMockGoal,
+  addMockGoals,
+  addMockIndicator,
+  addMockIndicators,
+  addMockObservation,
+  addMockObservations,
+  addMockOverallAssessment,
+  addMockRegion,
+  addMockRegions,
 } from "testHelpers/builders";
 
-const goal = buildGoal();
-const indicators = buildIndicators({ goal });
-const region = buildRegion();
-const indicatorObservations = indicators.map((indicator) =>
-  buildObservation({ assessment: indicator, region })
-);
-const otherIndicators = buildIndicators();
-const dataStore = {
-  assessments: [
-    buildOverallAssessment(),
-    goal,
-    ...buildGoals(),
-    ...indicators,
-    ...otherIndicators,
-  ],
-  regions: [region, ...buildRegions()],
-  observations: [...indicatorObservations, buildObservations()],
-};
+let goal, indicators, region, indicatorObservations;
 
-it("returns all indicators for the given goal", () => {
-  expect(getIndicatorsForRegionByGoal(dataStore, region, goal)).toMatchObject(
-    indicators
+beforeEach(() => {
+  addMockOverallAssessment();
+  addMockRegions();
+
+  goal = addMockGoal();
+  region = addMockRegion();
+  indicators = addMockIndicators({ goal });
+
+  // Set up observations for region with goal
+  indicatorObservations = indicators.map((indicator) =>
+    addMockObservation({ assessment: indicator, region })
+  );
+
+  // Set up other observations for region but for another goal
+  const otherIndicators = addMockIndicators();
+  otherIndicators.forEach((indicator) =>
+    addMockObservation({ assessment: indicator, region })
   );
 });
 
+it("returns all indicators for the given goal", () => {
+  expect(getIndicatorsForRegionByGoal(region, goal)).toMatchObject(indicators);
+});
+
 it("returns observations for each indicator of the given goal", () => {
-  expect(getIndicatorsForRegionByGoal(dataStore, region, goal)).toMatchObject(
+  expect(getIndicatorsForRegionByGoal(region, goal)).toMatchObject(
     indicatorObservations.map((observation) => omit(observation, "id"))
   );
 });

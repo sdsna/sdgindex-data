@@ -1,129 +1,145 @@
 import faker from "faker";
 import { omit, random } from "lodash";
+import { store, getGoals } from "@sdgindex/data";
+import {
+  addIndicator,
+  addGoal,
+  addObservation,
+  addOverallAssessment,
+  addSpilloverAssessment,
+  addRegion,
+  addTimeseries,
+} from "@sdgindex/data/parse";
 import { START_YEAR, END_YEAR } from "../../src/timeseries/config";
 import renameKeys from "./renameKeys";
 
-// Ensures that all IDs, data IDs, and slugs are unique
+// Clear mock store before each test
+beforeEach(() => {
+  Object.keys(store).map((key) => delete store[key]);
+});
+
+// Ensures that all IDs are unique
 let __buildId = 0;
-const getBuildId = () => __buildId++;
+const getUniqueId = () => __buildId++;
 
-export const buildAssessment = (params = {}) => {
-  const dataId = params.dataId || getBuildId();
-
-  const assessment = {
-    dataId: dataId,
-    label: faker.company.catchPhrase(),
-    description: faker.lorem.paragraph(),
-    slug: `${faker.lorem.slug()}_${dataId}`,
-  };
-
-  return Object.assign(assessment, params);
-};
-
-export const buildIndicator = (params = {}) => {
-  const dataId = params.dataId || getBuildId();
-
+export const addMockIndicator = ({ goal, ...params } = {}) => {
   // Set up an associated goal
-  const goal = params.goal || buildGoal();
+  if (!goal) goal = getDefaultGoalForIndicators();
 
-  return buildAssessment({
-    dataId: dataId,
-    id: `SDG${random(1, 17)}_${faker.internet.userName()}_${dataId}`,
+  return addIndicator({
+    id: `SDG${random(1, 17)}_${faker.internet.userName()}_${getUniqueId()}`,
     goalNumber: goal.number,
-    type: "indicator",
-    ...omit(params, "goal"),
-  });
-};
-
-export const buildGoal = (params = {}) => {
-  const dataId = params.dataId || getBuildId();
-  return buildAssessment({
-    dataId,
-    id: `SDG${dataId}`,
-    number: dataId,
-    type: "goal",
+    labelWithUnit: `${faker.company.catchPhrase()}_${getUniqueId()}`,
     ...params,
   });
 };
 
-export const buildOverallAssessment = (params = {}) =>
-  buildAssessment({ id: "TOT", slug: "overall", type: "custom", ...params });
+// The default goal to use for setting up indicators
+let __defaultGoalForIndicators = null;
+const getDefaultGoalForIndicators = () => {
+  if (!__defaultGoalForIndicators) __defaultGoalForIndicators = addMockGoal();
 
-export const buildSpilloverAssessment = (params = {}) =>
-  buildAssessment({ id: "SPI", slug: "spillovers", type: "custom", ...params });
+  return __defaultGoalForIndicators;
+};
 
-export const buildRegion = (params = {}) => {
-  const dataId = getBuildId();
-  const name = params.name || `${faker.address.country()} - ${dataId}`;
+export const addMockGoal = ({ number, ...params } = {}) => {
+  // Identify a valid goal to add (number 1 - 17)
+  if (number == null) {
+    // Get the goal numbers that have already been added
+    const goalNumbers = getGoals().map((goal) => goal.number);
+    for (let i = 1; i <= 17; i++) {
+      if (!goalNumbers.includes(i)) {
+        number = i;
+        break;
+      }
+    }
+  }
 
-  const region = {
-    dataId: dataId,
-    id: `${faker.internet.userName()}_${dataId}`,
-    name: name,
-    slug: faker.helpers.slugify(name),
+  return addGoal({ number, ...params });
+};
+
+export const addMockOverallAssessment = (params = {}) =>
+  addOverallAssessment(params);
+
+export const addMockSpilloverAssessment = (params = {}) =>
+  addSpilloverAssessment(params);
+
+export const addMockRegion = ({ name, ...params } = {}) => {
+  if (!name) name = `${faker.address.country()} - ${getUniqueId()}`;
+
+  return addRegion({
+    id: `${faker.internet.userName()}_${getUniqueId()}`,
+    name,
     type: faker.random.arrayElement(["country", "state", "city"]),
-  };
-
-  return Object.assign(region, params);
-};
-
-export const buildObservation = ({ assessment, region, ...params } = {}) => {
-  assessment ||= buildIndicator();
-  region ||= buildRegion();
-
-  // Convert keys
-  renameKeys(params, {
-    value: "v",
-    score: "s",
-    rank: "r",
-    rating: "c",
-    trend: "a",
-    year: "y",
-    imputed: "i",
+    ...params,
   });
-
-  const observation = {
-    id: `${region.dataId}-${assessment.dataId}`,
-    v: random(0, 1000),
-    y: random(2000, 2021),
-    s: random(0, 100),
-    r: random(0, 100),
-    c: faker.random.arrayElement(["green", "yellow", "orange", "red", "gray"]),
-    a: faker.random.arrayElement(["↑", "➚", "→", "↓", "·"]),
-  };
-
-  return Object.assign(observation, params);
 };
 
-export const buildTimeseries = ({ assessment, region, ...params } = {}) => {
-  assessment ||= buildIndicator();
-  region ||= buildRegion();
+export const addMockObservation = ({
+  assessment,
+  region,
+  ...observation
+} = {}) => {
+  if (!assessment) assessment = addMockIndicator();
+  if (!region) region = addMockRegion();
 
-  const timeseries = {
-    id: `${region.dataId}-${assessment.dataId}`,
-    v: Array.from({ length: END_YEAR - START_YEAR + 1 }).map((_v, year) => {
-      // Return user-defined value, if set
-      if (Object.hasOwnProperty.call(params, START_YEAR + year))
-        return params[START_YEAR + year];
+  // Apply default values to observation
+  observation = Object.assign(
+    {
+      value: random(0, 1000),
+      year: random(2000, 2021),
+      score: random(0, 100),
+      rank: random(0, 100),
+      rating: faker.random.arrayElement([
+        "green",
+        "yellow",
+        "orange",
+        "red",
+        "gray",
+      ]),
+      trend: faker.random.arrayElement(["↑", "➚", "→", "↓", "·"]),
+    },
+    observation
+  );
 
-      return random(0, 1000);
-    }),
-  };
-
-  return timeseries;
+  return addObservation({ assessment, region, ...observation });
 };
 
-export const buildIndicators = ({ count = 5, ...params } = {}) =>
-  Array.from({ length: count }).map(() => buildIndicator(params));
+export const addMockTimeseries = ({
+  assessment,
+  region,
+  ...timeseries
+} = {}) => {
+  if (!assessment) assessment = addMockIndicator();
+  if (!region) region = addMockRegion();
 
-export const buildGoals = ({ count = 5, ...params } = {}) =>
-  Array.from({ length: count }).map(() => buildGoal(params));
+  // Apply default values to timeseries
+  timeseries = Object.assign(
+    {
+      dataPoints: Array.from({ length: END_YEAR - START_YEAR + 1 }).map(
+        (_v, year) => ({
+          year: year + START_YEAR,
+          value: random(0, 1000),
+        })
+      ),
+    },
+    timeseries
+  );
 
-export const buildRegions = ({ count = 5, ...params } = {}) =>
-  Array.from({ length: count }).map(() => buildRegion(params));
+  return addTimeseries({ assessment, region, ...timeseries });
+};
 
-export const buildObservations = ({ count = 5, ...params } = {}) =>
-  Array.from({ length: count }).map(() => buildObservation(params));
+export const addMockIndicators = ({ count = 5, ...params } = {}) =>
+  Array.from({ length: count }).map(() => addMockIndicator(params));
 
-export const buildMultipleTimeseries = ({ count = 5, ...params } = {}) =>
-  Array.from({ length: count }).map(() => buildTimeseries(params));
+export const addMockGoals = ({ count = 5, ...params } = {}) =>
+  Array.from({ length: count }).map(() => addMockGoal(params));
+
+export const addMockRegions = ({ count = 5, ...params } = {}) =>
+  Array.from({ length: count }).map(() => addMockRegion(params));
+
+export const addMockObservations = ({ count = 5, ...params } = {}) =>
+  Array.from({ length: count }).map(() => addMockObservation(params));
+
+export const addMockMultipleTimeseries = ({ count = 5, ...params } = {}) =>
+  Array.from({ length: count }).map(() => addMockTimeseries(params));

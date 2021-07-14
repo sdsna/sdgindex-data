@@ -1,31 +1,31 @@
 import { omit } from "lodash";
 import { findAssessmentForRegionById } from "@sdgindex/data";
 import {
-  buildGoal,
-  buildIndicators,
-  buildRegion,
-  buildRegions,
-  buildObservation,
-  buildObservations,
+  addMockGoal,
+  addMockIndicators,
+  addMockRegion,
+  addMockRegions,
+  addMockObservation,
+  addMockObservations,
 } from "testHelpers/builders";
 
-const goal = buildGoal({ id: "SDG1" });
-const region = buildRegion();
-const observation = buildObservation({ assessment: goal, region });
-const dataStore = {
-  regions: [region, ...buildRegions()],
-  assessments: [goal, ...buildIndicators()],
-  observations: [observation, ...buildObservations()],
-};
+let goal, region, observation;
+
+beforeEach(() => {
+  goal = addMockGoal({ id: "SDG1" });
+  region = addMockRegion();
+  observation = addMockObservation({ assessment: goal, region });
+  addMockRegions();
+  addMockIndicators();
+  addMockObservations();
+});
 
 it("finds goal by ID", () => {
-  expect(findAssessmentForRegionById(dataStore, region, "SDG1")).toMatchObject(
-    goal
-  );
+  expect(findAssessmentForRegionById(region, "SDG1")).toMatchObject(goal);
 });
 
 it("includes observation for region", () => {
-  expect(findAssessmentForRegionById(dataStore, region, "SDG1")).toMatchObject(
+  expect(findAssessmentForRegionById(region, "SDG1")).toMatchObject(
     omit(observation, "id")
   );
 });

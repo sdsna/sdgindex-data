@@ -1,11 +1,9 @@
 import { findRegionById } from "@sdgindex/data";
-import { buildRegion, buildRegions } from "testHelpers/builders";
+import { addMockRegion, addMockRegions } from "testHelpers/builders";
 
 it("finds region with ID 'REGION_1'", () => {
-  const region = buildRegion({ id: "REGION_1" });
-  const dataStore = {
-    regions: [region, ...buildRegions()],
-  };
+  const region = addMockRegion({ id: "REGION_1" });
+  addMockRegions();
 
-  expect(findRegionById(dataStore, "REGION_1")).toEqual(region);
+  expect(findRegionById("REGION_1")).toEqual(region);
 });

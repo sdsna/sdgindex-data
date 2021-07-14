@@ -1,20 +1,18 @@
 import { findTimeseriesByRegionAndAssessment } from "@sdgindex/data";
 import {
-  buildOverallAssessment,
-  buildRegion,
-  buildTimeseries,
-  buildMultipleTimeseries,
+  addMockOverallAssessment,
+  addMockRegion,
+  addMockTimeseries,
+  addMockMultipleTimeseries,
 } from "testHelpers/builders";
 
-const assessment = buildOverallAssessment();
-const region = buildRegion();
-const timeseries = buildTimeseries({ assessment, region });
-const dataStore = {
-  timeseries: [timeseries, ...buildMultipleTimeseries()],
-};
-
 it("returns the relevant timeseries", () => {
-  expect(
-    findTimeseriesByRegionAndAssessment(dataStore, region, assessment)
-  ).toEqual(timeseries);
+  const assessment = addMockOverallAssessment();
+  const region = addMockRegion();
+  const timeseries = addMockTimeseries({ assessment, region });
+  addMockMultipleTimeseries();
+
+  expect(findTimeseriesByRegionAndAssessment(region, assessment)).toEqual(
+    timeseries
+  );
 });

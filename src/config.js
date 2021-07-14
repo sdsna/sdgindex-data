@@ -1,6 +1,11 @@
 import path from "path";
 
-export const DATA_DIR =
-  typeof window === "undefined" && path.join("./", "public", "data");
+/**
+ * @ignore
+ */
+export const DATA_DIR = path !== false && path.join("./", "public", "data");
 
+/**
+ * @ignore
+ */
 export const DATA_PATH = "/data/";

@@ -1,15 +1,15 @@
+import { addAssessment } from "./addAssessment";
 import { OVERALL_ASSESSMENT_ID } from "../assessments/config";
 
 /**
- * Add the overall assessment to the dataStore
- * @param {Object} dataStore - The store where the data are saved
+ * Add the overall assessment to the store
  * @param {Object} [params] -
  * any custom parameters to add to the assessment or default properties to
  * overwrite
+ * @return {Object} the overall assessment that was added to the store
  */
-export const addOverallAssessment = (dataStore, params = {}) => {
-  if (!dataStore.assessments) dataStore.assessments = [];
-  dataStore.assessments.push({
+export const addOverallAssessment = (params = {}) =>
+  addAssessment({
     id: OVERALL_ASSESSMENT_ID,
     dataId: OVERALL_ASSESSMENT_ID,
     slug: "overall",
@@ -19,4 +19,3 @@ export const addOverallAssessment = (dataStore, params = {}) => {
     type: "custom",
     ...params,
   });
-};

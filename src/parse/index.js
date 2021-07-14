@@ -1,3 +1,4 @@
+export * from "./addGoal";
 export * from "./addGoals";
 export * from "./addIndicator";
 export * from "./addObservation";
@@ -10,5 +11,4 @@ export * from "./excelToJson";
 export * from "./getIndicatorUnit";
 export * from "./getLabelWithoutUnit";
 export * from "./roundNumber";
-export * from "./writeData";
 export * from "./writeStoreToJson";

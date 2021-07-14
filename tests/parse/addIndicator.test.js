@@ -1,20 +1,20 @@
 import { addIndicator } from "@sdgindex/data/parse";
+import { store } from "@sdgindex/data";
 
-let dataStore = {};
+// Clear store before each test
 beforeEach(() => {
-  // Clear dataStore
-  dataStore = {};
+  Object.keys(store).map((key) => delete store[key]);
 });
 
-it("adds the indicator to the dataStore", () => {
-  addIndicator(dataStore, {
+it("adds the indicator to the store", () => {
+  addIndicator({
     id: "sdg1_wpc",
     goalNumber: 1,
     labelWithUnit: "Poverty headcount ratio at $1.90/day (%)",
   });
 
-  expect(dataStore.assessments).toHaveLength(1);
-  expect(dataStore.assessments[0]).toMatchObject({
+  expect(store.assessments).toHaveLength(1);
+  expect(store.assessments[0]).toMatchObject({
     id: "sdg1_wpc",
     dataId: 1,
     goalNumber: 1,
@@ -27,28 +27,28 @@ it("adds the indicator to the dataStore", () => {
 
 describe("when manually providing the slug", () => {
   it("it uses the user-provided slug", () => {
-    addIndicator(dataStore, {
+    addIndicator({
       id: "sdg1_wpc",
       goalNumber: 1,
       labelWithUnit: "Poverty headcount ratio at $1.90/day (%)",
       slug: "my-custom-slug",
     });
 
-    expect(dataStore.assessments[0]).toHaveProperty("slug", "my-custom-slug");
+    expect(store.assessments[0]).toHaveProperty("slug", "my-custom-slug");
   });
 });
 
 describe("when adding 10 indicators", () => {
   it("it sets a unique dataId for each one", () => {
     for (let i = 0; i < 10; i++) {
-      addIndicator(dataStore, {
+      addIndicator({
         id: "sdg1_wpc",
         goalNumber: 1,
         labelWithUnit: "Poverty headcount ratio at $1.90/day (%)",
       });
     }
 
-    const dataIds = dataStore.assessments.map((indicator) => indicator.dataId);
+    const dataIds = store.assessments.map((indicator) => indicator.dataId);
     expect(Array.from(new Set(dataIds))).toHaveLength(10);
   });
 });

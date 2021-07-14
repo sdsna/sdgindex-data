@@ -1,10 +1,10 @@
 import { hasTimeseries } from "@sdgindex/data/timeseries";
-import { buildObservation, buildTimeseries } from "testHelpers/builders";
+import { addMockObservation, addMockTimeseries } from "testHelpers/builders";
 
 it("returns true if the object has timeseries", () => {
-  expect(hasTimeseries(buildTimeseries())).toBe(true);
+  expect(hasTimeseries(addMockTimeseries())).toBe(true);
 });
 
 it("returns false if the object does not have timeseries", () => {
-  expect(hasTimeseries(buildObservation())).toBe(false);
+  expect(hasTimeseries(addMockObservation())).toBe(false);
 });

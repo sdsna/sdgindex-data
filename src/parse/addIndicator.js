@@ -1,11 +1,11 @@
 import urlSlug from "url-slug";
+import { addAssessment } from "./addAssessment";
 import { getLabelWithoutUnit } from "./getLabelWithoutUnit";
 import { getIndicatorUnit } from "./getIndicatorUnit";
 import { getIndicators } from "../getIndicators";
 
 /**
- * Add indicator to the dataStore
- * @param {Object} dataStore - The store where the data are saved
+ * Add an indicator to the store
  * @param {Object} indicator
  * @param {string} indicator.id - The unique ID for the indicator
  * @param {number} indicator.goalNumber -
@@ -25,19 +25,24 @@ import { getIndicators } from "../getIndicators";
  * labelWithUnit.
  * @param {...Object} [indicator.params] -
  * any other params to add to the indicator, such as description or source
+ * @return {Object} the indicator that was added to the store
  */
-export const addIndicator = (
-  dataStore,
-  { id, goalNumber, labelWithUnit, slug, label, unit, ...params }
-) => {
+export const addIndicator = ({
+  id,
+  goalNumber,
+  labelWithUnit,
+  slug,
+  label,
+  unit,
+  ...params
+}) => {
   if (!label) label = getLabelWithoutUnit(labelWithUnit);
   if (!unit) unit = getIndicatorUnit(labelWithUnit);
   if (!slug) slug = urlSlug(label);
 
-  if (!dataStore.assessments) dataStore.assessments = [];
-  dataStore.assessments.push({
+  return addAssessment({
     id,
-    dataId: getIndicators(dataStore).length + 1,
+    dataId: getIndicators().length + 1,
     goalNumber,
     slug,
     label,

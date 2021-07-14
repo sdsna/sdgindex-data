@@ -2,7 +2,8 @@ import { loadDataset } from "./loadDataset";
 
 /**
  * Loads data (assessments, regions, observations, ...) into store.
- * @param {Object} [param.timeseries=false] - whether to load timeseries data
+ * @param {Object} [options]
+ * @param {boolean} [options.timeseries=false] - whether to load timeseries data
  * @return {Promise} a promise that resolves when the datasets have been loaded
  */
 export const loadData = ({ timeseries = false } = {}) => {

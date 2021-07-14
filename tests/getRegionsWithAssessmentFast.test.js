@@ -1,32 +1,32 @@
 import { omit } from "lodash";
 import { getRegionsWithAssessmentFast } from "@sdgindex/data";
 import {
-  buildIndicator,
-  buildIndicators,
-  buildObservation,
-  buildObservations,
-  buildRegions,
+  addMockIndicator,
+  addMockIndicators,
+  addMockObservation,
+  addMockObservations,
+  addMockRegions,
 } from "testHelpers/builders";
 
-const regions = buildRegions();
-const indicator = buildIndicator();
-const indicatorObservations = regions.map((region) =>
-  buildObservation({ region, assessment: indicator })
-);
-const dataStore = {
-  assessments: [indicator, ...buildIndicators()],
-  regions,
-  observations: [...indicatorObservations, ...buildObservations()],
-};
+let regions, indicator, indicatorObservations;
+
+beforeEach(() => {
+  regions = addMockRegions();
+  indicator = addMockIndicator();
+  indicatorObservations = regions.map((region) =>
+    addMockObservation({ region, assessment: indicator })
+  );
+
+  // Add observations with other indicators
+  regions.forEach((region) => addMockObservations({ region }));
+});
 
 test("Return an array of regions, each including the observation for the given assessment", () => {
-  expect(getRegionsWithAssessmentFast(dataStore, indicator)).toMatchObject(
-    regions
-  );
+  expect(getRegionsWithAssessmentFast(indicator)).toMatchObject(regions);
 });
 
 test("includes observation for each region", () => {
-  expect(getRegionsWithAssessmentFast(dataStore, indicator)).toMatchObject(
+  expect(getRegionsWithAssessmentFast(indicator)).toMatchObject(
     indicatorObservations.map((observation) => omit(observation, "id"))
   );
 });

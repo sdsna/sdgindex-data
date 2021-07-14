@@ -1,13 +1,9 @@
 import { findAssessmentBySlug } from "@sdgindex/data";
-import { buildIndicator, buildIndicators } from "testHelpers/builders";
+import { addMockIndicator, addMockIndicators } from "testHelpers/builders";
 
 it("finds indicator by slug SDG1_my_indicator", () => {
-  const indicator = buildIndicator({ slug: "SDG1_my_indicator" });
-  const dataStore = {
-    assessments: [indicator, ...buildIndicators()],
-  };
+  const indicator = addMockIndicator({ slug: "SDG1_my_indicator" });
+  addMockIndicators();
 
-  expect(findAssessmentBySlug(dataStore, "SDG1_my_indicator")).toEqual(
-    indicator
-  );
+  expect(findAssessmentBySlug("SDG1_my_indicator")).toEqual(indicator);
 });

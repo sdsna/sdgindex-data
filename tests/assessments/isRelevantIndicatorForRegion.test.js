@@ -1,12 +1,12 @@
 import { isRelevantIndicatorForRegion } from "@sdgindex/data/assessments";
-import { buildIndicator, buildRegion } from "testHelpers/builders";
+import { addMockIndicator, addMockRegion } from "testHelpers/builders";
 
 describe("when region is an OECD country", () => {
   it("returns true if the indicator is an OECD-only indicator", () => {
     expect(
       isRelevantIndicatorForRegion(
-        buildIndicator({ isOECD: true, isGlobal: false }),
-        buildRegion({ region: "OECD members" })
+        addMockIndicator({ isOECD: true, isGlobal: false }),
+        addMockRegion({ region: "OECD members" })
       )
     ).toBe(true);
   });
@@ -14,8 +14,8 @@ describe("when region is an OECD country", () => {
   it("returns false if the indicator is a global-only indicator", () => {
     expect(
       isRelevantIndicatorForRegion(
-        buildIndicator({ isOECD: false, isGlobal: true }),
-        buildRegion({ region: "OECD members" })
+        addMockIndicator({ isOECD: false, isGlobal: true }),
+        addMockRegion({ region: "OECD members" })
       )
     ).toBe(false);
   });
@@ -23,8 +23,8 @@ describe("when region is an OECD country", () => {
   it("returns true if the indicator is global and OECD indicator", () => {
     expect(
       isRelevantIndicatorForRegion(
-        buildIndicator({ isOECD: true, isGlobal: true }),
-        buildRegion({ region: "OECD members" })
+        addMockIndicator({ isOECD: true, isGlobal: true }),
+        addMockRegion({ region: "OECD members" })
       )
     ).toBe(true);
   });
@@ -34,8 +34,8 @@ describe("when region is not an OECD country", () => {
   it("returns false if the indicator is an OECD-only indicator", () => {
     expect(
       isRelevantIndicatorForRegion(
-        buildIndicator({ isOECD: true, isGlobal: false }),
-        buildRegion({ region: "MENA" })
+        addMockIndicator({ isOECD: true, isGlobal: false }),
+        addMockRegion({ region: "MENA" })
       )
     ).toBe(false);
   });
@@ -43,8 +43,8 @@ describe("when region is not an OECD country", () => {
   it("returns true if the indicator is a global-only indicator", () => {
     expect(
       isRelevantIndicatorForRegion(
-        buildIndicator({ isOECD: false, isGlobal: true }),
-        buildRegion({ region: "LAC" })
+        addMockIndicator({ isOECD: false, isGlobal: true }),
+        addMockRegion({ region: "LAC" })
       )
     ).toBe(true);
   });
@@ -52,8 +52,8 @@ describe("when region is not an OECD country", () => {
   it("returns true if the indicator is global and OECD indicator", () => {
     expect(
       isRelevantIndicatorForRegion(
-        buildIndicator({ isOECD: true, isGlobal: true }),
-        buildRegion({ region: "Asia" })
+        addMockIndicator({ isOECD: true, isGlobal: true }),
+        addMockRegion({ region: "Asia" })
       )
     ).toBe(true);
   });

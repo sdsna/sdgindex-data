@@ -1,9 +1,8 @@
+import { getAssessments } from "./getAssessments";
 import { isGoal } from "./assessments/isGoal";
 
 /**
- * Get all goal assessments from the dataStore.
- * @param {Object} dataStore - The store where the data are loaded
+ * Get all goal assessments from the store.
  * @return {Array} return an array of goals
  */
-export const getGoals = (dataStore) =>
-  dataStore.assessments.filter((assessment) => isGoal(assessment));
+export const getGoals = () => getAssessments().filter(isGoal);

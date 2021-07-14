@@ -1,10 +1,10 @@
 import { END_YEAR, START_YEAR } from "../timeseries/config";
 import { roundNumber } from "./roundNumber";
+import { store } from "../store";
 
 /**
- * Add timeseries to the dataStore. If the values of all data points are null,
+ * Add timeseries to the store. If the values of all data points are null,
  * the series is not added.
- * @param {Object} dataStore - The store where the data are saved
  * @param {Object} timeseries
  * @param {Object} timeseries.region -
  * the region to which the timeseries belongs
@@ -13,11 +13,9 @@ import { roundNumber } from "./roundNumber";
  * @param {Object[]} timeseries.dataPoints - an array of data points
  * @param {number} timeseries.dataPoints[].year - the year of the data point
  * @param {number} timeseries.dataPoints[].value - the value of the data point
+ * @return {Object} the timeseries object that was added to the store
  */
-export const addTimeseries = (
-  dataStore,
-  { region, assessment, dataPoints }
-) => {
+export const addTimeseries = ({ region, assessment, dataPoints }) => {
   // Convert dataPoints into a values array
   const values = [];
   for (let year = START_YEAR; year <= END_YEAR; year++) {
@@ -30,9 +28,14 @@ export const addTimeseries = (
   // store.
   if (values.every((value) => value == null)) return;
 
-  if (!dataStore.timeseries) dataStore.timeseries = [];
-  dataStore.timeseries.push({
+  const timeseries = {
     id: `${region.dataId}-${assessment.dataId}`,
     v: values,
-  });
+  };
+
+  // Push timeseries into store
+  if (!store.timeseries) store.timeseries = [];
+  store.timeseries.push(timeseries);
+
+  return timeseries;
 };

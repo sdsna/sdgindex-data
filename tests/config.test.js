@@ -1,13 +1,6 @@
-const { window } = global;
-
-beforeAll(() => {
-  // Simulate Node.js environment
-  delete global.window;
-});
-
-afterAll(() => {
-  global.window = window;
-});
+/**
+ * @jest-environment node
+ */
 
 it("defines DATA_DIR and DATA_PATH", () => {
   const { config } = require("@sdgindex/data");

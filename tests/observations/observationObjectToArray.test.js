@@ -1,10 +1,10 @@
 import { observationObjectToArray } from "@sdgindex/data/observations";
-import { buildObservation } from "testHelpers/builders";
+import { addMockObservation } from "testHelpers/builders";
 
 it("converts observation to array", () => {
   expect(
     observationObjectToArray(
-      buildObservation({
+      addMockObservation({
         value: 238,
         year: 2019,
         rating: "red",
@@ -19,7 +19,7 @@ describe("when score and rank are undefined", () => {
   it("does not add trailing null values", () => {
     expect(
       observationObjectToArray(
-        buildObservation({
+        addMockObservation({
           value: 238,
           year: 2019,
           rating: "red",
@@ -35,7 +35,7 @@ describe("when year is undefined", () => {
   it("adds intermediate null value", () => {
     expect(
       observationObjectToArray(
-        buildObservation({
+        addMockObservation({
           value: 238,
           year: null,
           rating: "red",
