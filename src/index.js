@@ -31,6 +31,8 @@ export * from "./getRegionsWithTimeseries";
 export * from "./getSpilloverAssessment";
 export * from "./getSpilloverAssessmentForRegion";
 export * from "./getTrendIndicators";
+export * from "./isDataLoaded";
 export * from "./loadData";
 export * from "./loadDataset";
 export * from "./store";
+export * from "./useDataStore";

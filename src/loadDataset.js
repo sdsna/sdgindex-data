@@ -12,7 +12,7 @@ export const loadDataset = (dataset) => {
   if (store[dataset] !== undefined) return Promise.resolve(store[dataset]);
 
   // Load data via readJson (server) or fetch (browser), depending on environment
-  if (typeof window === "undefined") {
+  if (typeof window === "undefined" || typeof fetch === "undefined") {
     // Server
     const path = require("path");
     const fse = require("fs-extra");
