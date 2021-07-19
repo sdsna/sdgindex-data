@@ -3,7 +3,7 @@
  */
 
 import path from "path";
-import { writeJsonSync } from "fs-extra";
+import { writeJsonSync, ensureDirSync } from "fs-extra";
 import { writeStoreToJson } from "@sdgindex/data/parse";
 import { config } from "@sdgindex/data";
 import {
@@ -16,6 +16,11 @@ import {
 
 jest.mock("fs-extra");
 const { DATA_DIR } = config;
+
+it("ensures the DATA_DIR exists", () => {
+  writeStoreToJson();
+  expect(ensureDirSync).toHaveBeenCalledWith(DATA_DIR);
+});
 
 it("calls writeData for assessments, regions, obs, and timeseries", () => {
   const goal = addMockGoal();

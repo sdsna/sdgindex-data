@@ -1,5 +1,5 @@
 import path from "path";
-import { writeJsonSync } from "fs-extra";
+import { ensureDirSync, writeJsonSync } from "fs-extra";
 import { store } from "../store";
 import { DATA_DIR } from "../config";
 
@@ -10,6 +10,9 @@ import { DATA_DIR } from "../config";
  * observations, and timeseries).
  */
 export const writeStoreToJson = () => {
+  // Ensure directory exists
+  ensureDirSync(DATA_DIR);
+
   ["assessments", "regions", "observations", "timeseries"].forEach((type) => {
     const data = { [type]: store[type] || [] };
 
