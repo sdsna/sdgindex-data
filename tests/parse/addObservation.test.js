@@ -1,5 +1,5 @@
 import { addObservation } from "@sdgindex/data/parse";
-import { addMockIndicator, addMockRegion } from "testHelpers/builders";
+import { addMockIndicator, addMockRegion } from "testHelpers/storeMocks";
 import { store } from "@sdgindex/data";
 
 // Clear store before each test

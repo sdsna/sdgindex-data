@@ -1,6 +1,6 @@
 import faker from "faker";
 import { omit, random } from "lodash";
-import { store, getGoals } from "@sdgindex/data";
+import { getGoals } from "@sdgindex/data";
 import {
   addIndicator,
   addGoal,
@@ -11,12 +11,11 @@ import {
   addTimeseries,
 } from "@sdgindex/data/parse";
 import { START_YEAR, END_YEAR } from "../../src/timeseries/config";
+import resetStore from "./resetStore";
 import renameKeys from "./renameKeys";
 
 // Clear mock store before each test
-beforeEach(() => {
-  Object.keys(store).map((key) => delete store[key]);
-});
+beforeEach(resetStore);
 
 // Ensures that all IDs are unique
 let __buildId = 0;

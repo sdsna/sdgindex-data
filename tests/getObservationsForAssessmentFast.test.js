@@ -3,7 +3,7 @@ import {
   addMockIndicator,
   addMockIndicators,
   addMockObservations,
-} from "testHelpers/builders";
+} from "testHelpers/storeMocks";
 
 it("returns an array of observations", () => {
   const indicator = addMockIndicator();

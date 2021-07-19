@@ -1,5 +1,5 @@
 import { observationObjectToArray } from "@sdgindex/data/observations";
-import { addMockObservation } from "testHelpers/builders";
+import { addMockObservation } from "testHelpers/storeMocks";
 
 it("converts observation to array", () => {
   expect(

@@ -1,8 +1,10 @@
 import { loadData, loadDataset, store } from "@sdgindex/data";
-import mockStore from "testHelpers/mockStore";
+import resetStore from "testHelpers/resetStore";
 jest.mock("mock:@sdgindex/data/loadDataset");
 
 beforeEach(() => {
+  resetStore();
+
   loadDataset.mockImplementation((dataset) => {
     store[dataset] = { test: true };
     return Promise.resolve(store[dataset]);

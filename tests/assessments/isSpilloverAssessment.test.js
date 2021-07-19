@@ -2,7 +2,7 @@ import { isSpilloverAssessment } from "@sdgindex/data/assessments";
 import {
   addMockOverallAssessment,
   addMockSpilloverAssessment,
-} from "testHelpers/builders";
+} from "testHelpers/storeMocks";
 
 it("returns true if assessment is overall spillover index assessment", () => {
   expect(isSpilloverAssessment(addMockSpilloverAssessment())).toBe(true);

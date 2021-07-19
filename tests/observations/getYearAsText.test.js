@@ -1,5 +1,5 @@
 import { getYearAsText } from "@sdgindex/data/observations";
-import { addMockObservation } from "testHelpers/builders";
+import { addMockObservation } from "testHelpers/storeMocks";
 
 it("returns the year as string", () => {
   expect(getYearAsText(addMockObservation({ year: 2015 }))).toEqual("2015");

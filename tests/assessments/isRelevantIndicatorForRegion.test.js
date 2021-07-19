@@ -1,5 +1,5 @@
 import { isRelevantIndicatorForRegion } from "@sdgindex/data/assessments";
-import { addMockIndicator, addMockRegion } from "testHelpers/builders";
+import { addMockIndicator, addMockRegion } from "testHelpers/storeMocks";
 
 describe("when region is an OECD country", () => {
   it("returns true if the indicator is an OECD-only indicator", () => {

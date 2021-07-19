@@ -4,7 +4,7 @@ import {
   addMockIndicators,
   addMockGoals,
   addMockOverallAssessment,
-} from "testHelpers/builders";
+} from "testHelpers/storeMocks";
 
 it("returns all trend indicators", () => {
   const trendIndicators = addMockIndicators({ hasTrend: true });

@@ -1,5 +1,5 @@
 import { getLastYear } from "@sdgindex/data/timeseries";
-import { addMockTimeseries } from "testHelpers/builders";
+import { addMockTimeseries } from "testHelpers/storeMocks";
 
 it("returns last year with non-null value", () => {
   expect(

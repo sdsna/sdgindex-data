@@ -6,7 +6,7 @@ import {
   addMockTimeseries,
   addMockMultipleTimeseries,
   addMockRegions,
-} from "testHelpers/builders";
+} from "testHelpers/storeMocks";
 
 let regions, indicator, timeseries;
 

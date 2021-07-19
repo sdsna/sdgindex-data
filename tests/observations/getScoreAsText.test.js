@@ -1,5 +1,5 @@
 import { getScoreAsText } from "@sdgindex/data/observations";
-import { addMockObservation } from "testHelpers/builders";
+import { addMockObservation } from "testHelpers/storeMocks";
 
 it("returns the score as string with two decimals", () => {
   expect(getScoreAsText(addMockObservation({ score: 55 }))).toEqual("55.00");

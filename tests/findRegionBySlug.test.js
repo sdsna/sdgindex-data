@@ -1,5 +1,5 @@
 import { findRegionBySlug, store } from "@sdgindex/data";
-import { addMockRegion, addMockRegions } from "testHelpers/builders";
+import { addMockRegion, addMockRegions } from "testHelpers/storeMocks";
 
 it("finds region with slug 'my-region'", () => {
   const region = addMockRegion({ slug: "my-region" });

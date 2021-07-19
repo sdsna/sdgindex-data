@@ -1,5 +1,5 @@
 import { isOecdOnly } from "@sdgindex/data/assessments";
-import { addMockIndicator } from "testHelpers/builders";
+import { addMockIndicator } from "testHelpers/storeMocks";
 
 it("returns true if the indicator is OECD only", () => {
   expect(isOecdOnly(addMockIndicator({ isOECD: true, isGlobal: false }))).toBe(

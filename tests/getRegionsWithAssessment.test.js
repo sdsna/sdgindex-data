@@ -6,7 +6,7 @@ import {
   addMockObservation,
   addMockObservations,
   addMockRegions,
-} from "testHelpers/builders";
+} from "testHelpers/storeMocks";
 
 let regions, indicator, indicatorObservations;
 

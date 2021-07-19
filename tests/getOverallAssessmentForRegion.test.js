@@ -8,7 +8,7 @@ import {
   addMockOverallAssessment,
   addMockRegion,
   addMockRegions,
-} from "testHelpers/builders";
+} from "testHelpers/storeMocks";
 
 let overallAssessment, region, observation;
 

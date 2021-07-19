@@ -1,5 +1,5 @@
 import { isTrendIndicator } from "@sdgindex/data/assessments";
-import { addMockIndicator } from "testHelpers/builders";
+import { addMockIndicator } from "testHelpers/storeMocks";
 
 it("returns true if the indicator is a trend indicator", () => {
   expect(isTrendIndicator(addMockIndicator({ hasTrend: true }))).toBe(true);

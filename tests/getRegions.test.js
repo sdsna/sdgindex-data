@@ -1,5 +1,5 @@
 import { getRegions } from "@sdgindex/data";
-import { addMockRegions } from "testHelpers/builders";
+import { addMockRegions } from "testHelpers/storeMocks";
 
 it("returns all regions", () => {
   const regions = addMockRegions();

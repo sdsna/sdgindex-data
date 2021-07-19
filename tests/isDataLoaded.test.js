@@ -1,5 +1,7 @@
 import { isDataLoaded, store } from "@sdgindex/data";
-import mockStore from "testHelpers/mockStore";
+import resetStore from "testHelpers/resetStore";
+
+beforeEach(resetStore);
 
 it("returns false by default", () => {
   expect(isDataLoaded()).toBe(false);

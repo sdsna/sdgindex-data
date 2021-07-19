@@ -1,5 +1,5 @@
 import { getRankAsText } from "@sdgindex/data/observations";
-import { addMockObservation } from "testHelpers/builders";
+import { addMockObservation } from "testHelpers/storeMocks";
 
 it("returns the rank as string", () => {
   expect(getRankAsText(addMockObservation({ rank: 10 }))).toEqual("10");

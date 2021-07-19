@@ -1,5 +1,5 @@
 import { isImputed } from "@sdgindex/data/observations";
-import { addMockObservation } from "testHelpers/builders";
+import { addMockObservation } from "testHelpers/storeMocks";
 
 it("returns true if imputed", () => {
   expect(isImputed(addMockObservation({ isImputed: true }))).toEqual(true);

@@ -1,5 +1,5 @@
 import { findIndicatorById } from "@sdgindex/data";
-import { addMockIndicator, addMockIndicators } from "testHelpers/builders";
+import { addMockIndicator, addMockIndicators } from "testHelpers/storeMocks";
 
 it("finds indicator by id for SDG14_physics", () => {
   const indicator = addMockIndicator({ id: "SDG14_physics" });

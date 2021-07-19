@@ -1,5 +1,5 @@
 import { isGlobalOnly } from "@sdgindex/data/assessments";
-import { addMockIndicator } from "testHelpers/builders";
+import { addMockIndicator } from "testHelpers/storeMocks";
 
 it("returns true if the indicator is global only", () => {
   expect(

@@ -1,5 +1,5 @@
 import { getTimeseriesValue } from "@sdgindex/data/timeseries";
-import { addMockTimeseries } from "testHelpers/builders";
+import { addMockTimeseries } from "testHelpers/storeMocks";
 
 let timeseries;
 

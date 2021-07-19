@@ -9,7 +9,7 @@ import {
   addMockSpilloverAssessment,
   addMockRegion,
   addMockRegions,
-} from "testHelpers/builders";
+} from "testHelpers/storeMocks";
 
 let spilloverAssessment, region, observation;
 

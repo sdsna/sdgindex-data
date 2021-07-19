@@ -1,5 +1,5 @@
 import { getRegionsByType } from "@sdgindex/data";
-import { addMockRegions } from "testHelpers/builders";
+import { addMockRegions } from "testHelpers/storeMocks";
 
 let cities, countries;
 

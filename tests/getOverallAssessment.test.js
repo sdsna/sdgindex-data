@@ -3,7 +3,7 @@ import {
   addMockIndicators,
   addMockGoals,
   addMockOverallAssessment,
-} from "testHelpers/builders";
+} from "testHelpers/storeMocks";
 
 it("returns the overall assessment", () => {
   const overallAssessment = addMockOverallAssessment();

@@ -1,5 +1,5 @@
 import { findAssessmentById } from "@sdgindex/data";
-import { addMockIndicator, addMockIndicators } from "testHelpers/builders";
+import { addMockIndicator, addMockIndicators } from "testHelpers/storeMocks";
 
 it("finds assessment with ID indicator1", () => {
   const indicator = addMockIndicator({ id: "indicator1" });

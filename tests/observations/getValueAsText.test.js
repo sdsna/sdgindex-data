@@ -1,5 +1,5 @@
 import { getValueAsText } from "@sdgindex/data/observations";
-import { addMockObservation } from "testHelpers/builders";
+import { addMockObservation } from "testHelpers/storeMocks";
 
 it("returns the value as string with two decimals", () => {
   expect(getValueAsText(addMockObservation({ value: 272.183 }))).toEqual(

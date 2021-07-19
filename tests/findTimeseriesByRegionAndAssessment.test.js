@@ -4,7 +4,7 @@ import {
   addMockRegion,
   addMockTimeseries,
   addMockMultipleTimeseries,
-} from "testHelpers/builders";
+} from "testHelpers/storeMocks";
 
 it("returns the relevant timeseries", () => {
   const assessment = addMockOverallAssessment();

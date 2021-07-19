@@ -12,7 +12,7 @@ import {
   addMockRegions,
   addMockObservation,
   addMockTimeseries,
-} from "testHelpers/builders";
+} from "testHelpers/storeMocks";
 
 jest.mock("fs-extra");
 const { DATA_DIR } = config;

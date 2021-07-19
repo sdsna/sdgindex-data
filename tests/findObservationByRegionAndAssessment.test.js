@@ -4,7 +4,7 @@ import {
   addMockRegion,
   addMockObservation,
   addMockObservations,
-} from "testHelpers/builders";
+} from "testHelpers/storeMocks";
 
 it("returns the relevant observation", () => {
   const assessment = addMockIndicator();

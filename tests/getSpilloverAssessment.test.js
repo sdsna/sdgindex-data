@@ -4,7 +4,7 @@ import {
   addMockGoals,
   addMockOverallAssessment,
   addMockSpilloverAssessment,
-} from "testHelpers/builders";
+} from "testHelpers/storeMocks";
 
 it("returns the overall assessment", () => {
   const spilloverAssessment = addMockSpilloverAssessment();

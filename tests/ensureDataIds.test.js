@@ -5,7 +5,7 @@ import {
   addMockIndicators,
   addMockRegion,
   addMockRegions,
-} from "testHelpers/builders";
+} from "testHelpers/storeMocks";
 
 it("adds dataId property to region and assessment", () => {
   const regionWithDataId = addMockRegion();
