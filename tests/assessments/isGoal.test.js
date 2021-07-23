@@ -1,10 +1,10 @@
 import { isGoal } from "@sdgindex/data/assessments";
-import { buildGoal, buildIndicator } from "testHelpers/builders";
+import { addMockGoal, addMockIndicator } from "testHelpers/storeMocks";
 
 it("returns true if assessment is a goal", () => {
-  expect(isGoal(buildGoal())).toBe(true);
+  expect(isGoal(addMockGoal())).toBe(true);
 });
 
 it("returns false if assessment is not a goal", () => {
-  expect(isGoal(buildIndicator())).toBe(false);
+  expect(isGoal(addMockIndicator())).toBe(false);
 });

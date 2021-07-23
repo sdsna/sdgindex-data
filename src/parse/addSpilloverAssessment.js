@@ -1,15 +1,15 @@
+import { addAssessment } from "./addAssessment";
 import { SPILLOVER_ASSESSMENT_ID } from "../assessments/config";
 
 /**
- * Add the spillover assessment to the dataStore
- * @param {Object} dataStore - The store where the data are saved
+ * Add the spillover assessment to the store
  * @param {Object} [params] -
  * any custom parameters to add to the assessment or default properties to
  * overwrite
+ * @return {Object} the spillover assessment that was added to the store
  */
-export const addSpilloverAssessment = (dataStore, params = {}) => {
-  if (!dataStore.assessments) dataStore.assessments = [];
-  dataStore.assessments.push({
+export const addSpilloverAssessment = (params = {}) =>
+  addAssessment({
     id: SPILLOVER_ASSESSMENT_ID,
     dataId: SPILLOVER_ASSESSMENT_ID,
     slug: "spillovers",
@@ -19,4 +19,3 @@ export const addSpilloverAssessment = (dataStore, params = {}) => {
     type: "custom",
     ...params,
   });
-};

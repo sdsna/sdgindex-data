@@ -1,32 +1,34 @@
 import { omit } from "lodash";
 import { getOverallAssessmentForRegion } from "@sdgindex/data";
 import {
-  buildIndicators,
-  buildGoals,
-  buildObservation,
-  buildObservations,
-  buildOverallAssessment,
-  buildRegion,
-  buildRegions,
-} from "testHelpers/builders";
+  addMockIndicators,
+  addMockGoals,
+  addMockObservation,
+  addMockObservations,
+  addMockOverallAssessment,
+  addMockRegion,
+  addMockRegions,
+} from "testHelpers/storeMocks";
 
-const overallAssessment = buildOverallAssessment();
-const region = buildRegion();
-const observation = buildObservation({ assessment: overallAssessment, region });
-const dataStore = {
-  regions: [region, ...buildRegions()],
-  assessments: [overallAssessment, ...buildIndicators()],
-  observations: [observation, ...buildObservations()],
-};
+let overallAssessment, region, observation;
+
+beforeEach(() => {
+  overallAssessment = addMockOverallAssessment();
+  region = addMockRegion();
+  observation = addMockObservation({ assessment: overallAssessment, region });
+  addMockRegions();
+  addMockIndicators();
+  addMockObservations();
+});
 
 it("returns the overall assessment", () => {
-  expect(getOverallAssessmentForRegion(dataStore, region)).toMatchObject(
+  expect(getOverallAssessmentForRegion(region)).toMatchObject(
     overallAssessment
   );
 });
 
 it("includes observation for region", () => {
-  expect(getOverallAssessmentForRegion(dataStore, region)).toMatchObject(
+  expect(getOverallAssessmentForRegion(region)).toMatchObject(
     omit(observation, "id")
   );
 });

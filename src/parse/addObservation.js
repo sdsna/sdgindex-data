@@ -8,6 +8,7 @@ import {
   IS_IMPUTED_KEY,
 } from "../observations/config";
 import { roundNumber } from "./roundNumber";
+import { store } from "../store";
 
 // Property names are shortened to a single letter to save space
 const PROPERTIES = {
@@ -17,7 +18,7 @@ const PROPERTIES = {
   },
   rank: {
     name: RANK_KEY,
-    formatter: (rank) => parseInt(rank),
+    formatter: (rank) => (rank != null ? parseInt(rank) : null),
   },
   rating: {
     name: RATING_KEY,
@@ -47,8 +48,7 @@ const PROPERTIES = {
 };
 
 /**
- * Add observation to the dataStore
- * @param {Object} dataStore - The store where the data are saved
+ * Add an observation to the store
  * @param {Object} observation
  * @param {Object} observation.region -
  * the region to which the observation belongs
@@ -72,11 +72,9 @@ const PROPERTIES = {
  * whether the observation is imputed (`true` or `false`)
  * @param {...Object} [observation.params] -
  * any other properties to store on the observation
+ * @return {Object} the observation that was added to the store
  */
-export const addObservation = (
-  dataStore,
-  { region, assessment, ...observation }
-) => {
+export const addObservation = ({ region, assessment, ...observation }) => {
   // Shorten property names and format values
   Object.keys(PROPERTIES).map((propertyName) => {
     if (Object.prototype.hasOwnProperty.call(observation, propertyName)) {
@@ -96,10 +94,15 @@ export const addObservation = (
   const isImputedKey = PROPERTIES.isImputed.name;
   if (observation[isImputedKey] !== 1) delete observation[isImputedKey];
 
-  // Push observation
-  if (!dataStore.observations) dataStore.observations = [];
-  dataStore.observations.push({
+  // Add ID
+  observation = {
     id: `${region.dataId}-${assessment.dataId}`,
     ...observation,
-  });
+  };
+
+  // Push observation
+  if (!store.observations) store.observations = [];
+  store.observations.push(observation);
+
+  return observation;
 };

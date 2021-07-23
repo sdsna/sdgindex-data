@@ -1,33 +1,36 @@
 import { omit } from "lodash";
 import { getGoalsForRegion } from "@sdgindex/data";
 import {
-  buildGoals,
-  buildIndicator,
-  buildIndicators,
-  buildObservation,
-  buildObservations,
-  buildOverallAssessment,
-  buildRegion,
-  buildRegions,
-} from "testHelpers/builders";
+  addMockGoals,
+  addMockIndicator,
+  addMockIndicators,
+  addMockObservation,
+  addMockObservations,
+  addMockOverallAssessment,
+  addMockRegion,
+  addMockRegions,
+} from "testHelpers/storeMocks";
 
-const goals = buildGoals();
-const region = buildRegion();
-const goalObservations = goals.map((goal) =>
-  buildObservation({ assessment: goal, region })
-);
-const dataStore = {
-  assessments: [buildOverallAssessment(), ...goals, ...buildIndicators()],
-  regions: [region, ...buildRegions()],
-  observations: [...goalObservations, buildObservations()],
-};
+let goals, region, goalObservations;
+
+beforeEach(() => {
+  goals = addMockGoals();
+  region = addMockRegion();
+  goalObservations = goals.map((goal) =>
+    addMockObservation({ assessment: goal, region })
+  );
+  addMockOverallAssessment();
+
+  // Add observations for other regions
+  goals.forEach((goal) => addMockObservation({ assessment: goal }));
+});
 
 it("returns all goals", () => {
-  expect(getGoalsForRegion(dataStore, region)).toMatchObject(goals);
+  expect(getGoalsForRegion(region)).toMatchObject(goals);
 });
 
 it("returns observations for each goal", () => {
-  expect(getGoalsForRegion(dataStore, region)).toMatchObject(
+  expect(getGoalsForRegion(region)).toMatchObject(
     goalObservations.map((observation) => omit(observation, "id"))
   );
 });

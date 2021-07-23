@@ -1,21 +1,16 @@
 import { omit } from "lodash";
 import { getTrendIndicators } from "@sdgindex/data";
 import {
-  buildIndicators,
-  buildGoals,
-  buildOverallAssessment,
-} from "testHelpers/builders";
-
-const trendIndicators = buildIndicators({ hasTrend: true });
-const dataStore = {
-  assessments: [
-    buildOverallAssessment(),
-    ...buildGoals(),
-    ...trendIndicators,
-    buildIndicators(),
-  ],
-};
+  addMockIndicators,
+  addMockGoals,
+  addMockOverallAssessment,
+} from "testHelpers/storeMocks";
 
 it("returns all trend indicators", () => {
-  expect(getTrendIndicators(dataStore)).toEqual(trendIndicators);
+  const trendIndicators = addMockIndicators({ hasTrend: true });
+  addMockOverallAssessment();
+  addMockGoals();
+  addMockIndicators();
+
+  expect(getTrendIndicators()).toEqual(trendIndicators);
 });

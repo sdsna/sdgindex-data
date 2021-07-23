@@ -1,11 +1,9 @@
 import { findIndicatorById } from "@sdgindex/data";
-import { buildIndicator, buildIndicators } from "testHelpers/builders";
+import { addMockIndicator, addMockIndicators } from "testHelpers/storeMocks";
 
 it("finds indicator by id for SDG14_physics", () => {
-  const indicator = buildIndicator({ id: "SDG14_physics" });
-  const dataStore = {
-    assessments: [indicator, ...buildIndicators()],
-  };
+  const indicator = addMockIndicator({ id: "SDG14_physics" });
+  addMockIndicators();
 
-  expect(findIndicatorById(dataStore, "SDG14_physics")).toEqual(indicator);
+  expect(findIndicatorById("SDG14_physics")).toEqual(indicator);
 });

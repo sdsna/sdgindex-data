@@ -1,19 +1,17 @@
 import { omit } from "lodash";
 import { ensureDataIds } from "@sdgindex/data";
 import {
-  buildIndicator,
-  buildIndicators,
-  buildRegion,
-  buildRegions,
-} from "testHelpers/builders";
+  addMockIndicator,
+  addMockIndicators,
+  addMockRegion,
+  addMockRegions,
+} from "testHelpers/storeMocks";
 
 it("adds dataId property to region and assessment", () => {
-  const regionWithDataId = buildRegion();
-  const assessmentWithDataId = buildIndicator();
-  const dataStore = {
-    regions: [regionWithDataId, ...buildRegions()],
-    assessments: [assessmentWithDataId, buildIndicators()],
-  };
+  const regionWithDataId = addMockRegion();
+  const assessmentWithDataId = addMockIndicator();
+  addMockRegions();
+  addMockIndicators();
 
   const region = omit(regionWithDataId, "dataId");
   const assessment = omit(assessmentWithDataId, "dataId");
@@ -21,16 +19,17 @@ it("adds dataId property to region and assessment", () => {
   expect(region).not.toHaveProperty("dataId");
   expect(assessment).not.toHaveProperty("dataId");
 
-  ensureDataIds({ dataStore, region, assessment });
+  ensureDataIds({ region, assessment });
 
   expect(region).toHaveProperty("dataId");
   expect(assessment).toHaveProperty("dataId");
 });
 
 it("does not modify object when dataId is already present", () => {
-  const region = buildRegion({ dataId: "abc" });
+  const region = addMockRegion();
+  region.dataId = "abc";
 
-  ensureDataIds({ dataStore: {}, region });
+  ensureDataIds({ region });
 
   expect(region).toHaveProperty("dataId", "abc");
 });

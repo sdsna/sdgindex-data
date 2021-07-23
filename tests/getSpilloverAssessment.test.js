@@ -1,21 +1,16 @@
 import { getSpilloverAssessment } from "@sdgindex/data";
 import {
-  buildIndicators,
-  buildGoals,
-  buildOverallAssessment,
-  buildSpilloverAssessment,
-} from "testHelpers/builders";
-
-const spilloverAssessment = buildSpilloverAssessment();
-const dataStore = {
-  assessments: [
-    buildOverallAssessment(),
-    spilloverAssessment,
-    ...buildGoals(),
-    ...buildIndicators(),
-  ],
-};
+  addMockIndicators,
+  addMockGoals,
+  addMockOverallAssessment,
+  addMockSpilloverAssessment,
+} from "testHelpers/storeMocks";
 
 it("returns the overall assessment", () => {
-  expect(getSpilloverAssessment(dataStore)).toEqual(spilloverAssessment);
+  const spilloverAssessment = addMockSpilloverAssessment();
+  addMockOverallAssessment();
+  addMockGoals();
+  addMockIndicators();
+
+  expect(getSpilloverAssessment()).toEqual(spilloverAssessment);
 });

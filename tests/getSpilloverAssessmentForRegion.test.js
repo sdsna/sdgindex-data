@@ -1,40 +1,40 @@
 import { omit } from "lodash";
 import { getSpilloverAssessmentForRegion } from "@sdgindex/data";
 import {
-  buildIndicators,
-  buildGoals,
-  buildObservation,
-  buildObservations,
-  buildOverallAssessment,
-  buildSpilloverAssessment,
-  buildRegion,
-  buildRegions,
-} from "testHelpers/builders";
+  addMockIndicators,
+  addMockGoals,
+  addMockObservation,
+  addMockObservations,
+  addMockOverallAssessment,
+  addMockSpilloverAssessment,
+  addMockRegion,
+  addMockRegions,
+} from "testHelpers/storeMocks";
 
-const spilloverAssessment = buildSpilloverAssessment();
-const region = buildRegion();
-const observation = buildObservation({
-  assessment: spilloverAssessment,
-  region,
+let spilloverAssessment, region, observation;
+
+beforeEach(() => {
+  spilloverAssessment = addMockSpilloverAssessment();
+  region = addMockRegion();
+  observation = addMockObservation({
+    assessment: spilloverAssessment,
+    region,
+  });
+
+  addMockRegions();
+  addMockOverallAssessment();
+  addMockIndicators();
+  addMockObservations();
 });
-const dataStore = {
-  regions: [region, ...buildRegions()],
-  assessments: [
-    buildOverallAssessment(),
-    spilloverAssessment,
-    ...buildIndicators(),
-  ],
-  observations: [observation, ...buildObservations()],
-};
 
 it("returns the overall spillover index assessment", () => {
-  expect(getSpilloverAssessmentForRegion(dataStore, region)).toMatchObject(
+  expect(getSpilloverAssessmentForRegion(region)).toMatchObject(
     spilloverAssessment
   );
 });
 
 it("includes observation for region", () => {
-  expect(getSpilloverAssessmentForRegion(dataStore, region)).toMatchObject(
+  expect(getSpilloverAssessmentForRegion(region)).toMatchObject(
     omit(observation, "id")
   );
 });

@@ -1,6 +1,6 @@
 import { getRating } from "@sdgindex/data/observations";
-import { buildObservation } from "testHelpers/builders";
+import { addMockObservation } from "testHelpers/storeMocks";
 
 it("returns the rating color", () => {
-  expect(getRating(buildObservation({ rating: "green" }))).toEqual("green");
+  expect(getRating(addMockObservation({ rating: "green" }))).toEqual("green");
 });

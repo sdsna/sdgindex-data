@@ -1,20 +1,18 @@
 import { findObservationByRegionAndAssessment } from "@sdgindex/data";
 import {
-  buildIndicator,
-  buildRegion,
-  buildObservation,
-  buildObservations,
-} from "testHelpers/builders";
-
-const assessment = buildIndicator();
-const region = buildRegion();
-const observation = buildObservation({ assessment, region });
-const dataStore = {
-  observations: [observation, ...buildObservations()],
-};
+  addMockIndicator,
+  addMockRegion,
+  addMockObservation,
+  addMockObservations,
+} from "testHelpers/storeMocks";
 
 it("returns the relevant observation", () => {
-  expect(
-    findObservationByRegionAndAssessment(dataStore, region, assessment)
-  ).toEqual(observation);
+  const assessment = addMockIndicator();
+  const region = addMockRegion();
+  const observation = addMockObservation({ assessment, region });
+  addMockObservations();
+
+  expect(findObservationByRegionAndAssessment(region, assessment)).toEqual(
+    observation
+  );
 });

@@ -1,10 +1,25 @@
 import { getTimeseriesValue } from "@sdgindex/data/timeseries";
-import { buildTimeseries } from "testHelpers/builders";
+import { addMockTimeseries } from "testHelpers/storeMocks";
 
-const timeseries = buildTimeseries({
-  2000: 4.3,
-  2012: 7.5,
-  2021: null,
+let timeseries;
+
+beforeEach(() => {
+  timeseries = addMockTimeseries({
+    dataPoints: [
+      {
+        year: 2000,
+        value: 4.3,
+      },
+      {
+        year: 2012,
+        value: 7.5,
+      },
+      {
+        year: 2021,
+        value: null,
+      },
+    ],
+  });
 });
 
 it("returns value for 2000", () => {

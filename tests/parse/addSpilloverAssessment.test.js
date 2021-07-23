@@ -1,15 +1,15 @@
 import { addSpilloverAssessment } from "@sdgindex/data/parse";
+import { store } from "@sdgindex/data";
 
-let dataStore = {};
+// Clear store before each test
 beforeEach(() => {
-  // Clear dataStore
-  dataStore = {};
+  Object.keys(store).map((key) => delete store[key]);
 });
 
-it("adds the spillover assessment to the dataStore", () => {
-  addSpilloverAssessment(dataStore);
+it("adds the spillover assessment to the store", () => {
+  addSpilloverAssessment();
 
-  expect(dataStore.assessments[0]).toEqual({
+  expect(store.assessments[0]).toEqual({
     id: "SPI",
     dataId: "SPI",
     slug: "spillovers",
@@ -23,16 +23,16 @@ it("adds the spillover assessment to the dataStore", () => {
 
 describe("when passing custom parameters", () => {
   it("overwrites default properties", () => {
-    addSpilloverAssessment(dataStore, { description: "my-custom-description" });
-    expect(dataStore.assessments[0]).toHaveProperty(
+    addSpilloverAssessment({ description: "my-custom-description" });
+    expect(store.assessments[0]).toHaveProperty(
       "description",
       "my-custom-description"
     );
   });
 
   it("adds additional properties", () => {
-    addSpilloverAssessment(dataStore, { academicReference: "reference" });
-    expect(dataStore.assessments[0]).toHaveProperty(
+    addSpilloverAssessment({ academicReference: "reference" });
+    expect(store.assessments[0]).toHaveProperty(
       "academicReference",
       "reference"
     );

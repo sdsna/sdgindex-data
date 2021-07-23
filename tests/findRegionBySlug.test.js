@@ -1,11 +1,9 @@
-import { findRegionBySlug } from "@sdgindex/data";
-import { buildRegion, buildRegions } from "testHelpers/builders";
+import { findRegionBySlug, store } from "@sdgindex/data";
+import { addMockRegion, addMockRegions } from "testHelpers/storeMocks";
 
 it("finds region with slug 'my-region'", () => {
-  const region = buildRegion({ slug: "my-region" });
-  const dataStore = {
-    regions: [region, ...buildRegions()],
-  };
+  const region = addMockRegion({ slug: "my-region" });
+  addMockRegions();
 
-  expect(findRegionBySlug(dataStore, "my-region")).toEqual(region);
+  expect(findRegionBySlug("my-region")).toEqual(region);
 });

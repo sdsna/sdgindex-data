@@ -1,21 +1,17 @@
 import { getObservationsForAssessment } from "@sdgindex/data";
 import {
-  buildIndicator,
-  buildIndicators,
-  buildObservations,
-} from "testHelpers/builders";
-
-const indicator = buildIndicator();
-const observations = buildObservations({
-  assessment: indicator,
-});
-const dataStore = {
-  assessments: [indicator, ...buildIndicators()],
-  observations: [...observations, ...buildObservations()],
-};
+  addMockIndicator,
+  addMockIndicators,
+  addMockObservations,
+} from "testHelpers/storeMocks";
 
 it("returns an array of observations", () => {
-  expect(getObservationsForAssessment(dataStore, indicator)).toEqual(
-    observations
-  );
+  const indicator = addMockIndicator();
+  const observations = addMockObservations({
+    assessment: indicator,
+  });
+  addMockIndicators();
+  addMockObservations();
+
+  expect(getObservationsForAssessment(indicator)).toEqual(observations);
 });

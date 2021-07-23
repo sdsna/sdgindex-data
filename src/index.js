@@ -1,3 +1,4 @@
+export * as config from "./config";
 export * from "./ensureDataIds";
 export * from "./findAssessmentById";
 export * from "./findAssessmentBySlug";
@@ -30,6 +31,8 @@ export * from "./getRegionsWithTimeseries";
 export * from "./getSpilloverAssessment";
 export * from "./getSpilloverAssessmentForRegion";
 export * from "./getTrendIndicators";
+export * from "./isDataLoaded";
 export * from "./loadData";
 export * from "./loadDataset";
-export * from "./loadTimeseries";
+export * from "./store";
+export * from "./useDataStore";

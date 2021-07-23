@@ -1,9 +1,9 @@
 import urlSlug from "url-slug";
+import { store } from "../store";
 import { getRegions } from "../getRegions";
 
 /**
- * Add region to the dataStore
- * @param {Object} dataStore - The store where the data are saved
+ * Add a region to the store
  * @param {Object} region
  * @param {string} region.id - the unique ID for the region
  * @param {string} region.name -
@@ -14,17 +14,22 @@ import { getRegions } from "../getRegions";
  * provide a slug to overwrite the auto-generated slug
  * @param {...Object} [region.params] -
  * any other params to add to the region, such as population or GDP
+ * @return {Object} the region that was added to the store
  */
-export const addRegion = (dataStore, { id, name, type, slug, ...params }) => {
+export const addRegion = ({ id, name, type, slug, ...params }) => {
   if (!slug) slug = urlSlug(name);
 
-  if (!dataStore.regions) dataStore.regions = [];
-  dataStore.regions.push({
+  const region = {
     id,
-    dataId: getRegions(dataStore).length + 1,
+    dataId: getRegions().length + 1,
     slug,
     name,
     type,
     ...params,
-  });
+  };
+
+  if (!store.regions) store.regions = [];
+  store.regions.push(region);
+
+  return region;
 };

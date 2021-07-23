@@ -1,11 +1,9 @@
 import { findAssessmentById } from "@sdgindex/data";
-import { buildIndicator, buildIndicators } from "testHelpers/builders";
+import { addMockIndicator, addMockIndicators } from "testHelpers/storeMocks";
 
 it("finds assessment with ID indicator1", () => {
-  const indicator = buildIndicator({ id: "indicator1" });
-  const dataStore = {
-    assessments: [indicator, ...buildIndicators()],
-  };
+  const indicator = addMockIndicator({ id: "indicator1" });
+  addMockIndicators();
 
-  expect(findAssessmentById(dataStore, "indicator1")).toEqual(indicator);
+  expect(findAssessmentById("indicator1")).toEqual(indicator);
 });

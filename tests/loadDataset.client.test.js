@@ -1,4 +1,4 @@
-import { loadDataset } from "@sdgindex/data";
+import { loadDataset, store } from "@sdgindex/data";
 
 beforeEach(() => {
   global.fetch = jest.fn().mockImplementation((url) => {
@@ -22,10 +22,8 @@ afterEach(() => {
   delete global.fetch;
 });
 
-it("loads the dataset into the dataStore", async () => {
-  const dataStore = {};
+it("loads the dataset into the store via fetch", async () => {
+  await loadDataset("myDataset");
 
-  await loadDataset(dataStore, "myDataset");
-
-  expect(dataStore).toHaveProperty("myDataset", { data: "test" });
+  expect(store).toHaveProperty("myDataset", { data: "test" });
 });

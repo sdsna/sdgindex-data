@@ -1,24 +1,17 @@
 import { getIndicatorsByGoal } from "@sdgindex/data";
 import {
-  buildIndicators,
-  buildGoal,
-  buildGoals,
-  buildOverallAssessment,
-} from "testHelpers/builders";
-
-const goal = buildGoal();
-const indicators = buildIndicators({ goal });
-const otherIndicators = buildIndicators();
-const dataStore = {
-  assessments: [
-    buildOverallAssessment(),
-    goal,
-    ...buildGoals(),
-    ...indicators,
-    ...otherIndicators,
-  ],
-};
+  addMockIndicators,
+  addMockGoal,
+  addMockGoals,
+  addMockOverallAssessment,
+} from "testHelpers/storeMocks";
 
 it("returns indicators for the given goal", () => {
-  expect(getIndicatorsByGoal(dataStore, goal)).toEqual(indicators);
+  const goal = addMockGoal();
+  const indicators = addMockIndicators({ goal });
+  const otherIndicators = addMockIndicators();
+  addMockOverallAssessment();
+  addMockGoals();
+
+  expect(getIndicatorsByGoal(goal)).toEqual(indicators);
 });

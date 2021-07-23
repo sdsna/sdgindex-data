@@ -1,10 +1,10 @@
 import { isCountry } from "@sdgindex/data/regions";
-import { buildRegion } from "testHelpers/builders";
+import { addMockRegion } from "testHelpers/storeMocks";
 
 it("returns true if the region has type 'country'", () => {
-  expect(isCountry(buildRegion({ type: "country" }))).toBe(true);
+  expect(isCountry(addMockRegion({ type: "country" }))).toBe(true);
 });
 
 it("returns false if the region has type 'state'", () => {
-  expect(isCountry(buildRegion({ type: "state" }))).toBe(false);
+  expect(isCountry(addMockRegion({ type: "state" }))).toBe(false);
 });

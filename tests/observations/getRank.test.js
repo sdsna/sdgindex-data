@@ -1,6 +1,6 @@
 import { getRank } from "@sdgindex/data/observations";
-import { buildObservation } from "testHelpers/builders";
+import { addMockObservation } from "testHelpers/storeMocks";
 
 it("returns the numeric rank", () => {
-  expect(getRank(buildObservation({ rank: 238 }))).toEqual(238);
+  expect(getRank(addMockObservation({ rank: 238 }))).toEqual(238);
 });

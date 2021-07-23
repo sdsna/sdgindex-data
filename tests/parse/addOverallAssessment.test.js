@@ -1,15 +1,15 @@
 import { addOverallAssessment } from "@sdgindex/data/parse";
+import { store } from "@sdgindex/data";
 
-let dataStore = {};
+// Clear store before each test
 beforeEach(() => {
-  // Clear dataStore
-  dataStore = {};
+  Object.keys(store).map((key) => delete store[key]);
 });
 
-it("adds the overall assessment to the dataStore", () => {
-  addOverallAssessment(dataStore);
+it("adds the overall assessment to the store", () => {
+  addOverallAssessment();
 
-  expect(dataStore.assessments[0]).toEqual({
+  expect(store.assessments[0]).toEqual({
     id: "TOT",
     dataId: "TOT",
     slug: "overall",
@@ -23,12 +23,12 @@ it("adds the overall assessment to the dataStore", () => {
 
 describe("when passing custom parameters", () => {
   it("overwrites default properties", () => {
-    addOverallAssessment(dataStore, { slug: "my-custom-slug" });
-    expect(dataStore.assessments[0]).toHaveProperty("slug", "my-custom-slug");
+    addOverallAssessment({ slug: "my-custom-slug" });
+    expect(store.assessments[0]).toHaveProperty("slug", "my-custom-slug");
   });
 
   it("adds additional properties", () => {
-    addOverallAssessment(dataStore, { sourceText: "source" });
-    expect(dataStore.assessments[0]).toHaveProperty("sourceText", "source");
+    addOverallAssessment({ sourceText: "source" });
+    expect(store.assessments[0]).toHaveProperty("sourceText", "source");
   });
 });

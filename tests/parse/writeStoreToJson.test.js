@@ -1,53 +1,100 @@
-import { writeStoreToJson, writeData } from "@sdgindex/data/parse";
-import {
-  buildIndicators,
-  buildRegions,
-  buildObservations,
-  buildTimeseries,
-} from "testHelpers/builders";
+/**
+ * @jest-environment node
+ */
 
-jest.mock("mock:@sdgindex/data/parse/writeData");
+import path from "path";
+import { writeJsonSync, ensureDirSync } from "fs-extra";
+import { writeStoreToJson } from "@sdgindex/data/parse";
+import { config } from "@sdgindex/data";
+import {
+  addMockGoal,
+  addMockIndicators,
+  addMockRegions,
+  addMockObservation,
+  addMockTimeseries,
+} from "testHelpers/storeMocks";
+
+jest.mock("fs-extra");
+const { DATA_DIR } = config;
+
+it("ensures the DATA_DIR exists", () => {
+  writeStoreToJson();
+  expect(ensureDirSync).toHaveBeenCalledWith(DATA_DIR);
+});
 
 it("calls writeData for assessments, regions, obs, and timeseries", () => {
-  const assessments = buildIndicators();
-  const regions = buildRegions();
-  const observations = buildObservations();
-  const timeseries = buildTimeseries();
+  const goal = addMockGoal();
+  const assessments = [goal, ...addMockIndicators({ goal })];
+  const regions = addMockRegions();
+  const observations = [];
+  const timeseries = [];
 
-  const store = {
-    assessments,
-    regions,
-    observations,
-    timeseries,
-  };
-
-  writeStoreToJson(store, "DIR");
-
-  expect(writeData).toHaveBeenCalledWith("DIR", "assessments", { assessments });
-  expect(writeData).toHaveBeenCalledWith("DIR", "regions", { regions });
-  expect(writeData).toHaveBeenCalledWith("DIR", "observations", {
-    observations,
+  assessments.forEach((assessment) => {
+    regions.forEach((region) => {
+      observations.push(addMockObservation({ region, assessment }));
+      timeseries.push(addMockTimeseries({ region, assessment }));
+    });
   });
-  expect(writeData).toHaveBeenCalledWith("DIR", "timeseries", { timeseries });
+
+  writeStoreToJson();
+
+  expect(writeJsonSync).toHaveBeenCalledWith(
+    path.join(DATA_DIR, "assessments.json"),
+    { assessments }
+  );
+  expect(writeJsonSync).toHaveBeenCalledWith(
+    path.join(DATA_DIR, "assessments-raw.json"),
+    { assessments },
+    { spaces: 2 }
+  );
+  expect(writeJsonSync).toHaveBeenCalledWith(
+    path.join(DATA_DIR, "regions.json"),
+    { regions }
+  );
+  expect(writeJsonSync).toHaveBeenCalledWith(
+    path.join(DATA_DIR, "regions-raw.json"),
+    { regions },
+    { spaces: 2 }
+  );
+  expect(writeJsonSync).toHaveBeenCalledWith(
+    path.join(DATA_DIR, "observations.json"),
+    { observations }
+  );
+  expect(writeJsonSync).toHaveBeenCalledWith(
+    path.join(DATA_DIR, "observations-raw.json"),
+    { observations },
+    { spaces: 2 }
+  );
+  expect(writeJsonSync).toHaveBeenCalledWith(
+    path.join(DATA_DIR, "timeseries.json"),
+    { timeseries }
+  );
+  expect(writeJsonSync).toHaveBeenCalledWith(
+    path.join(DATA_DIR, "timeseries-raw.json"),
+    { timeseries },
+    { spaces: 2 }
+  );
 });
 
 describe("when store is empty", () => {
   it("writes empty arrays", () => {
-    const store = {};
+    writeStoreToJson();
 
-    writeStoreToJson(store, "MY_DIR");
-
-    expect(writeData).toHaveBeenCalledWith("MY_DIR", "assessments", {
-      assessments: [],
-    });
-    expect(writeData).toHaveBeenCalledWith("MY_DIR", "regions", {
-      regions: [],
-    });
-    expect(writeData).toHaveBeenCalledWith("MY_DIR", "observations", {
-      observations: [],
-    });
-    expect(writeData).toHaveBeenCalledWith("MY_DIR", "timeseries", {
-      timeseries: [],
-    });
+    expect(writeJsonSync).toHaveBeenCalledWith(
+      path.join(DATA_DIR, "assessments.json"),
+      { assessments: [] }
+    );
+    expect(writeJsonSync).toHaveBeenCalledWith(
+      path.join(DATA_DIR, "regions.json"),
+      { regions: [] }
+    );
+    expect(writeJsonSync).toHaveBeenCalledWith(
+      path.join(DATA_DIR, "observations.json"),
+      { observations: [] }
+    );
+    expect(writeJsonSync).toHaveBeenCalledWith(
+      path.join(DATA_DIR, "timeseries.json"),
+      { timeseries: [] }
+    );
   });
 });

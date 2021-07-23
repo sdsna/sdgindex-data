@@ -1,16 +1,24 @@
 import { getLastYear } from "@sdgindex/data/timeseries";
-import { buildTimeseries } from "testHelpers/builders";
+import { addMockTimeseries } from "testHelpers/storeMocks";
 
 it("returns last year with non-null value", () => {
   expect(
     getLastYear(
-      buildTimeseries({
-        2016: 13.3,
-        2017: null,
-        2018: 5.4,
-        2019: null,
-        2020: null,
-        2021: null,
+      addMockTimeseries({
+        dataPoints: [
+          {
+            year: 2016,
+            value: 13.3,
+          },
+          {
+            year: 2018,
+            value: 0,
+          },
+          {
+            year: 2021,
+            value: null,
+          },
+        ],
       })
     )
   ).toEqual(2018);

@@ -1,15 +1,25 @@
-import { writeData } from "./writeData";
+import path from "path";
+import { ensureDirSync, writeJsonSync } from "fs-extra";
+import { store } from "../store";
+import { DATA_DIR } from "../config";
 
 /**
- * Write the dataStore to a series of human-readable and minified JSON files.
+ * Write the store to a series of human-readable and minified JSON files.
  * These can then be loaded/imported in the data visualization.
  * One JSON file is created for each type of data (assessments, regions,
  * observations, and timeseries).
- * @param {Object} dataStore
- * @param {string} directory - the directory to write the data to
  */
-export const writeStoreToJson = (dataStore, directory) => {
+export const writeStoreToJson = () => {
+  // Ensure directory exists
+  ensureDirSync(DATA_DIR);
+
   ["assessments", "regions", "observations", "timeseries"].forEach((type) => {
-    writeData(directory, type, { [type]: dataStore[type] || [] });
+    const data = { [type]: store[type] || [] };
+
+    // Write human-friendly
+    writeJsonSync(path.join(DATA_DIR, `${type}-raw.json`), data, { spaces: 2 });
+
+    // Write minified
+    writeJsonSync(path.join(DATA_DIR, `${type}.json`), data);
   });
 };

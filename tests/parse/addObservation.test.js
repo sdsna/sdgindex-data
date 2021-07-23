@@ -1,17 +1,19 @@
 import { addObservation } from "@sdgindex/data/parse";
-import { buildIndicator, buildRegion } from "testHelpers/builders";
+import { addMockIndicator, addMockRegion } from "testHelpers/storeMocks";
+import { store } from "@sdgindex/data";
 
-let dataStore = {};
+// Clear store before each test
 beforeEach(() => {
-  // Clear dataStore
-  dataStore = {};
+  Object.keys(store).map((key) => delete store[key]);
 });
 
-it("adds the observation to the dataStore", () => {
-  const region = buildRegion({ dataId: 1 });
-  const indicator = buildIndicator({ dataId: 4 });
+it("adds the observation to the store", () => {
+  const region = addMockRegion();
+  region.dataId = 1;
+  const indicator = addMockIndicator();
+  indicator.dataId = 4;
 
-  addObservation(dataStore, {
+  addObservation({
     region,
     assessment: indicator,
     value: 2.575241,
@@ -20,7 +22,7 @@ it("adds the observation to the dataStore", () => {
     year: 2018,
   });
 
-  expect(dataStore.observations[0]).toEqual({
+  expect(store.observations[0]).toEqual({
     id: "1-4",
     v: 2.58,
     c: "green",
@@ -31,24 +33,24 @@ it("adds the observation to the dataStore", () => {
 
 describe("when passing isImputed = true", () => {
   it("adds imputation flag", () => {
-    addObservation(dataStore, {
-      region: buildRegion(),
-      assessment: buildIndicator(),
+    addObservation({
+      region: addMockRegion(),
+      assessment: addMockIndicator(),
       isImputed: true,
     });
 
-    expect(dataStore.observations[0]).toHaveProperty("i", 1);
+    expect(store.observations[0]).toHaveProperty("i", 1);
   });
 });
 
 describe("when passing isImputed = false", () => {
   it("does not add imputation flag", () => {
-    addObservation(dataStore, {
-      region: buildRegion(),
-      assessment: buildIndicator(),
+    addObservation({
+      region: addMockRegion(),
+      assessment: addMockIndicator(),
       isImputed: false,
     });
 
-    expect(dataStore.observations[0]).not.toHaveProperty("i");
+    expect(store.observations[0]).not.toHaveProperty("i");
   });
 });
