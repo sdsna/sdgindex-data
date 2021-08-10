@@ -65,7 +65,9 @@
   },
   "dependencies": {
     "fs-extra": "^9.1.0",
+    "lodash.countby": "^4.6.0",
     "lodash.findlast": "^4.6.0",
+    "lodash.uniq": "^4.5.0",
     "url-slug": "^3.0.2",
     "xlsx": "^0.17.0"
   },

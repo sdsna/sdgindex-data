@@ -1,7 +1,12 @@
 import path from "path";
 import { ensureDirSync, writeJsonSync } from "fs-extra";
+import { determineObjectEncoding } from "../utilities/determineObjectEncoding";
+import { encodeObject } from "../utilities/encodeObject";
 import { store } from "../store";
 import { DATA_DIR } from "../config";
+
+// The datasets to write to JSON
+const DATASETS = ["assessments", "regions", "observations", "timeseries"];
 
 // Empty fallback array/object, depending on type
 const FALLBACK = {
@@ -9,6 +14,15 @@ const FALLBACK = {
   regions: [],
   observations: {},
   timeseries: [],
+};
+
+// Write data to human-friendly and minified JSON file with the given name
+const writeDataToJson = (name, data) => {
+  // Write human-friendly
+  writeJsonSync(path.join(DATA_DIR, `${name}-raw.json`), data, { spaces: 2 });
+
+  // Write minified
+  writeJsonSync(path.join(DATA_DIR, `${name}.json`), data);
 };
 
 /**
@@ -21,13 +35,26 @@ export const writeStoreToJson = () => {
   // Ensure directory exists
   ensureDirSync(DATA_DIR);
 
-  ["assessments", "regions", "observations", "timeseries"].forEach((type) => {
-    const data = { [type]: store[type] || FALLBACK[type] };
+  // Determine encoding for compressing observation data
+  const observations = store.observations || {};
+  const observationEncoding = determineObjectEncoding(
+    Object.values(observations)
+  );
 
-    // Write human-friendly
-    writeJsonSync(path.join(DATA_DIR, `${type}-raw.json`), data, { spaces: 2 });
+  // Encode all observations
+  const encodedObservations = Object.entries(observations).reduce(
+    (encodedObservations, [id, observation]) => ({
+      ...encodedObservations,
+      [id]: encodeObject(observation, observationEncoding),
+    }),
+    {}
+  );
 
-    // Write minified
-    writeJsonSync(path.join(DATA_DIR, `${type}.json`), data);
+  writeDataToJson("assessments", { assessments: store.assessments || [] });
+  writeDataToJson("regions", { regions: store.regions || [] });
+  writeDataToJson("observations", {
+    observations: encodedObservations,
+    observationEncoding,
   });
+  writeDataToJson("timeseries", { timeseries: store.timeseries || [] });
 };

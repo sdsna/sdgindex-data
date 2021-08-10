@@ -1,5 +1,6 @@
 import { store } from "./store";
 import { ensureDataIds } from "./ensureDataIds";
+import { decodeObject } from "./utilities/decodeObject";
 
 /**
  * Find the observation for the given region and assessment.
@@ -9,5 +10,13 @@ import { ensureDataIds } from "./ensureDataIds";
  */
 export const findObservationByRegionAndAssessment = (region, assessment) => {
   ensureDataIds({ region, assessment });
-  return store.observations[`${region.dataId}-${assessment.dataId}`];
+
+  const observation =
+    store.observations[`${region.dataId}-${assessment.dataId}`];
+
+  // If observations are encoded, decode observation prior to returning
+  if (Object.prototype.hasOwnProperty.call(store, "observationEncoding"))
+    return decodeObject(observation, store.observationEncoding);
+
+  return observation;
 };
