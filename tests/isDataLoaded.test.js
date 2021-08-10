@@ -11,7 +11,7 @@ describe("when assessments, regions, and observations are present", () => {
   beforeEach(() => {
     store.assessments = [];
     store.regions = [];
-    store.observations = [];
+    store.observations = {};
   });
 
   it("returns true", () => {
@@ -27,7 +27,7 @@ describe("when assessments, regions, obs, and timeseries are present", () => {
   beforeEach(() => {
     store.assessments = [];
     store.regions = [];
-    store.observations = [];
+    store.observations = {};
     store.timeseries = [];
   });
 

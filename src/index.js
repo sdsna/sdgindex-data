@@ -26,7 +26,6 @@ export * from "./getOverallAssessmentForRegion";
 export * from "./getRegions";
 export * from "./getRegionsByType";
 export * from "./getRegionsWithAssessment";
-export * from "./getRegionsWithAssessmentFast";
 export * from "./getRegionsWithTimeseries";
 export * from "./getSpilloverAssessment";
 export * from "./getSpilloverAssessmentForRegion";
