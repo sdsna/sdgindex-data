@@ -9,7 +9,5 @@ import { ensureDataIds } from "./ensureDataIds";
  */
 export const findObservationByRegionAndAssessment = (region, assessment) => {
   ensureDataIds({ region, assessment });
-  return store.observations.find(
-    (observation) => observation.id === `${region.dataId}-${assessment.dataId}`
-  );
+  return store.observations[`${region.dataId}-${assessment.dataId}`];
 };

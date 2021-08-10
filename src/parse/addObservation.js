@@ -94,15 +94,16 @@ export const addObservation = ({ region, assessment, ...observation }) => {
   const isImputedKey = PROPERTIES.isImputed.name;
   if (observation[isImputedKey] !== 1) delete observation[isImputedKey];
 
-  // Add ID
-  observation = {
-    id: `${region.dataId}-${assessment.dataId}`,
-    ...observation,
-  };
+  // Prepare observations in store
+  if (!store.observations) store.observations = {};
 
-  // Push observation
-  if (!store.observations) store.observations = [];
-  store.observations.push(observation);
+  // Verify ID does not yet exist
+  const id = `${region.dataId}-${assessment.dataId}`;
+  if (Object.prototype.hasOwnProperty.call(store.observations, id))
+    throw new Error(`Observation with id ${id} already exists`);
+
+  // Add observation
+  store.observations[id] = observation;
 
   return observation;
 };

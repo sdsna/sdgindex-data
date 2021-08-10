@@ -3,6 +3,14 @@ import { ensureDirSync, writeJsonSync } from "fs-extra";
 import { store } from "../store";
 import { DATA_DIR } from "../config";
 
+// Empty fallback array/object, depending on type
+const FALLBACK = {
+  assessments: [],
+  regions: [],
+  observations: {},
+  timeseries: [],
+};
+
 /**
  * Write the store to a series of human-readable and minified JSON files.
  * These can then be loaded/imported in the data visualization.
@@ -14,7 +22,7 @@ export const writeStoreToJson = () => {
   ensureDirSync(DATA_DIR);
 
   ["assessments", "regions", "observations", "timeseries"].forEach((type) => {
-    const data = { [type]: store[type] || [] };
+    const data = { [type]: store[type] || FALLBACK[type] };
 
     // Write human-friendly
     writeJsonSync(path.join(DATA_DIR, `${type}-raw.json`), data, { spaces: 2 });

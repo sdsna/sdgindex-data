@@ -8,7 +8,7 @@ import { ensureDataIds } from "./ensureDataIds";
  */
 export const getObservationsForAssessment = (assessment) => {
   ensureDataIds({ assessment });
-  return store.observations.filter((observation) =>
-    observation.id.endsWith(`-${assessment.dataId}`)
-  );
+  return Object.keys(store.observations)
+    .filter((key) => key.endsWith(`-${assessment.dataId}`))
+    .map((key) => store.observations[key]);
 };
