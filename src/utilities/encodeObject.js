@@ -29,8 +29,8 @@ export const encodeObject = (object, encoding) => {
       )}. Object: ${JSON.stringify(observation)}`
     );
 
-  // Remove trailing `undefined` values
-  while (array.length > 0 && array[array.length - 1] === undefined) {
+  // Remove trailing `null` and `undefined`
+  while (array.length > 0 && array[array.length - 1] == null) {
     array.pop();
   }
 

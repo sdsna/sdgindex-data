@@ -13,6 +13,9 @@ export const decodeObject = (array, encoding) => {
 
   // Add object props from array
   array.forEach((element, index) => {
+    // Skip null values
+    if (element == null) return;
+
     const property = encoding[index];
     object[property] = element;
   });
