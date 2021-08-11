@@ -18,6 +18,16 @@ it("returns the relevant observation", () => {
   );
 });
 
+describe("when the observation does not exist", () => {
+  it("returns null", () => {
+    const assessment = addMockIndicator();
+    const region = addMockRegion();
+    addMockObservations();
+
+    expect(findObservationByRegionAndAssessment(region, assessment)).toBe(null);
+  });
+});
+
 describe("when observations are encoded", () => {
   it("returns the decoded observation", () => {
     const assessment = addMockIndicator();
@@ -30,5 +40,18 @@ describe("when observations are encoded", () => {
     expect(findObservationByRegionAndAssessment(region, assessment)).toEqual(
       observation
     );
+  });
+
+  describe("when the observation does not exist", () => {
+    it("returns null", () => {
+      const assessment = addMockIndicator();
+      const region = addMockRegion();
+      addMockObservations();
+      mockEncodeObservations();
+
+      expect(findObservationByRegionAndAssessment(region, assessment)).toBe(
+        null
+      );
+    });
   });
 });
