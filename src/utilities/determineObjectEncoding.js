@@ -6,6 +6,10 @@ import uniq from "lodash.uniq";
  * appears in the objects. The encoding is then set to start with the property
  * that appears most frequently and to end with the property that appears least
  * frequently.
+ * @private
+ * @param {Array} objects -
+ * the array of objects for which to determine the best encoding
+ * @return {Array} - the encoding, e.g., ["value", "score", "year"]
  */
 export const determineObjectEncoding = (objects) => {
   // Get all keys as a flat array

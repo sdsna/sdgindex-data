@@ -1,3 +1,5 @@
+import get from "lodash.get";
+
 /**
  * Convert the given object into array, which requires less space and is faster
  * to load. The object properties are converted into an array according to the
@@ -17,7 +19,7 @@ export const encodeObject = (object, encoding) => {
 
   // Push object values into the array
   encoding.forEach((key) => {
-    array.push(object[key]);
+    array.push(get(object, key, null));
     delete object[key];
   });
 
