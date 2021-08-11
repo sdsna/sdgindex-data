@@ -1,3 +1,4 @@
+import get from "lodash.get";
 import { RATING_KEY } from "./config";
 
 /**
@@ -5,4 +6,4 @@ import { RATING_KEY } from "./config";
  * @param {Object} observation
  * @return {String}
  */
-export const getRating = (observation) => observation[RATING_KEY];
+export const getRating = (observation) => get(observation, RATING_KEY, null);

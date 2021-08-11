@@ -1,3 +1,4 @@
+import get from "lodash.get";
 import { YEAR_KEY } from "./config";
 
 /**
@@ -5,4 +6,4 @@ import { YEAR_KEY } from "./config";
  * @param {Object} observation
  * @return {number}
  */
-export const getYear = (observation) => observation[YEAR_KEY];
+export const getYear = (observation) => get(observation, YEAR_KEY, null);
