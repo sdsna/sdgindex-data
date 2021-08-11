@@ -24,8 +24,8 @@ it("adds the observation to the store", () => {
 
   expect(store.observations["1-4"]).toEqual({
     value: 2.58,
-    rating: "green",
-    trend: "↑",
+    rating: 0,
+    trend: 0,
     year: 2018,
   });
 });
@@ -62,5 +62,27 @@ describe("when adding two observations for the same region and assessment", () =
     addObservation({ region, assessment });
 
     expect(() => addObservation({ region, assessment })).toThrow(Error);
+  });
+});
+
+describe("when providing an invalid rating", () => {
+  it("throws an error", () => {
+    const region = addMockRegion();
+    const assessment = addMockIndicator();
+
+    expect(() =>
+      addObservation({ region, assessment, rating: "not-valid" })
+    ).toThrow(Error);
+  });
+});
+
+describe("when providing an invalid trend", () => {
+  it("throws an error", () => {
+    const region = addMockRegion();
+    const assessment = addMockIndicator();
+
+    expect(() =>
+      addObservation({ region, assessment, trend: "not-valid" })
+    ).toThrow(Error);
   });
 });

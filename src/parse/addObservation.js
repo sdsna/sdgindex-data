@@ -1,20 +1,38 @@
 import { roundNumber } from "./roundNumber";
 import { store } from "../store";
+import { RATINGS, TRENDS } from "../observations/config.js";
 
 // Formatting to apply to observation values, e.g., rounding, encoding, etc...
 const FORMATTERS = {
   score: (score) => roundNumber(score, 2),
   rank: (rank) => (rank != null ? parseInt(rank) : null),
-  rating: (rating) => {
-    if (rating == null || rating === "grey" || rating === "") return "gray";
-    return rating;
-  },
-  trend: (trend) => {
-    if (trend == null || trend === "") return null;
-    return trend;
-  },
   value: (value) => roundNumber(value, 2),
   isImputed: (isImputed) => (isImputed ? 1 : null),
+  rating: (rating) => {
+    // Convert rating
+    if (rating == null || rating === "grey" || rating === "") rating = "gray";
+
+    // Throw error if rating is not valid
+    if (!RATINGS.includes(rating))
+      throw new Error(
+        `Rating ${rating} is not a valid. Must be one of: ${RATINGS}`
+      );
+
+    // Encode rating as number
+    return RATINGS.indexOf(rating);
+  },
+  trend: (trend) => {
+    if (trend == null || trend === "") trend = "•";
+
+    // Throw error if trend is not valid
+    if (!TRENDS.includes(trend))
+      throw new Error(
+        `Trend ${trend} is not a valid. Must be one of: ${TRENDS}`
+      );
+
+    // Encode trend as number
+    return TRENDS.indexOf(trend);
+  },
 };
 
 /**

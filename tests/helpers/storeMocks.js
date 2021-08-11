@@ -98,7 +98,7 @@ export const addMockObservation = ({
         "red",
         "gray",
       ]),
-      trend: faker.random.arrayElement(["↑", "➚", "→", "↓", "·"]),
+      trend: faker.random.arrayElement(["↑", "➚", "→", "↓", "•"]),
     },
     observation
   );

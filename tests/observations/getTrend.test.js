@@ -1,8 +1,12 @@
 import { getTrend } from "@sdgindex/data/observations";
 import { addMockObservation } from "testHelpers/storeMocks";
 
-it("returns the trend as a string", () => {
+it("returns ↑", () => {
   expect(getTrend(addMockObservation({ trend: "↑" }))).toEqual("↑");
+});
+
+it("returns •", () => {
+  expect(getTrend(addMockObservation({ trend: "•" }))).toEqual("•");
 });
 
 describe("when trend is not defined", () => {
