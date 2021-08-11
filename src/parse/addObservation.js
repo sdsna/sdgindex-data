@@ -1,50 +1,20 @@
-import {
-  SCORE_KEY,
-  RANK_KEY,
-  RATING_KEY,
-  TREND_KEY,
-  VALUE_KEY,
-  YEAR_KEY,
-  IS_IMPUTED_KEY,
-} from "../observations/config";
 import { roundNumber } from "./roundNumber";
 import { store } from "../store";
 
-// Property names are shortened to a single letter to save space
-const PROPERTIES = {
-  score: {
-    name: SCORE_KEY,
-    formatter: (score) => roundNumber(score, 2),
+// Formatting to apply to observation values, e.g., rounding, encoding, etc...
+const FORMATTERS = {
+  score: (score) => roundNumber(score, 2),
+  rank: (rank) => (rank != null ? parseInt(rank) : null),
+  rating: (rating) => {
+    if (rating == null || rating === "grey" || rating === "") return "gray";
+    return rating;
   },
-  rank: {
-    name: RANK_KEY,
-    formatter: (rank) => (rank != null ? parseInt(rank) : null),
+  trend: (trend) => {
+    if (trend == null || trend === "") return null;
+    return trend;
   },
-  rating: {
-    name: RATING_KEY,
-    formatter: (rating) => {
-      if (rating == null || rating === "grey" || rating === "") return "gray";
-      return rating;
-    },
-  },
-  trend: {
-    name: TREND_KEY,
-    formatter: (trend) => {
-      if (trend == null || trend === "") return null;
-      return trend;
-    },
-  },
-  value: {
-    name: VALUE_KEY,
-    formatter: (value) => roundNumber(value, 2),
-  },
-  year: {
-    name: YEAR_KEY,
-  },
-  isImputed: {
-    name: IS_IMPUTED_KEY,
-    formatter: (isImputed) => (isImputed ? 1 : 0),
-  },
+  value: (value) => roundNumber(value, 2),
+  isImputed: (isImputed) => (isImputed ? 1 : null),
 };
 
 /**
@@ -75,24 +45,14 @@ const PROPERTIES = {
  * @return {Object} the observation that was added to the store
  */
 export const addObservation = ({ region, assessment, ...observation }) => {
-  // Shorten property names and format values
-  Object.keys(PROPERTIES).map((propertyName) => {
-    if (Object.prototype.hasOwnProperty.call(observation, propertyName)) {
-      const { name: shortName, formatter } = PROPERTIES[propertyName];
+  // Format values (rounding, encoding, etc...)
+  Object.entries(FORMATTERS).forEach(([key, formatter]) => {
+    // Skip if property is not defined
+    if (!Object.prototype.hasOwnProperty.call(observation, key)) return;
 
-      // Format value using property formatter
-      if (formatter != null)
-        observation[propertyName] = formatter(observation[propertyName]);
-
-      // Shorten property name
-      observation[shortName] = observation[propertyName];
-      delete observation[propertyName];
-    }
+    // Format value using property formatter
+    observation[key] = formatter(observation[key]);
   });
-
-  // Remove isImputed flag, unless observation is imputed
-  const isImputedKey = PROPERTIES.isImputed.name;
-  if (observation[isImputedKey] !== 1) delete observation[isImputedKey];
 
   // Prepare observations in store
   if (!store.observations) store.observations = {};

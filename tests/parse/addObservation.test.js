@@ -23,10 +23,10 @@ it("adds the observation to the store", () => {
   });
 
   expect(store.observations["1-4"]).toEqual({
-    v: 2.58,
-    c: "green",
-    a: "↑",
-    y: 2018,
+    value: 2.58,
+    rating: "green",
+    trend: "↑",
+    year: 2018,
   });
 });
 
@@ -38,7 +38,7 @@ describe("when passing isImputed = true", () => {
       isImputed: true,
     });
 
-    expect(store.observations["1-1"]).toHaveProperty("i", 1);
+    expect(store.observations["1-1"]).toHaveProperty("isImputed", 1);
   });
 });
 
@@ -50,7 +50,7 @@ describe("when passing isImputed = false", () => {
       isImputed: false,
     });
 
-    expect(store.observations["1-1"]).not.toHaveProperty("i");
+    expect(store.observations["1-1"]).toHaveProperty("isImputed", null);
   });
 });
 
