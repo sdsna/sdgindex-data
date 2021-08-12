@@ -14,6 +14,7 @@ export * from "./findRegionById";
 export * from "./findRegionWithAssessmentById";
 export * from "./findTimeseriesByRegionAndAssessment";
 export * from "./findTimeseriesByRegionAndIndicator";
+export * from "./getAssessments";
 export * from "./getGoals";
 export * from "./getGoalsForRegion";
 export * from "./getIndicators";
