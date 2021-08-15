@@ -1,6 +1,4 @@
-import findLast from "lodash.findlast";
-import { getTimeseriesValue } from "./getTimeseriesValue";
-import { START_YEAR, END_YEAR } from "./config";
+import { getFirstYear } from "./getFirstYear";
 
 /**
  * Get the last year where the timeseries has a non-null value.
@@ -8,9 +6,5 @@ import { START_YEAR, END_YEAR } from "./config";
  * @returns {Number}
  */
 export const getLastYear = (timeseries) =>
-  findLast(
-    Array.from({ length: END_YEAR - START_YEAR + 1 }).map(
-      (_value, index) => index + START_YEAR
-    ),
-    (year) => getTimeseriesValue(timeseries, year) != null
-  );
+  // We slice the first two elements because those are start year + start value
+  getFirstYear(timeseries) + timeseries.slice(2).length;

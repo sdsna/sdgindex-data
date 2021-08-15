@@ -12,7 +12,6 @@ import {
 } from "@sdgindex/data/parse";
 import { determineObjectEncoding } from "private:@sdgindex/data/utilities/determineObjectEncoding";
 import { encodeObject } from "private:@sdgindex/data/utilities/encodeObject";
-import { START_YEAR, END_YEAR } from "../../src/timeseries/config";
 import resetStore from "./resetStore";
 
 // Clear mock store before each test
@@ -116,12 +115,10 @@ export const addMockTimeseries = ({
   // Apply default values to timeseries
   timeseries = Object.assign(
     {
-      dataPoints: Array.from({ length: END_YEAR - START_YEAR + 1 }).map(
-        (_v, year) => ({
-          year: year + START_YEAR,
-          value: random(0, 1000),
-        })
-      ),
+      dataPoints: Array.from({ length: 2021 - 2000 + 1 }).map((_v, index) => ({
+        year: 2000 + index,
+        value: random(0, 1000),
+      })),
     },
     timeseries
   );

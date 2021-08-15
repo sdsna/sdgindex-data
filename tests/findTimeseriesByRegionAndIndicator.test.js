@@ -16,3 +16,13 @@ it("returns the relevant timeseries", () => {
     timeseries
   );
 });
+
+describe("when the timeseries does not exist", () => {
+  it("returns null", () => {
+    const assessment = addMockIndicator();
+    const region = addMockRegion();
+    addMockMultipleTimeseries();
+
+    expect(findTimeseriesByRegionAndAssessment(region, assessment)).toBe(null);
+  });
+});

@@ -28,7 +28,7 @@ it("calls writeData for assessments, regions, obs, and timeseries", () => {
   const assessments = [goal, ...addMockIndicators({ goal })];
   const regions = addMockRegions();
   const observations = {};
-  const timeseries = [];
+  const timeseries = {};
 
   assessments.forEach((assessment) => {
     regions.forEach((region) => {
@@ -37,7 +37,10 @@ it("calls writeData for assessments, regions, obs, and timeseries", () => {
           region,
           assessment,
         });
-      timeseries.push(addMockTimeseries({ region, assessment }));
+      timeseries[`${region.dataId}-${assessment.dataId}`] = addMockTimeseries({
+        region,
+        assessment,
+      });
     });
   });
 
@@ -102,7 +105,7 @@ describe("when store is empty", () => {
     );
     expect(writeJsonSync).toHaveBeenCalledWith(
       path.join(DATA_DIR, "timeseries.json"),
-      { timeseries: [] }
+      { timeseries: {} }
     );
   });
 });
