@@ -15,6 +15,7 @@ import {
 } from "testHelpers/storeMocks";
 
 jest.mock("fs-extra");
+
 const { DATA_DIR } = config;
 
 it("ensures the DATA_DIR exists", () => {
@@ -62,11 +63,14 @@ it("calls writeData for assessments, regions, obs, and timeseries", () => {
   );
   expect(writeJsonSync).toHaveBeenCalledWith(
     path.join(DATA_DIR, "observations.json"),
-    { observations }
+    { observations: expect.any(Object), observationEncoding: expect.any(Array) }
   );
   expect(writeJsonSync).toHaveBeenCalledWith(
     path.join(DATA_DIR, "observations-raw.json"),
-    { observations },
+    {
+      observations: expect.any(Object),
+      observationEncoding: expect.any(Array),
+    },
     { spaces: 2 }
   );
   expect(writeJsonSync).toHaveBeenCalledWith(
@@ -94,7 +98,7 @@ describe("when store is empty", () => {
     );
     expect(writeJsonSync).toHaveBeenCalledWith(
       path.join(DATA_DIR, "observations.json"),
-      { observations: {} }
+      { observations: {}, observationEncoding: [] }
     );
     expect(writeJsonSync).toHaveBeenCalledWith(
       path.join(DATA_DIR, "timeseries.json"),

@@ -1,6 +1,6 @@
 import faker from "faker";
 import { omit, random } from "lodash";
-import { getGoals } from "@sdgindex/data";
+import { store, getGoals } from "@sdgindex/data";
 import {
   addIndicator,
   addGoal,
@@ -10,6 +10,8 @@ import {
   addRegion,
   addTimeseries,
 } from "@sdgindex/data/parse";
+import { determineObjectEncoding } from "private:@sdgindex/data/utilities/determineObjectEncoding";
+import { encodeObject } from "private:@sdgindex/data/utilities/encodeObject";
 import { START_YEAR, END_YEAR } from "../../src/timeseries/config";
 import resetStore from "./resetStore";
 import renameKeys from "./renameKeys";
@@ -96,7 +98,7 @@ export const addMockObservation = ({
         "red",
         "gray",
       ]),
-      trend: faker.random.arrayElement(["↑", "➚", "→", "↓", "·"]),
+      trend: faker.random.arrayElement(["↑", "➚", "→", "↓", "•"]),
     },
     observation
   );
@@ -142,3 +144,16 @@ export const addMockObservations = ({ count = 5, ...params } = {}) =>
 
 export const addMockMultipleTimeseries = ({ count = 5, ...params } = {}) =>
   Array.from({ length: count }).map(() => addMockTimeseries(params));
+
+export const mockEncodeObservations = () => {
+  store.observationEncoding = determineObjectEncoding(
+    Object.values(store.observations)
+  );
+
+  Object.entries(store.observations).map(([id, observation]) => {
+    store.observations[id] = encodeObject(
+      observation,
+      store.observationEncoding
+    );
+  });
+};

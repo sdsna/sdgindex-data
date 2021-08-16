@@ -21,7 +21,6 @@ export * from "./getIndicators";
 export * from "./getIndicatorsByGoal";
 export * from "./getIndicatorsForRegion";
 export * from "./getIndicatorsForRegionByGoal";
-export * from "./getObservationsForAssessment";
 export * from "./getOverallAssessment";
 export * from "./getOverallAssessmentForRegion";
 export * from "./getRegions";

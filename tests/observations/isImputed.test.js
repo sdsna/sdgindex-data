@@ -9,3 +9,9 @@ it("returns false if not imputed", () => {
   expect(isImputed(addMockObservation())).toEqual(false);
   expect(isImputed(addMockObservation({ isImputed: false }))).toEqual(false);
 });
+
+describe("when isImputed is not defined", () => {
+  it("returns false", () => {
+    expect(isImputed({})).toBe(false);
+  });
+});

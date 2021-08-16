@@ -9,4 +9,3 @@ export * from "./getValueAsText";
 export * from "./getYear";
 export * from "./getYearAsText";
 export * from "./isImputed";
-export * from "./observationObjectToArray";

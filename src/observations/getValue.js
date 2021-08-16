@@ -1,8 +1,8 @@
-import { VALUE_KEY } from "./config";
+import get from "lodash.get";
 
 /**
  * Get the numeric, raw value for the given observation.
  * @param {Object} observation
  * @return {number}
  */
-export const getValue = (observation) => observation[VALUE_KEY];
+export const getValue = (observation) => get(observation, "value", null);
