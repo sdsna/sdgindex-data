@@ -45,7 +45,7 @@ describe("when passing custom parameters", () => {
 });
 
 describe("when adding 10 regions", () => {
-  it("it sets a unique dataId for each one", () => {
+  it("sets a unique dataId for each one", () => {
     for (let i = 0; i < 10; i++) {
       addRegion({
         id: "FRA",

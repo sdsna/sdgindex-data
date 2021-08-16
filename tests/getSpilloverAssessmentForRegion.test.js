@@ -2,7 +2,6 @@ import { omit } from "lodash";
 import { getSpilloverAssessmentForRegion } from "@sdgindex/data";
 import {
   addMockIndicators,
-  addMockGoals,
   addMockObservation,
   addMockObservations,
   addMockOverallAssessment,

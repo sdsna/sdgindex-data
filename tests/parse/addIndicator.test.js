@@ -26,7 +26,7 @@ it("adds the indicator to the store", () => {
 });
 
 describe("when manually providing the slug", () => {
-  it("it uses the user-provided slug", () => {
+  it("uses the user-provided slug", () => {
     addIndicator({
       id: "sdg1_wpc",
       goalNumber: 1,
@@ -39,7 +39,7 @@ describe("when manually providing the slug", () => {
 });
 
 describe("when adding 10 indicators", () => {
-  it("it sets a unique dataId for each one", () => {
+  it("sets a unique dataId for each one", () => {
     for (let i = 0; i < 10; i++) {
       addIndicator({
         id: "sdg1_wpc",

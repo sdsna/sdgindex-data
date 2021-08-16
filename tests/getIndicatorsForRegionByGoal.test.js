@@ -2,11 +2,8 @@ import { omit } from "lodash";
 import { getIndicatorsForRegionByGoal } from "@sdgindex/data";
 import {
   addMockGoal,
-  addMockGoals,
-  addMockIndicator,
   addMockIndicators,
   addMockObservation,
-  addMockObservations,
   addMockOverallAssessment,
   addMockRegion,
   addMockRegions,

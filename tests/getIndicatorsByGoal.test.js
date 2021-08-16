@@ -9,7 +9,7 @@ import {
 it("returns indicators for the given goal", () => {
   const goal = addMockGoal();
   const indicators = addMockIndicators({ goal });
-  const otherIndicators = addMockIndicators();
+  addMockIndicators();
   addMockOverallAssessment();
   addMockGoals();
 

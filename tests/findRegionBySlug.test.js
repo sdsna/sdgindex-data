@@ -1,4 +1,4 @@
-import { findRegionBySlug, store } from "@sdgindex/data";
+import { findRegionBySlug } from "@sdgindex/data";
 import { addMockRegion, addMockRegions } from "testHelpers/storeMocks";
 
 it("finds region with slug 'my-region'", () => {
