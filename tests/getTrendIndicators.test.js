@@ -1,4 +1,3 @@
-import { omit } from "lodash";
 import { getTrendIndicators } from "@sdgindex/data";
 import {
   addMockIndicators,

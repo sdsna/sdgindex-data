@@ -2,13 +2,9 @@ import { omit } from "lodash";
 import { getGoalsForRegion } from "@sdgindex/data";
 import {
   addMockGoals,
-  addMockIndicator,
-  addMockIndicators,
   addMockObservation,
-  addMockObservations,
   addMockOverallAssessment,
   addMockRegion,
-  addMockRegions,
 } from "testHelpers/storeMocks";
 
 let goals, region, goalObservations;

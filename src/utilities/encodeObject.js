@@ -28,7 +28,7 @@ export const encodeObject = (object, encoding) => {
     throw new Error(
       `Some object properties could not be not encoded. Encoding: ${JSON.stringify(
         encoding
-      )}. Object: ${JSON.stringify(observation)}`
+      )}. Object: ${JSON.stringify(object)}`
     );
 
   // Remove trailing `null` and `undefined`

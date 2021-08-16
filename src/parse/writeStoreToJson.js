@@ -5,17 +5,6 @@ import { encodeObject } from "../utilities/encodeObject";
 import { store } from "../store";
 import { DATA_DIR } from "../config";
 
-// The datasets to write to JSON
-const DATASETS = ["assessments", "regions", "observations", "timeseries"];
-
-// Empty fallback array/object, depending on type
-const FALLBACK = {
-  assessments: [],
-  regions: [],
-  observations: {},
-  timeseries: [],
-};
-
 // Write data to human-friendly and minified JSON file with the given name
 const writeDataToJson = (name, data) => {
   // Write human-friendly

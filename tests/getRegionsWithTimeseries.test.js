@@ -2,9 +2,7 @@ import { omit } from "lodash";
 import { getRegionsWithTimeseries } from "@sdgindex/data";
 import {
   addMockIndicator,
-  addMockIndicators,
   addMockTimeseries,
-  addMockMultipleTimeseries,
   addMockRegions,
 } from "testHelpers/storeMocks";
 

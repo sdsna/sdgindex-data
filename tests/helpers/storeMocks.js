@@ -1,5 +1,5 @@
 import faker from "faker";
-import { omit, random } from "lodash";
+import { random } from "lodash";
 import { store, getGoals } from "@sdgindex/data";
 import {
   addIndicator,
@@ -14,7 +14,6 @@ import { determineObjectEncoding } from "private:@sdgindex/data/utilities/determ
 import { encodeObject } from "private:@sdgindex/data/utilities/encodeObject";
 import { START_YEAR, END_YEAR } from "../../src/timeseries/config";
 import resetStore from "./resetStore";
-import renameKeys from "./renameKeys";
 
 // Clear mock store before each test
 beforeEach(resetStore);
