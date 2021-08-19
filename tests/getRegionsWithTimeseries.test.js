@@ -1,4 +1,3 @@
-import { omit } from "lodash";
 import { getRegionsWithTimeseries } from "@sdgindex/data";
 import {
   addMockIndicator,
@@ -24,7 +23,5 @@ it("returns all regions", () => {
 });
 
 it("includes timeseries for each region", () => {
-  expect(getRegionsWithTimeseries(indicator)).toMatchObject(
-    timeseries.map((series) => omit(series, "id"))
-  );
+  expect(getRegionsWithTimeseries(indicator)).toMatchObject(timeseries);
 });

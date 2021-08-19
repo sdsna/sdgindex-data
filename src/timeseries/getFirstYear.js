@@ -1,6 +1,10 @@
 /**
  * Get the first year where the timeseries has a non-null value.
  * @param {Object} timeseries
- * @returns {Number}
+ * @returns {?number}
  */
-export const getFirstYear = (timeseries) => timeseries[0];
+export const getFirstYear = ({ timeseries }) => {
+  if (timeseries == null) return null;
+
+  return timeseries[0];
+};

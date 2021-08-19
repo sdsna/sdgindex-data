@@ -9,5 +9,9 @@ import { ensureDataIds } from "./ensureDataIds";
  */
 export const findTimeseriesByRegionAndAssessment = (region, assessment) => {
   ensureDataIds({ region, assessment });
-  return store.timeseries[`${region.dataId}-${assessment.dataId}`] || null;
+  const timeseries = store.timeseries[`${region.dataId}-${assessment.dataId}`];
+
+  if (timeseries == null) return null;
+
+  return { timeseries };
 };

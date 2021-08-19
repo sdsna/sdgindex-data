@@ -46,5 +46,5 @@ export const addTimeseries = ({ region, assessment, dataPoints }) => {
   // Add timeseries
   store.timeseries[id] = timeseries;
 
-  return timeseries;
+  return { timeseries };
 };

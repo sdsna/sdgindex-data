@@ -40,7 +40,7 @@ it("calls writeData for assessments, regions, obs, and timeseries", () => {
       timeseries[`${region.dataId}-${assessment.dataId}`] = addMockTimeseries({
         region,
         assessment,
-      });
+      }).timeseries;
     });
   });
 
