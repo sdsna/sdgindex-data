@@ -8,6 +8,8 @@ export * from "./findIndicatorById";
 export * from "./findIndicatorBySlug";
 export * from "./findIndicatorForRegionById";
 export * from "./findIndicatorForRegionBySlug";
+export * from "./findLnobAssessment";
+export * from "./findLnobAssessmentForRegion";
 export * from "./findObservationByRegionAndAssessment";
 export * from "./findOverallAssessment";
 export * from "./findOverallAssessmentForRegion";
