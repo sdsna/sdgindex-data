@@ -1,4 +1,4 @@
-import { getOverallAssessment } from "@sdgindex/data";
+import { findOverallAssessment } from "@sdgindex/data";
 import {
   addMockIndicators,
   addMockGoals,
@@ -10,5 +10,5 @@ it("returns the overall assessment", () => {
   addMockGoals();
   addMockIndicators();
 
-  expect(getOverallAssessment()).toEqual(overallAssessment);
+  expect(findOverallAssessment()).toEqual(overallAssessment);
 });
