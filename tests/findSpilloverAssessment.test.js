@@ -1,4 +1,4 @@
-import { getSpilloverAssessment } from "@sdgindex/data";
+import { findSpilloverAssessment } from "@sdgindex/data";
 import {
   addMockIndicators,
   addMockGoals,
@@ -12,5 +12,5 @@ it("returns the overall assessment", () => {
   addMockGoals();
   addMockIndicators();
 
-  expect(getSpilloverAssessment()).toEqual(spilloverAssessment);
+  expect(findSpilloverAssessment()).toEqual(spilloverAssessment);
 });

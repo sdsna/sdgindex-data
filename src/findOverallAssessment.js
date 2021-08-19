@@ -5,5 +5,5 @@ import { isOverallAssessment } from "./assessments/isOverallAssessment";
  * Get the overall SDG Index assessment.
  * @return {Object}
  */
-export const getOverallAssessment = () =>
+export const findOverallAssessment = () =>
   getAssessments().find(isOverallAssessment);

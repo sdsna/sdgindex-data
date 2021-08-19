@@ -1,5 +1,5 @@
 import { findAssessmentForRegionById } from "./findAssessmentForRegionById";
-import { getSpilloverAssessment } from "./getSpilloverAssessment";
+import { findSpilloverAssessment } from "./findSpilloverAssessment";
 
 /**
  * Get the spillover index assessment, including the observation for the given
@@ -8,5 +8,5 @@ import { getSpilloverAssessment } from "./getSpilloverAssessment";
  * @return {Object} return the overallspillover index assessment, including the
  *                  observation for the given region
  */
-export const getSpilloverAssessmentForRegion = (region) =>
-  findAssessmentForRegionById(region, getSpilloverAssessment().id);
+export const findSpilloverAssessmentForRegion = (region) =>
+  findAssessmentForRegionById(region, findSpilloverAssessment().id);

@@ -1,5 +1,5 @@
 import { omit } from "lodash";
-import { getOverallAssessmentForRegion } from "@sdgindex/data";
+import { findOverallAssessmentForRegion } from "@sdgindex/data";
 import {
   addMockIndicators,
   addMockObservation,
@@ -21,13 +21,13 @@ beforeEach(() => {
 });
 
 it("returns the overall assessment", () => {
-  expect(getOverallAssessmentForRegion(region)).toMatchObject(
+  expect(findOverallAssessmentForRegion(region)).toMatchObject(
     overallAssessment
   );
 });
 
 it("includes observation for region", () => {
-  expect(getOverallAssessmentForRegion(region)).toMatchObject(
+  expect(findOverallAssessmentForRegion(region)).toMatchObject(
     omit(observation, "id")
   );
 });

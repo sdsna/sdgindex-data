@@ -1,5 +1,5 @@
 import { findAssessmentForRegionById } from "./findAssessmentForRegionById";
-import { getOverallAssessment } from "./getOverallAssessment";
+import { findOverallAssessment } from "./findOverallAssessment";
 
 /**
  * Get the overall SDG Index assessment, including the observation for the given
@@ -8,5 +8,5 @@ import { getOverallAssessment } from "./getOverallAssessment";
  * @return {Object} return the overall assessment, including the observation for
  *                  the given region
  */
-export const getOverallAssessmentForRegion = (region) =>
-  findAssessmentForRegionById(region, getOverallAssessment().id);
+export const findOverallAssessmentForRegion = (region) =>
+  findAssessmentForRegionById(region, findOverallAssessment().id);

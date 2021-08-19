@@ -1,5 +1,5 @@
 import { omit } from "lodash";
-import { getSpilloverAssessmentForRegion } from "@sdgindex/data";
+import { findSpilloverAssessmentForRegion } from "@sdgindex/data";
 import {
   addMockIndicators,
   addMockObservation,
@@ -27,13 +27,13 @@ beforeEach(() => {
 });
 
 it("returns the overall spillover index assessment", () => {
-  expect(getSpilloverAssessmentForRegion(region)).toMatchObject(
+  expect(findSpilloverAssessmentForRegion(region)).toMatchObject(
     spilloverAssessment
   );
 });
 
 it("includes observation for region", () => {
-  expect(getSpilloverAssessmentForRegion(region)).toMatchObject(
+  expect(findSpilloverAssessmentForRegion(region)).toMatchObject(
     omit(observation, "id")
   );
 });
