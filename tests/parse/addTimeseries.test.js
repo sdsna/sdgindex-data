@@ -41,45 +41,45 @@ it("add timeseries to the store", () => {
     ],
   });
 
-  expect(store.timeseries[0]).toEqual({
-    id: "1-35",
-    v: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2],
-  });
+  expect(store.timeseries["1-35"]).toEqual([
+    2000, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2,
+  ]);
 });
 
 it("rounds values to two decimals", () => {
   addTimeseries({
-    region: addMockRegion(),
-    assessment: addMockIndicator(),
+    region: addMockRegion({ dataId: 5 }),
+    assessment: addMockIndicator({ dataId: 37 }),
     dataPoints: [{ year: 2004, value: 115.2365 }],
   });
 
-  expect(store.timeseries[0]).toMatchObject({
-    v: [
-      null,
-      null,
-      null,
-      null,
-      115.24,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
+  expect(store.timeseries["5-37"]).toMatchObject([2004, 115.24]);
+});
+
+it("can add timeseries after 2021", () => {
+  addTimeseries({
+    region: addMockRegion({ dataId: 5 }),
+    assessment: addMockIndicator({ dataId: 37 }),
+    dataPoints: [
+      { year: 2025, value: 1 },
+      { year: 2027, value: 3 },
     ],
   });
+
+  expect(store.timeseries["5-37"]).toMatchObject([2025, 1, null, 3]);
+});
+
+it("it ignores trailing null values", () => {
+  addTimeseries({
+    region: addMockRegion({ dataId: 5 }),
+    assessment: addMockIndicator({ dataId: 37 }),
+    dataPoints: [
+      { year: 2005, value: 13 },
+      { year: 2012, value: null },
+    ],
+  });
+
+  expect(store.timeseries["5-37"]).toMatchObject([2005, 13]);
 });
 
 describe("when adding timeseries without data points", () => {

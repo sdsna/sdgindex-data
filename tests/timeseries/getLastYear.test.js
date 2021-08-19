@@ -23,3 +23,11 @@ it("returns last year with non-null value", () => {
     )
   ).toEqual(2018);
 });
+
+describe("when timeseries consists of a single data point", () => {
+  it("returns last year correctly", () => {
+    expect(
+      getLastYear(addMockTimeseries({ dataPoints: [{ year: 1992, value: 3 }] }))
+    ).toEqual(1992);
+  });
+});

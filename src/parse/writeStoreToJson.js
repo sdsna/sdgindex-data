@@ -45,5 +45,5 @@ export const writeStoreToJson = () => {
     observations: encodedObservations,
     observationEncoding,
   });
-  writeDataToJson("timeseries", { timeseries: store.timeseries || [] });
+  writeDataToJson("timeseries", { timeseries: store.timeseries || {} });
 };

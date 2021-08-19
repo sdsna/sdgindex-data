@@ -3,6 +3,5 @@
  * @param {Object} timeseries
  * @returns {bool} Return true if the object has timeseries
  */
-export const hasTimeseries = (timeseries) =>
-  Object.prototype.hasOwnProperty.call(timeseries, "v") &&
-  Array.isArray(timeseries.v);
+export const hasTimeseries = ({ timeseries }) =>
+  Array.isArray(timeseries) && timeseries.length > 0;
