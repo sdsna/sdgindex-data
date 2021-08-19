@@ -7,6 +7,7 @@ import {
   addObservation,
   addOverallAssessment,
   addSpilloverAssessment,
+  addLnobAssessment,
   addRegion,
   addTimeseries,
 } from "@sdgindex/data/parse";
@@ -62,6 +63,8 @@ export const addMockOverallAssessment = (params = {}) =>
 
 export const addMockSpilloverAssessment = (params = {}) =>
   addSpilloverAssessment(params);
+
+export const addMockLnobAssessment = (params = {}) => addLnobAssessment(params);
 
 export const addMockRegion = ({ name, ...params } = {}) => {
   if (!name) name = `${faker.address.country()} - ${getUniqueId()}`;
