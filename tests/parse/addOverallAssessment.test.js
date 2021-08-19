@@ -15,7 +15,7 @@ it("adds the overall assessment to the store", () => {
     slug: "overall",
     label: "Overall score",
     description: expect.stringMatching(
-      "The overall score measures a country's total progress towards achieving all 17 SDGs"
+      "The overall score measures the total progress towards achieving all 17 SDGs"
     ),
     type: "custom",
   });
