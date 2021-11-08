@@ -7,6 +7,18 @@ it("returns false by default", () => {
   expect(isDataLoaded()).toBe(false);
 });
 
+describe("when assessments are loading", () => {
+  beforeEach(() => {
+    store.assessments = new Promise(() => {});
+    store.regions = [];
+    store.observations = {};
+  });
+
+  it("returns false", () => {
+    expect(isDataLoaded()).toBe(false);
+  });
+});
+
 describe("when assessments, regions, and observations are present", () => {
   beforeEach(() => {
     store.assessments = [];
