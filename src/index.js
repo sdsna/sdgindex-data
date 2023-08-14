@@ -23,6 +23,8 @@ export * from "./findTimeseriesByRegionAndIndicator";
 export * from "./getAssessments";
 export * from "./getGoals";
 export * from "./getGoalsForRegion";
+export * from "./getLnobDimensions";
+export * from "./getLnobDimensionsForRegion";
 export * from "./getIndicators";
 export * from "./getIndicatorsByGoal";
 export * from "./getIndicatorsForRegion";

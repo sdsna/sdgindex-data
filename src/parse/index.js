@@ -1,5 +1,7 @@
 export * from "./addGoal";
 export * from "./addGoals";
+export * from "./addLnobDimension";
+export * from "./addLnobDimensions";
 export * from "./addIndicator";
 export * from "./addLnobAssessment";
 export * from "./addObservation";
