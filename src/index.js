@@ -30,6 +30,7 @@ export * from "./getIndicators";
 export * from "./getIndicatorsByGoal";
 export * from "./getIndicatorsForRegion";
 export * from "./getIndicatorsForRegionByGoal";
+export * from "./getIndicatorsForRegionByLnobDimension";
 export * from "./getRegions";
 export * from "./getRegionsByType";
 export * from "./getRegionsWithAssessment";
