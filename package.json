@@ -5,6 +5,10 @@
   "main": "cjs/index.js",
   "module": "es/index.js",
   "sideEffects": false,
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "build": "npm run build:cjs && npm run build:es",
     "build:cjs": "trash cjs/* && cross-env NODE_ENV=cjs babel src --out-dir cjs",
