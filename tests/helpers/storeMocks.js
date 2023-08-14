@@ -40,8 +40,8 @@ export const addMockIndicatorForLnobDimension = ({ lnob, ...params } = {}) => {
   if (!lnob) lnob = getDefaultLnobDimensionForIndicators();
 
   return addIndicator({
-    id: `LNOB${random(1, 17)}_${faker.internet.userName()}_${getUniqueId()}`,
-    goalNumber: lnob.number,
+    id: `LNOB${random(1, 4)}_${faker.internet.userName()}_${getUniqueId()}`,
+    goalNumber: lnob.id,
     labelWithUnit: `${faker.company.catchPhrase()}_${getUniqueId()}`,
     ...params,
   });
@@ -85,7 +85,7 @@ export const addMockLnobDimension = ({ number, ...params } = {}) => {
   if (number == null) {
     // Get the lnob numbers that have already been added
     const lnobNumbers = getLnobDimensions().map((lnob) => lnob.number);
-    for (let i = 1; i <= 17; i++) {
+    for (let i = 1; i <= 4; i++) {
       if (!lnobNumbers.includes(i)) {
         number = i;
         break;
@@ -170,10 +170,18 @@ export const addMockTimeseries = ({
 export const addMockIndicators = ({ count = 5, ...params } = {}) =>
   Array.from({ length: count }).map(() => addMockIndicator(params));
 
+export const addMockIndicatorsForLnobDimension = ({
+  count = 4,
+  ...params
+} = {}) =>
+  Array.from({ length: count }).map(() =>
+    addMockIndicatorForLnobDimension(params)
+  );
+
 export const addMockGoals = ({ count = 5, ...params } = {}) =>
   Array.from({ length: count }).map(() => addMockGoal(params));
 
-export const addMockLnobDimensions = ({ count = 4, ...params } = {}) =>
+export const addMockLnobDimensions = ({ count = 2, ...params } = {}) =>
   Array.from({ length: count }).map(() => addMockLnobDimension(params));
 
 export const addMockRegions = ({ count = 5, ...params } = {}) =>
