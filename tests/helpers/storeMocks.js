@@ -1,9 +1,10 @@
 import faker from "faker";
 import { random } from "lodash";
-import { store, getGoals } from "@sdgindex/data";
+import { store, getGoals, getLnobDimensions } from "@sdgindex/data";
 import {
   addIndicator,
   addGoal,
+  addLnobDimension,
   addObservation,
   addOverallAssessment,
   addSpilloverAssessment,
@@ -34,12 +35,33 @@ export const addMockIndicator = ({ goal, ...params } = {}) => {
   });
 };
 
+export const addMockIndicatorForLnobDimension = ({ lnob, ...params } = {}) => {
+  // Set up an associated lnob
+  if (!lnob) lnob = getDefaultLnobDimensionForIndicators();
+
+  return addIndicator({
+    id: `LNOB${random(1, 17)}_${faker.internet.userName()}_${getUniqueId()}`,
+    goalNumber: lnob.number,
+    labelWithUnit: `${faker.company.catchPhrase()}_${getUniqueId()}`,
+    ...params,
+  });
+};
+
 // The default goal to use for setting up indicators
 let __defaultGoalForIndicators = null;
 const getDefaultGoalForIndicators = () => {
   if (!__defaultGoalForIndicators) __defaultGoalForIndicators = addMockGoal();
 
   return __defaultGoalForIndicators;
+};
+
+// The default lnob to use for setting up indicators
+let __defaultLnobDimensionForIndicators = null;
+const getDefaultLnobDimensionForIndicators = () => {
+  if (!__defaultLnobDimensionForIndicators)
+    __defaultLnobDimensionForIndicators = addMockLnobDimension();
+
+  return __defaultLnobDimensionForIndicators;
 };
 
 export const addMockGoal = ({ number, ...params } = {}) => {
@@ -56,6 +78,22 @@ export const addMockGoal = ({ number, ...params } = {}) => {
   }
 
   return addGoal({ number, ...params });
+};
+
+export const addMockLnobDimension = ({ number, ...params } = {}) => {
+  // Identify a valid lnob to add (number 1 - 4)
+  if (number == null) {
+    // Get the lnob numbers that have already been added
+    const lnobNumbers = getLnobDimensions().map((lnob) => lnob.number);
+    for (let i = 1; i <= 17; i++) {
+      if (!lnobNumbers.includes(i)) {
+        number = i;
+        break;
+      }
+    }
+  }
+
+  return addLnobDimension({ number, ...params });
 };
 
 export const addMockOverallAssessment = (params = {}) =>
@@ -134,6 +172,9 @@ export const addMockIndicators = ({ count = 5, ...params } = {}) =>
 
 export const addMockGoals = ({ count = 5, ...params } = {}) =>
   Array.from({ length: count }).map(() => addMockGoal(params));
+
+export const addMockLnobDimensions = ({ count = 4, ...params } = {}) =>
+  Array.from({ length: count }).map(() => addMockLnobDimension(params));
 
 export const addMockRegions = ({ count = 5, ...params } = {}) =>
   Array.from({ length: count }).map(() => addMockRegion(params));
