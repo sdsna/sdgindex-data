@@ -110,7 +110,7 @@ export const addMockRegion = ({ name, ...params } = {}) => {
   return addRegion({
     id: `${faker.internet.userName()}_${getUniqueId()}`,
     name,
-    type: faker.random.arrayElement(["country", "state", "city"]),
+    type: faker.random.arrayElement(["country", "state", "city", "department"]),
     ...params,
   });
 };
