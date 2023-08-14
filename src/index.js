@@ -25,6 +25,7 @@ export * from "./getGoals";
 export * from "./getGoalsForRegion";
 export * from "./getLnobDimensions";
 export * from "./getLnobDimensionsForRegion";
+export * from "./getIndicatorsByLnobDimension";
 export * from "./getIndicators";
 export * from "./getIndicatorsByGoal";
 export * from "./getIndicatorsForRegion";
