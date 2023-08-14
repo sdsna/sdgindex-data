@@ -1,4 +1,5 @@
 module.exports = {
+  testEnvironment: "jsdom",
   resetMocks: true,
   moduleNameMapper: {
     "^@sdgindex/data(.*)$": "<rootDir>/src$1",

@@ -1,6 +1,6 @@
 {
   "name": "@sdgindex/data",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "",
   "main": "cjs/index.js",
   "module": "es/index.js",
@@ -37,13 +37,13 @@
     "fs-extra": false
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.16",
-    "@babel/core": "^7.14.0",
-    "@babel/preset-env": "^7.14.1",
-    "@babel/preset-react": "^7.14.5",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
-    "babel-jest": "^26.6.3",
+    "@babel/cli": "^7.22.10",
+    "@babel/core": "^7.22.10",
+    "@babel/preset-env": "^7.22.10",
+    "@babel/preset-react": "^7.22.5",
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/react": "^14.0.0",
+    "babel-jest": "^29.6.2",
     "cross-env": "^7.0.3",
     "esdoc": "^1.1.0",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
@@ -54,15 +54,16 @@
     "eslint-plugin-react": "^7.23.2",
     "faker": "^5.5.3",
     "husky": "^6.0.0",
-    "jest": "^26.6.3",
+    "jest": "^29.6.2",
+    "jest-environment-jsdom": "^29.6.2",
     "lint-staged": "^11.0.0",
     "lodash": "^4.17.21",
     "np": "^7.4.0",
     "prettier": "2.3.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "tmp": "^0.0.33",
-    "trash-cli": "^4.0.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tmp": "^0.2.1",
+    "trash-cli": "^5.0.0"
   },
   "dependencies": {
     "fs-extra": "^9.1.0",
@@ -71,11 +72,7 @@
     "lodash.isarray": "^4.0.0",
     "lodash.isplainobject": "^4.0.6",
     "lodash.uniq": "^4.5.0",
-    "url-slug": "^3.0.2",
-    "xlsx": "^0.17.0"
-  },
-  "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "url-slug": "^4.0.1",
+    "xlsx": "^0.18.5"
   }
 }
