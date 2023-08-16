@@ -1,5 +1,4 @@
 import isPlainObject from "lodash.isplainobject";
-import isArray from "lodash.isarray";
 import { store } from "./store";
 
 /**
@@ -15,6 +14,6 @@ export const isDataLoaded = ({ timeseries = false } = {}) => {
   if (timeseries === true) datasets.push("timeseries");
 
   return datasets.every(
-    (dataset) => isPlainObject(store[dataset]) || isArray(store[dataset])
+    (dataset) => isPlainObject(store[dataset]) || Array.isArray(store[dataset])
   );
 };
