@@ -11,3 +11,5 @@
 # Ignore store files
 /**/.DS_Store
 
+# Ignore store files
+.vscode

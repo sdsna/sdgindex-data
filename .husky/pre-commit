@@ -17,8 +17,9 @@ esac
 
 # Run a different command depending on platform
 # Atom on Windows only works when preceded by sh
-if [[ $platform == "windows" ]]; then
-  sh npx lint-staged
-else
-  npx lint-staged
-fi
+# if [[ $platform == "windows" ]]; then
+#   sh npx lint-staged
+# else
+#   npx lint-staged
+# fi
+npx lint-staged

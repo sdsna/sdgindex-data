@@ -1,5 +1,6 @@
 export * from "./isGlobalOnly";
 export * from "./isGoal";
+export * from "./isLnobDimension";
 export * from "./isIndicator";
 export * from "./isLnobAssessment";
 export * from "./isOecdOnly";
