@@ -8,6 +8,18 @@ it("rounds -17.333333 to -17.33 with precision 2", () => {
   expect(roundNumber(-17.333333, 2)).toEqual(-17.33);
 });
 
+it("rounds -12.5 to -13 with precision 0", () => {
+  expect(roundNumber(-12.5, 0)).toEqual(-13);
+});
+
+it("rounds -12.5 to -13 with precision 0 (string)", () => {
+  expect(roundNumber("-12.5", 0)).toEqual(-13);
+});
+
+it("rounds -12.45 to -12.5 with precision 0", () => {
+  expect(roundNumber(-12.45, 1)).toEqual(-12.5);
+});
+
 it("rounds 15 to 15 with precision 2", () => {
   expect(roundNumber(15, 2)).toEqual(15);
 });
@@ -22,6 +34,10 @@ it("rounds 0.321 to 0.32 with precision 2", () => {
 
 it("rounds 0.5555 to 0.56 with precision 2", () => {
   expect(roundNumber(0.555, 2)).toEqual(0.56);
+});
+
+it("rounds 0.5555 to 0.56 with precision 2 (string)", () => {
+  expect(roundNumber("0.555", 2)).toEqual(0.56);
 });
 
 it("rounds 0.5555 to 1 with precision 0", () => {
