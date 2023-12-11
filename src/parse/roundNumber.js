@@ -8,8 +8,12 @@
 export const roundNumber = (number, precision) => {
   if (number == null) return null;
 
-  return (
-    Math.round(parseFloat(number) * Math.pow(10, precision)) /
-    Math.pow(10, precision)
-  );
+  const factor = 10 ** precision;
+  const adjustedNumber = parseFloat(number) * factor;
+
+  if (number < 0) {
+    return Math.ceil(adjustedNumber - 0.5) / factor;
+  }
+
+  return Math.round(adjustedNumber) / factor;
 };
