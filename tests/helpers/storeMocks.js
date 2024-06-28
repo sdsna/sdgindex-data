@@ -128,7 +128,7 @@ export const addMockObservation = ({
     {
       value: random(0, 1000),
       year: random(2000, 2021),
-      score: random(0, 100, true),
+      score: random(0, 100),
       rank: random(0, 100),
       rating: faker.random.arrayElement([
         "green",
