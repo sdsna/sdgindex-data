@@ -15,7 +15,9 @@ export const getScoreAsText = (
   fallback = "Not scored"
 ) => {
   const score = getScore(observation);
-  if (score != null) return score.toFixed(precision);
 
+  const multiplier = Math.pow(10, precision);
+  if (score != null)
+    return (Math.round(score * multiplier) / multiplier).toFixed(precision);
   return fallback;
 };
