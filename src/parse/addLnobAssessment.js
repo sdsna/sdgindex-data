@@ -15,7 +15,7 @@ export const addLnobAssessment = (params = {}) =>
     slug: "leave-no-one-behind",
     label: "Leave-no-one-behind score",
     description:
-      'The SDGs are guided by the principle to "leave no one behind" (LNOB). The Leave-No-One-Behind Index tracks inequalities along four dimensions: poverty, services, gender, and income. A higher score means that fewer population groups are being left behind.',
+      'The SDGs are guided by the principle to "leave no one behind". The LNOB Index tracks inequalities along four dimensions: poverty, services, gender, and income. A higher score means that fewer population groups are being left behind.',
     type: "custom",
     ...params,
   });
