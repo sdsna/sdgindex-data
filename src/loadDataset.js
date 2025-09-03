@@ -1,13 +1,14 @@
+import { DATA_PATH, getDataDir } from "./config";
 import { store } from "./store";
-import { DATA_DIR, DATA_PATH } from "./config";
 
 /**
  * Load a single dataset into the store.
  * @private
  * @param {Object} dataset - The dataset to load
+ * @param {string} [context] - The context for data storage (e.g., 'benin' for Benin-specific data)
  * @return {Promise} a promise that resolves when the dataset has been loaded
  */
-export const loadDataset = (dataset) => {
+export const loadDataset = (dataset, context) => {
   // If dataset is loaded (or loading), return existing data (or promise)
   if (store[dataset] !== undefined) return Promise.resolve(store[dataset]);
 
@@ -16,7 +17,8 @@ export const loadDataset = (dataset) => {
     // Server
     const path = require("path");
     const fse = require("fs-extra");
-    const datasetPath = path.resolve(DATA_DIR, `${dataset}.json`);
+    const dataDir = getDataDir(context);
+    const datasetPath = path.resolve(dataDir, `${dataset}.json`);
     store[dataset] = fse.readJson(datasetPath);
   } else {
     // Browser

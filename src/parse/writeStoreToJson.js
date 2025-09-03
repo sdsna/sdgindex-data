@@ -1,17 +1,17 @@
-import path from "path";
 import { ensureDirSync, writeJsonSync } from "fs-extra";
+import path from "path";
+import { getDataDir } from "../config";
+import { store } from "../store";
 import { determineObjectEncoding } from "../utilities/determineObjectEncoding";
 import { encodeObject } from "../utilities/encodeObject";
-import { store } from "../store";
-import { DATA_DIR } from "../config";
 
 // Write data to human-friendly and minified JSON file with the given name
-const writeDataToJson = (name, data) => {
+const writeDataToJson = (name, data, dataDir) => {
   // Write human-friendly
-  writeJsonSync(path.join(DATA_DIR, `${name}-raw.json`), data, { spaces: 2 });
+  writeJsonSync(path.join(dataDir, `${name}-raw.json`), data, { spaces: 2 });
 
   // Write minified
-  writeJsonSync(path.join(DATA_DIR, `${name}.json`), data);
+  writeJsonSync(path.join(dataDir, `${name}.json`), data);
 };
 
 /**
@@ -19,10 +19,13 @@ const writeDataToJson = (name, data) => {
  * These can then be loaded/imported in the data visualization.
  * One JSON file is created for each type of data (assessments, regions,
  * observations, and timeseries).
+ * @param {string} [context] - The context for data storage (e.g., 'benin' for Benin-specific data)
  */
-export const writeStoreToJson = () => {
+export const writeStoreToJson = (context) => {
+  const dataDir = getDataDir(context);
+
   // Ensure directory exists
-  ensureDirSync(DATA_DIR);
+  ensureDirSync(dataDir);
 
   // Determine encoding for compressing observation data
   const observations = store.observations || {};
@@ -39,11 +42,23 @@ export const writeStoreToJson = () => {
     {}
   );
 
-  writeDataToJson("assessments", { assessments: store.assessments || [] });
-  writeDataToJson("regions", { regions: store.regions || [] });
-  writeDataToJson("observations", {
-    observations: encodedObservations,
-    observationEncoding,
-  });
-  writeDataToJson("timeseries", { timeseries: store.timeseries || {} });
+  writeDataToJson(
+    "assessments",
+    { assessments: store.assessments || [] },
+    dataDir
+  );
+  writeDataToJson("regions", { regions: store.regions || [] }, dataDir);
+  writeDataToJson(
+    "observations",
+    {
+      observations: encodedObservations,
+      observationEncoding,
+    },
+    dataDir
+  );
+  writeDataToJson(
+    "timeseries",
+    { timeseries: store.timeseries || {} },
+    dataDir
+  );
 };
