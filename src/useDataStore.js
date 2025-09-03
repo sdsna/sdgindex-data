@@ -29,12 +29,13 @@ import { loadData } from "./loadData";
  * @param {boolean} [options.timeseries=false] - whether to load timeseries
  * @return {DataStoreStatus}
  */
-export const useDataStore = ({ timeseries = false } = {}) => {
+export const useDataStore = ({ timeseries = false } = {}, context) => {
   const [isLoaded, setIsLoaded] = useState(isDataLoaded({ timeseries }));
 
   useEffect(() => {
     // Load data, if not already loaded
-    if (!isLoaded) loadData({ timeseries }).then(() => setIsLoaded(true));
+    if (!isLoaded)
+      loadData({ timeseries }, context).then(() => setIsLoaded(true));
   }, []);
 
   return { isLoaded };
