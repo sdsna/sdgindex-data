@@ -1,6 +1,5 @@
-import { getDataDir } from "./config";
+import { DATA_PATH, getDataDir } from "./config";
 import { store } from "./store";
-
 /**
  * Load a single dataset into the store.
  * @private
@@ -9,8 +8,6 @@ import { store } from "./store";
  * @return {Promise} a promise that resolves when the dataset has been loaded
  */
 export const loadDataset = (dataset, context) => {
-  let dirPath = getDataDir(context);
-
   // If dataset is loaded (or loading), return existing data (or promise)
   if (store[dataset] !== undefined) return Promise.resolve(store[dataset]);
 
@@ -19,13 +16,14 @@ export const loadDataset = (dataset, context) => {
     // Server
     const path = require("path");
     const fse = require("fs-extra");
-    const dataDir = dirPath;
+    const dataDir = getDataDir(context);
     const datasetPath = path.resolve(dataDir, `${dataset}.json`);
     store[dataset] = fse.readJson(datasetPath);
   } else {
+    const subdirectory = context ? `${context}/` : "";
     // Browser
-    store[dataset] = fetch(`${dirPath}${dataset}.json`).then((res) =>
-      res.json()
+    store[dataset] = fetch(`${DATA_PATH}${subdirectory}${dataset}.json`).then(
+      (res) => res.json()
     );
   }
 
